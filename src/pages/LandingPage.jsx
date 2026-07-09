@@ -322,117 +322,52 @@ const LandingPage = () => {
         <div className="absolute inset-0 z-[1] hero-overlay" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="lg:grid lg:grid-cols-12 lg:gap-16 items-center">
+          <div className="max-w-3xl mx-auto text-center space-y-6">
 
-            {/* Left Content */}
-            <div className="text-center lg:text-left lg:col-span-6 space-y-6">
-              <div className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-brand-secondary/10 border border-brand-secondary/25 text-brand-dark dark:text-brand-primary text-xs font-bold animate-pulse">
-                <Sparkles className="h-4.5 w-4.5 text-brand-secondary" />
-                <span>Modern Digital Wellbeing Platform</span>
-              </div>
+            {/* Centered Content */}
+            <div className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-brand-secondary/10 border border-brand-secondary/25 text-brand-dark dark:text-brand-primary text-xs font-bold animate-pulse mx-auto">
+              <Sparkles className="h-4.5 w-4.5 text-brand-secondary" />
+              <span>Modern Digital Wellbeing Platform</span>
+            </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] text-brand-dark dark:text-white min-h-[7rem] md:min-h-[8.5rem] lg:min-h-[11rem]">
-                {typedText1}
-                <br />
-                {typedText2}
-                <span className="inline-block w-1.5 h-8 md:h-12 bg-brand-secondary ml-1 animate-pulse" />
-              </h1>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] text-brand-dark dark:text-white min-h-[7rem] md:min-h-[8.5rem] lg:min-h-[11rem]">
+              {typedText1}
+              <br />
+              {typedText2}
+              <span className="inline-block w-1.5 h-8 md:h-12 bg-brand-secondary ml-1 animate-pulse" />
+            </h1>
 
-              <p className="text-base sm:text-lg text-brand-secondary dark:text-emerald-400/90 max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium">
-                Monitor your screen habits, build healthy routines, and improve your digital wellbeing.
-              </p>
+            <p className="text-base sm:text-lg text-brand-secondary dark:text-emerald-400/90 max-w-xl mx-auto leading-relaxed font-medium">
+              Monitor your screen habits, build healthy routines, and improve your digital wellbeing.
+            </p>
 
-              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
-                {currentUser ? (
-                  <Link
-                    to="/dashboard"
-                    className="w-full sm:w-auto px-8 py-4 bg-brand-primary hover:bg-brand-primary/90 text-brand-dark rounded-2xl font-bold shadow-lg shadow-brand-primary/20 transition-all text-center flex items-center justify-center space-x-2 cursor-pointer active:scale-98"
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+              {currentUser ? (
+                <Link
+                  to="/dashboard"
+                  className="w-full sm:w-auto px-8 py-4 bg-brand-primary hover:bg-brand-primary/90 text-brand-dark rounded-2xl font-bold shadow-lg shadow-brand-primary/20 transition-all text-center flex items-center justify-center space-x-2 cursor-pointer active:scale-98"
+                >
+                  <span>Masuk ke Dashboard</span>
+                  <ArrowRight className="h-5 w-5" />
+                </Link>
+              ) : (
+                <>
+                  <button
+                    onClick={openRegisterModal}
+                    className="w-full sm:w-auto px-8 py-4 bg-brand-primary hover:bg-brand-primary/95 text-brand-dark rounded-2xl font-bold shadow-lg shadow-brand-primary/20 transition-all text-center flex items-center justify-center space-x-2 cursor-pointer active:scale-98"
                   >
-                    <span>Masuk ke Dashboard</span>
+                    <span>Start Tracking</span>
                     <ArrowRight className="h-5 w-5" />
-                  </Link>
-                ) : (
-                  <>
-                    <button
-                      onClick={openRegisterModal}
-                      className="w-full sm:w-auto px-8 py-4 bg-brand-primary hover:bg-brand-primary/95 text-brand-dark rounded-2xl font-bold shadow-lg shadow-brand-primary/20 transition-all text-center flex items-center justify-center space-x-2 cursor-pointer active:scale-98"
-                    >
-                      <span>Start Tracking</span>
-                      <ArrowRight className="h-5 w-5" />
-                    </button>
-                    <button
-                      onClick={openLoginModal}
-                      className="w-full sm:w-auto px-8 py-4 bg-white hover:bg-slate-50 border border-slate-200 text-brand-secondary rounded-2xl font-bold shadow-sm transition-all text-center cursor-pointer active:scale-98"
-                    >
-                      Login
-                    </button>
-                  </>
-                )}
-              </div>
+                  </button>
+                  <button
+                    onClick={openLoginModal}
+                    className="w-full sm:w-auto px-8 py-4 bg-white hover:bg-slate-50 border border-slate-200 text-brand-secondary rounded-2xl font-bold shadow-sm transition-all text-center cursor-pointer active:scale-98"
+                  >
+                    Login
+                  </button>
+                </>
+              )}
             </div>
-
-            {/* Right SaaS Mock Dashboard Preview */}
-            <div className="mt-16 lg:mt-0 lg:col-span-6 flex justify-center">
-              <div className="w-full max-w-lg bg-white/70 border border-brand-secondary/15 rounded-[32px] p-6 shadow-2xl space-y-5 backdrop-blur-sm select-none">
-
-                {/* Header Mockup */}
-                <div className="flex justify-between items-center pb-3 border-b border-brand-secondary/10">
-                  <div className="flex items-center space-x-2">
-                    <div className="w-3.5 h-3.5 rounded-full bg-brand-secondary/10 flex items-center justify-center">
-                      <WorkWellLogo iconOnly={true} className="h-4.5 w-4.5 text-brand-secondary animate-pulse" logoColorClass="text-brand-secondary" />
-                    </div>
-                    <span className="text-xs font-bold text-brand-dark">WorkWell SaaS Preview</span>
-                  </div>
-                  <div className="flex space-x-1.5">
-                    <div className="w-2.5 h-2.5 rounded-full bg-rose-455" />
-                    <div className="w-2.5 h-2.5 rounded-full bg-amber-455" />
-                    <div className="w-2.5 h-2.5 rounded-full bg-emerald-455" />
-                  </div>
-                </div>
-
-                {/* Score and Stats Row mockup */}
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="glass-card p-4 rounded-2xl flex flex-col justify-between h-24">
-                    <div className="flex justify-between items-center">
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-white/80">Wellness Score</span>
-                      <span className="text-xs">✨</span>
-                    </div>
-                    <div className="text-2xl font-extrabold text-white">82%</div>
-                  </div>
-
-                  <div className="bg-white border border-brand-secondary/15 p-4 rounded-2xl flex flex-col justify-between h-24">
-                    <div className="flex justify-between items-center">
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-brand-secondary">Screen Time</span>
-                      <span className="text-xs">⏱️</span>
-                    </div>
-                    <div className="text-lg font-extrabold text-brand-dark">2j 15m / 3j</div>
-                  </div>
-                </div>
-
-                {/* Habits items list mockup */}
-                <div className="space-y-3 bg-white border border-brand-secondary/10 rounded-2xl p-4">
-                  <div className="flex items-center justify-between text-xs font-bold text-brand-dark pb-2 border-b border-brand-secondary/5">
-                    <span>Habit Tracker</span>
-                    <span className="text-brand-primary">🔥 8 Days Streak</span>
-                  </div>
-                  <div className="flex items-center justify-between text-xs">
-                    <div className="flex items-center space-x-2 text-brand-secondary">
-                      <Droplet className="h-4 w-4 text-blue-500" />
-                      <span>Air Minum</span>
-                    </div>
-                    <span className="font-bold text-brand-dark">6 / 8 Gelas</span>
-                  </div>
-                  <div className="flex items-center justify-between text-xs">
-                    <div className="flex items-center space-x-2 text-brand-secondary">
-                      <Dumbbell className="h-4 w-4 text-brand-secondary" />
-                      <span>Peregangan Tubuh</span>
-                    </div>
-                    <span className="font-bold text-brand-dark">3 / 5 Sesi</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
           </div>
         </div>
       </section>
