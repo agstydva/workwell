@@ -346,7 +346,7 @@ const LandingPage = () => {
                 {currentUser ? (
                   <Link
                     to="/dashboard"
-                    className="w-full sm:w-auto px-8 py-4 bg-brand-primary hover:bg-brand-primary/90 text-brand-dark rounded-2xl font-bold shadow-lg shadow-brand-primary/20 transition-all text-center flex items-center justify-center space-x-2 cursor-pointer active:scale-98"
+                    className="w-full sm:w-auto px-8 py-4 bg-brand-primary hover:bg-brand-primary/90 text-brand-dark rounded-2xl font-bold shadow-lg shadow-brand-primary/20 hover:shadow-brand-primary/35 hover:-translate-y-0.5 hover:scale-102 transition-all duration-300 text-center flex items-center justify-center space-x-2 cursor-pointer active:scale-98"
                   >
                     <span>Masuk ke Dashboard</span>
                     <ArrowRight className="h-5 w-5" />
@@ -355,14 +355,14 @@ const LandingPage = () => {
                   <>
                     <button
                       onClick={openRegisterModal}
-                      className="w-full sm:w-auto px-8 py-4 bg-brand-primary hover:bg-brand-primary/95 text-brand-dark rounded-2xl font-bold shadow-lg shadow-brand-primary/20 transition-all text-center flex items-center justify-center space-x-2 cursor-pointer active:scale-98"
+                      className="w-full sm:w-auto px-8 py-4 bg-brand-primary hover:bg-brand-primary/95 text-brand-dark rounded-2xl font-bold shadow-lg shadow-brand-primary/20 hover:shadow-brand-primary/35 hover:-translate-y-0.5 hover:scale-102 transition-all duration-300 text-center flex items-center justify-center space-x-2 cursor-pointer active:scale-98"
                     >
                       <span>Start Tracking</span>
                       <ArrowRight className="h-5 w-5" />
                     </button>
                     <button
                       onClick={openLoginModal}
-                      className="w-full sm:w-auto px-8 py-4 bg-white hover:bg-slate-50 border border-slate-200 text-brand-secondary rounded-2xl font-bold shadow-sm transition-all text-center cursor-pointer active:scale-98"
+                      className="w-full sm:w-auto px-8 py-4 bg-white hover:bg-slate-50 border border-slate-200 hover:border-brand-secondary/35 text-brand-secondary rounded-2xl font-bold shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:scale-102 transition-all duration-300 text-center cursor-pointer active:scale-98"
                     >
                       Login
                     </button>
@@ -414,10 +414,10 @@ const LandingPage = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Feature 1 */}
-            <div className="glass-card-light overflow-hidden rounded-3xl border border-brand-secondary/10 flex flex-col justify-between hover:shadow-lg transition-all duration-300">
+            <div className="glass-card-light overflow-hidden rounded-3xl border border-brand-secondary/10 flex flex-col justify-between hover:shadow-2xl hover:shadow-brand-secondary/5 hover:-translate-y-2 hover:border-brand-primary/30 transition-all duration-500 group">
               <div>
-                <div className="w-full h-44 bg-slate-50 dark:bg-slate-900/20 flex items-center justify-center p-4 border-b border-brand-secondary/5">
-                  <img src={screenTimeIcon} alt="Screen Time" className="h-full w-full object-contain max-h-36 transition-transform duration-500 hover:scale-105" />
+                <div className="w-full h-44 bg-slate-50 dark:bg-slate-900/20 flex items-center justify-center p-4 border-b border-brand-secondary/5 overflow-hidden">
+                  <img src={screenTimeIcon} alt="Screen Time" className="h-full w-full object-contain max-h-36 transition-transform duration-500 group-hover:scale-110" />
                 </div>
                 <div className="p-6 space-y-2 text-left">
                   <h3 className="text-lg font-bold text-brand-dark">Screen Time Monitor</h3>
@@ -427,10 +427,10 @@ const LandingPage = () => {
             </div>
 
             {/* Feature 2 */}
-            <div className="glass-card-light overflow-hidden rounded-3xl border border-brand-secondary/10 flex flex-col justify-between hover:shadow-lg transition-all duration-300">
+            <div className="glass-card-light overflow-hidden rounded-3xl border border-brand-secondary/10 flex flex-col justify-between hover:shadow-2xl hover:shadow-brand-secondary/5 hover:-translate-y-2 hover:border-brand-primary/30 transition-all duration-500 group">
               <div>
-                <div className="w-full h-44 bg-slate-50 dark:bg-slate-900/20 flex items-center justify-center p-4 border-b border-brand-secondary/5">
-                  <img src={waterIntakeIcon} alt="Water Intake" className="h-full w-full object-contain max-h-36 transition-transform duration-500 hover:scale-105" />
+                <div className="w-full h-44 bg-slate-50 dark:bg-slate-900/20 flex items-center justify-center p-4 border-b border-brand-secondary/5 overflow-hidden">
+                  <img src={waterIntakeIcon} alt="Water Intake" className="h-full w-full object-contain max-h-36 transition-transform duration-500 group-hover:scale-110" />
                 </div>
                 <div className="p-6 space-y-2 text-left">
                   <h3 className="text-lg font-bold text-brand-dark">Habit Water Intake</h3>
@@ -440,10 +440,10 @@ const LandingPage = () => {
             </div>
 
             {/* Feature 3 */}
-            <div className="glass-card-light overflow-hidden rounded-3xl border border-brand-secondary/10 flex flex-col justify-between hover:shadow-lg transition-all duration-300">
+            <div className="glass-card-light overflow-hidden rounded-3xl border border-brand-secondary/10 flex flex-col justify-between hover:shadow-2xl hover:shadow-brand-secondary/5 hover:-translate-y-2 hover:border-brand-primary/30 transition-all duration-500 group">
               <div>
-                <div className="w-full h-44 bg-slate-50 dark:bg-slate-900/20 flex items-center justify-center p-4 border-b border-brand-secondary/5">
-                  <img src={movementTrackerIcon} alt="Movement Tracker" className="h-full w-full object-contain max-h-36 transition-transform duration-500 hover:scale-105" />
+                <div className="w-full h-44 bg-slate-50 dark:bg-slate-900/20 flex items-center justify-center p-4 border-b border-brand-secondary/5 overflow-hidden">
+                  <img src={movementTrackerIcon} alt="Movement Tracker" className="h-full w-full object-contain max-h-36 transition-transform duration-500 group-hover:scale-110" />
                 </div>
                 <div className="p-6 space-y-2 text-left">
                   <h3 className="text-lg font-bold text-brand-dark">Movement Tracker</h3>
@@ -453,10 +453,10 @@ const LandingPage = () => {
             </div>
 
             {/* Feature 4 */}
-            <div className="glass-card-light overflow-hidden rounded-3xl border border-brand-secondary/10 flex flex-col justify-between hover:shadow-lg transition-all duration-300">
+            <div className="glass-card-light overflow-hidden rounded-3xl border border-brand-secondary/10 flex flex-col justify-between hover:shadow-2xl hover:shadow-brand-secondary/5 hover:-translate-y-2 hover:border-brand-primary/30 transition-all duration-500 group">
               <div>
-                <div className="w-full h-44 bg-slate-50 dark:bg-slate-900/20 flex items-center justify-center p-4 border-b border-brand-secondary/5">
-                  <img src={stressAnalyticsIcon} alt="Stress & Analytics" className="h-full w-full object-contain max-h-36 transition-transform duration-500 hover:scale-105" />
+                <div className="w-full h-44 bg-slate-50 dark:bg-slate-900/20 flex items-center justify-center p-4 border-b border-brand-secondary/5 overflow-hidden">
+                  <img src={stressAnalyticsIcon} alt="Stress & Analytics" className="h-full w-full object-contain max-h-36 transition-transform duration-500 group-hover:scale-110" />
                 </div>
                 <div className="p-6 space-y-2 text-left">
                   <h3 className="text-lg font-bold text-brand-dark">Stress & Analytics</h3>
@@ -493,7 +493,7 @@ const LandingPage = () => {
           {/* Right step list */}
           <div className="lg:col-span-7 mt-16 lg:mt-0 space-y-6">
             {/* Step 1 */}
-            <div className="flex space-x-4 p-5 bg-white border border-brand-secondary/10 hover:border-brand-secondary/20 rounded-3xl transition-all shadow-sm">
+            <div className="flex space-x-4 p-5 bg-white border border-brand-secondary/10 hover:border-brand-primary/30 hover:shadow-md hover:-translate-y-0.5 rounded-3xl transition-all duration-300 shadow-sm">
               <div className="w-12 h-12 rounded-2xl bg-brand-secondary/10 text-brand-secondary flex items-center justify-center font-black text-lg flex-shrink-0">
                 1
               </div>
@@ -504,7 +504,7 @@ const LandingPage = () => {
             </div>
 
             {/* Step 2 */}
-            <div className="flex space-x-4 p-5 bg-white border border-brand-secondary/10 hover:border-brand-secondary/20 rounded-3xl transition-all shadow-sm">
+            <div className="flex space-x-4 p-5 bg-white border border-brand-secondary/10 hover:border-brand-primary/30 hover:shadow-md hover:-translate-y-0.5 rounded-3xl transition-all duration-300 shadow-sm">
               <div className="w-12 h-12 rounded-2xl bg-brand-secondary/10 text-brand-secondary flex items-center justify-center font-black text-lg flex-shrink-0">
                 2
               </div>
@@ -515,7 +515,7 @@ const LandingPage = () => {
             </div>
 
             {/* Step 3 */}
-            <div className="flex space-x-4 p-5 bg-white border border-brand-secondary/10 hover:border-brand-secondary/20 rounded-3xl transition-all shadow-sm">
+            <div className="flex space-x-4 p-5 bg-white border border-brand-secondary/10 hover:border-brand-primary/30 hover:shadow-md hover:-translate-y-0.5 rounded-3xl transition-all duration-300 shadow-sm">
               <div className="w-12 h-12 rounded-2xl bg-brand-secondary/10 text-brand-secondary flex items-center justify-center font-black text-lg flex-shrink-0">
                 3
               </div>
@@ -538,24 +538,24 @@ const LandingPage = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="p-6 space-y-3 text-center">
-              <div className="w-12 h-12 bg-brand-secondary/10 text-brand-secondary rounded-2xl flex items-center justify-center mx-auto">
+            <div className="p-6 space-y-3 text-center rounded-3xl border border-transparent hover:border-brand-secondary/10 hover:bg-slate-50/50 dark:hover:bg-slate-900/10 hover:shadow-md transition-all duration-300">
+              <div className="w-12 h-12 bg-brand-secondary/10 text-brand-secondary rounded-2xl flex items-center justify-center mx-auto transition-transform duration-300 hover:scale-110">
                 <Shield className="h-6 w-6" />
               </div>
               <h4 className="font-bold text-brand-dark">Hindari Cedera Fisik (RSI)</h4>
               <p className="text-xs text-brand-secondary font-medium leading-relaxed">Peregangan otot berkala membantu mencegah carpal tunnel syndrome, ketegangan tendon leher, dan nyeri tulang belakang bagian bawah.</p>
             </div>
 
-            <div className="p-6 space-y-3 text-center">
-              <div className="w-12 h-12 bg-brand-secondary/10 text-brand-secondary rounded-2xl flex items-center justify-center mx-auto">
+            <div className="p-6 space-y-3 text-center rounded-3xl border border-transparent hover:border-brand-secondary/10 hover:bg-slate-50/50 dark:hover:bg-slate-900/10 hover:shadow-md transition-all duration-300">
+              <div className="w-12 h-12 bg-brand-secondary/10 text-brand-secondary rounded-2xl flex items-center justify-center mx-auto transition-transform duration-300 hover:scale-110">
                 <Zap className="h-6 w-6" />
               </div>
               <h4 className="font-bold text-brand-dark">Tingkatkan Fokus & Produktivitas</h4>
               <p className="text-xs text-brand-secondary font-medium leading-relaxed">Studi menunjukkan istirahat kecil (microbreaks) yang terjadwal dapat memulihkan konsentrasi dan meningkatkan produktivitas hingga 20%.</p>
             </div>
 
-            <div className="p-6 space-y-3 text-center">
-              <div className="w-12 h-12 bg-brand-secondary/10 text-brand-secondary rounded-2xl flex items-center justify-center mx-auto">
+            <div className="p-6 space-y-3 text-center rounded-3xl border border-transparent hover:border-brand-secondary/10 hover:bg-slate-50/50 dark:hover:bg-slate-900/10 hover:shadow-md transition-all duration-300">
+              <div className="w-12 h-12 bg-brand-secondary/10 text-brand-secondary rounded-2xl flex items-center justify-center mx-auto transition-transform duration-300 hover:scale-110">
                 <ShieldAlert className="h-6 w-6" />
               </div>
               <h4 className="font-bold text-brand-dark">Kurangi Ketegangan Mata</h4>
@@ -584,7 +584,7 @@ const LandingPage = () => {
               <div className="pt-2 flex justify-center lg:justify-start">
                 <button
                   onClick={currentUser ? () => navigate('/wellness-center') : openRegisterModal}
-                  className="flex items-center space-x-2 px-6 py-3.5 bg-brand-secondary hover:bg-brand-secondary/95 text-white font-bold rounded-2xl text-sm shadow-md shadow-brand-secondary/15 transition-all cursor-pointer active:scale-98"
+                  className="flex items-center space-x-2 px-6 py-3.5 bg-brand-secondary hover:bg-brand-secondary/95 text-white font-bold rounded-2xl text-sm shadow-md hover:shadow-xl hover:shadow-brand-secondary/25 hover:-translate-y-0.5 transition-all cursor-pointer active:scale-98"
                 >
                   <span>Buka Wellness Center</span>
                   <ArrowRight className="h-4.5 w-4.5" />
@@ -601,7 +601,7 @@ const LandingPage = () => {
                 
                 <div className="relative z-10 flex flex-col items-center space-y-4 text-center p-6">
                   {/* Animated Breath Circle inside player */}
-                  <div className="w-20 h-20 rounded-full bg-brand-secondary/25 flex items-center justify-center relative cursor-pointer group-hover:scale-105 transition-transform duration-300">
+                  <div className="w-20 h-20 rounded-full bg-brand-secondary/25 flex items-center justify-center relative cursor-pointer group-hover:scale-110 group-hover:bg-brand-secondary/35 transition-all duration-300">
                     <div className="absolute inset-0 bg-brand-secondary/20 rounded-full animate-ping" />
                     <Play className="h-7 w-7 text-white fill-white relative z-10 translate-x-0.5" />
                   </div>
@@ -645,7 +645,7 @@ const LandingPage = () => {
             {/* Left/Right Arrow Buttons (Desktop/Tablet) */}
             <button
               onClick={() => setCurrentTestimonialIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)}
-              className="absolute left-0 top-1/2 -translate-y-1/2 p-3 bg-white dark:bg-slate-900 border border-brand-secondary/15 rounded-full hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors shadow-md text-brand-secondary cursor-pointer z-10 hidden sm:block shadow-brand-secondary/5"
+              className="absolute left-0 top-1/2 -translate-y-1/2 p-3 bg-white dark:bg-slate-900 border border-brand-secondary/15 rounded-full hover:bg-brand-secondary hover:text-white hover:border-brand-secondary hover:scale-115 transition-all duration-300 shadow-md text-brand-secondary cursor-pointer z-10 hidden sm:block shadow-brand-secondary/5"
               title="Sebelumnya"
             >
               <ArrowRight className="h-5 w-5 transform rotate-180" />
@@ -653,7 +653,7 @@ const LandingPage = () => {
 
             <button
               onClick={() => setCurrentTestimonialIndex((prev) => (prev + 1) % testimonials.length)}
-              className="absolute right-0 top-1/2 -translate-y-1/2 p-3 bg-white dark:bg-slate-900 border border-brand-secondary/15 rounded-full hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors shadow-md text-brand-secondary cursor-pointer z-10 hidden sm:block shadow-brand-secondary/5"
+              className="absolute right-0 top-1/2 -translate-y-1/2 p-3 bg-white dark:bg-slate-900 border border-brand-secondary/15 rounded-full hover:bg-brand-secondary hover:text-white hover:border-brand-secondary hover:scale-115 transition-all duration-300 shadow-md text-brand-secondary cursor-pointer z-10 hidden sm:block shadow-brand-secondary/5"
               title="Selanjutnya"
             >
               <ArrowRight className="h-5 w-5" />
@@ -671,7 +671,7 @@ const LandingPage = () => {
                 return (
                   <div
                     key={index}
-                    className={`${visibilityClass} glass-card-light p-6 rounded-3xl border border-brand-secondary/10 flex flex-col justify-between hover:shadow-lg transition-all duration-500 h-64 animate-in fade-in duration-300`}
+                    className={`${visibilityClass} glass-card-light p-6 rounded-3xl border border-brand-secondary/10 hover:border-brand-primary/30 flex flex-col justify-between hover:shadow-2xl hover:shadow-brand-secondary/5 hover:-translate-y-1.5 transition-all duration-500 h-64 animate-in fade-in duration-300`}
                   >
                     <div>
                       {/* Profile details at the TOP */}
@@ -703,13 +703,13 @@ const LandingPage = () => {
             <div className="flex sm:hidden justify-between mt-6 px-4">
               <button
                 onClick={() => setCurrentTestimonialIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)}
-                className="px-4 py-2 bg-white dark:bg-slate-900 border border-brand-secondary/15 rounded-xl text-xs font-bold text-brand-secondary cursor-pointer"
+                className="px-4 py-2 bg-white hover:bg-slate-50 dark:bg-slate-900 border border-brand-secondary/15 rounded-xl text-xs font-bold text-brand-secondary hover:shadow-sm transition-all cursor-pointer"
               >
                 Sebelumnya
               </button>
               <button
                 onClick={() => setCurrentTestimonialIndex((prev) => (prev + 1) % testimonials.length)}
-                className="px-4 py-2 bg-white dark:bg-slate-900 border border-brand-secondary/15 rounded-xl text-xs font-bold text-brand-secondary cursor-pointer"
+                className="px-4 py-2 bg-white hover:bg-slate-50 dark:bg-slate-900 border border-brand-secondary/15 rounded-xl text-xs font-bold text-brand-secondary hover:shadow-sm transition-all cursor-pointer"
               >
                 Selanjutnya
               </button>
