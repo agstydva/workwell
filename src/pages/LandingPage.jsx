@@ -388,46 +388,54 @@ const LandingPage = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Feature 1 */}
-            <div className="glass-card-light p-6 rounded-3xl border border-brand-secondary/10 flex flex-col justify-between hover:shadow-lg transition-all duration-300">
-              <div className="space-y-4 text-left">
-                <div className="p-2 bg-brand-secondary/10 rounded-2xl w-fit flex items-center justify-center">
-                  <img src={screenTimeIcon} alt="Screen Time" className="h-8 w-8 object-contain" />
+            <div className="glass-card-light overflow-hidden rounded-3xl border border-brand-secondary/10 flex flex-col justify-between hover:shadow-lg transition-all duration-300">
+              <div>
+                <div className="w-full h-44 bg-slate-50 dark:bg-slate-900/20 flex items-center justify-center p-4 border-b border-brand-secondary/5">
+                  <img src={screenTimeIcon} alt="Screen Time" className="h-full w-full object-contain max-h-36 transition-transform duration-500 hover:scale-105" />
                 </div>
-                <h3 className="text-lg font-bold text-brand-dark">Screen Time Monitor</h3>
-                <p className="text-xs text-brand-secondary font-medium leading-relaxed">Timer durasi kerja dengan reminder otomatis ketika melebihi batas waktu sehat. Jaga mata Anda agar tetap rileks.</p>
+                <div className="p-6 space-y-2 text-left">
+                  <h3 className="text-lg font-bold text-brand-dark">Screen Time Monitor</h3>
+                  <p className="text-xs text-brand-secondary font-medium leading-relaxed">Timer durasi kerja dengan reminder otomatis ketika melebihi batas waktu sehat. Jaga mata Anda agar tetap rileks.</p>
+                </div>
               </div>
             </div>
 
             {/* Feature 2 */}
-            <div className="glass-card-light p-6 rounded-3xl border border-brand-secondary/10 flex flex-col justify-between hover:shadow-lg transition-all duration-300">
-              <div className="space-y-4 text-left">
-                <div className="p-2 bg-brand-secondary/10 rounded-2xl w-fit flex items-center justify-center">
-                  <img src={waterIntakeIcon} alt="Water Intake" className="h-8 w-8 object-contain" />
+            <div className="glass-card-light overflow-hidden rounded-3xl border border-brand-secondary/10 flex flex-col justify-between hover:shadow-lg transition-all duration-300">
+              <div>
+                <div className="w-full h-44 bg-slate-50 dark:bg-slate-900/20 flex items-center justify-center p-4 border-b border-brand-secondary/5">
+                  <img src={waterIntakeIcon} alt="Water Intake" className="h-full w-full object-contain max-h-36 transition-transform duration-500 hover:scale-105" />
                 </div>
-                <h3 className="text-lg font-bold text-brand-dark">Habit Water Intake</h3>
-                <p className="text-xs text-brand-secondary font-medium leading-relaxed">Pengingat berkala untuk minum air. Capai target gelas harian Anda secara teratur agar tubuh tetap terhidrasi dengan baik.</p>
+                <div className="p-6 space-y-2 text-left">
+                  <h3 className="text-lg font-bold text-brand-dark">Habit Water Intake</h3>
+                  <p className="text-xs text-brand-secondary font-medium leading-relaxed">Pengingat berkala untuk minum air. Capai target gelas harian Anda secara teratur agar tubuh tetap terhidrasi dengan baik.</p>
+                </div>
               </div>
             </div>
 
             {/* Feature 3 */}
-            <div className="glass-card-light p-6 rounded-3xl border border-brand-secondary/10 flex flex-col justify-between hover:shadow-lg transition-all duration-300">
-              <div className="space-y-4 text-left">
-                <div className="p-2 bg-brand-secondary/10 rounded-2xl w-fit flex items-center justify-center">
-                  <img src={movementTrackerIcon} alt="Movement Tracker" className="h-8 w-8 object-contain" />
+            <div className="glass-card-light overflow-hidden rounded-3xl border border-brand-secondary/10 flex flex-col justify-between hover:shadow-lg transition-all duration-300">
+              <div>
+                <div className="w-full h-44 bg-slate-50 dark:bg-slate-900/20 flex items-center justify-center p-4 border-b border-brand-secondary/5">
+                  <img src={movementTrackerIcon} alt="Movement Tracker" className="h-full w-full object-contain max-h-36 transition-transform duration-500 hover:scale-105" />
                 </div>
-                <h3 className="text-lg font-bold text-brand-dark">Movement Tracker</h3>
-                <p className="text-xs text-brand-secondary font-medium leading-relaxed">Mencatat aktivitas peregangan dan olahraga ringan Anda. Hindari kekakuan otot leher, punggung, dan bahu.</p>
+                <div className="p-6 space-y-2 text-left">
+                  <h3 className="text-lg font-bold text-brand-dark">Movement Tracker</h3>
+                  <p className="text-xs text-brand-secondary font-medium leading-relaxed">Mencatat aktivitas peregangan dan olahraga ringan Anda. Hindari kekakuan otot leher, punggung, dan bahu.</p>
+                </div>
               </div>
             </div>
 
             {/* Feature 4 */}
-            <div className="glass-card-light p-6 rounded-3xl border border-brand-secondary/10 flex flex-col justify-between hover:shadow-lg transition-all duration-300">
-              <div className="space-y-4 text-left">
-                <div className="p-2 bg-brand-secondary/10 rounded-2xl w-fit flex items-center justify-center">
-                  <img src={stressAnalyticsIcon} alt="Stress & Analytics" className="h-8 w-8 object-contain" />
+            <div className="glass-card-light overflow-hidden rounded-3xl border border-brand-secondary/10 flex flex-col justify-between hover:shadow-lg transition-all duration-300">
+              <div>
+                <div className="w-full h-44 bg-slate-50 dark:bg-slate-900/20 flex items-center justify-center p-4 border-b border-brand-secondary/5">
+                  <img src={stressAnalyticsIcon} alt="Stress & Analytics" className="h-full w-full object-contain max-h-36 transition-transform duration-500 hover:scale-105" />
                 </div>
-                <h3 className="text-lg font-bold text-brand-dark">Stress & Analytics</h3>
-                <p className="text-xs text-brand-secondary font-medium leading-relaxed">Pantau mood harian Anda dengan indikator tingkat stres, dan visualisasikan kemajuan mingguan Anda melalui grafik analitik interaktif.</p>
+                <div className="p-6 space-y-2 text-left">
+                  <h3 className="text-lg font-bold text-brand-dark">Stress & Analytics</h3>
+                  <p className="text-xs text-brand-secondary font-medium leading-relaxed">Pantau mood harian Anda dengan indikator tingkat stres, dan visualisasikan kemajuan mingguan Anda melalui grafik analitik interaktif.</p>
+                </div>
               </div>
             </div>
           </div>
