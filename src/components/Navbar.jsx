@@ -77,10 +77,11 @@ const Navbar = ({ onLoginClick, onRegisterClick }) => {
             {/* Theme Selector */}
             <button
               onClick={cycleTheme}
-              className="flex items-center space-x-1.5 p-2 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700/60 rounded-xl hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors text-slate-700 dark:text-slate-300 cursor-pointer"
+              className="flex items-center space-x-2 px-3 py-2 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700/60 rounded-xl hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors text-slate-700 dark:text-slate-300 cursor-pointer text-xs font-semibold"
               title={`Tema: ${getThemeLabel()} (Klik untuk ganti)`}
             >
               {getThemeIcon()}
+              <span>{getThemeLabel()}</span>
             </button>
 
             {currentUser ? (
