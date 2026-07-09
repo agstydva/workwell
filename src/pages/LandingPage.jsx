@@ -322,52 +322,58 @@ const LandingPage = () => {
         <div className="absolute inset-0 z-[1] hero-overlay" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-3xl mx-auto text-center space-y-6">
+          <div className="lg:grid lg:grid-cols-12 lg:gap-16 items-center">
 
-            {/* Centered Content */}
-            <div className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-brand-secondary/10 border border-brand-secondary/25 text-brand-dark dark:text-brand-primary text-xs font-bold animate-pulse mx-auto">
-              <Sparkles className="h-4.5 w-4.5 text-brand-secondary" />
-              <span>Modern Digital Wellbeing Platform</span>
-            </div>
+            {/* Left Content */}
+            <div className="text-center lg:text-left lg:col-span-6 space-y-6">
+              <div className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-brand-secondary/10 border border-brand-secondary/25 text-brand-dark dark:text-brand-primary text-xs font-bold animate-pulse">
+                <Sparkles className="h-4.5 w-4.5 text-brand-secondary" />
+                <span>Modern Digital Wellbeing Platform</span>
+              </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] text-brand-dark dark:text-white min-h-[7rem] md:min-h-[8.5rem] lg:min-h-[11rem]">
-              {typedText1}
-              <br />
-              {typedText2}
-              <span className="inline-block w-1.5 h-8 md:h-12 bg-brand-secondary ml-1 animate-pulse" />
-            </h1>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] text-brand-dark dark:text-white min-h-[7rem] md:min-h-[8.5rem] lg:min-h-[11rem]">
+                {typedText1}
+                <br />
+                {typedText2}
+                <span className="inline-block w-1.5 h-8 md:h-12 bg-brand-secondary ml-1 animate-pulse" />
+              </h1>
 
-            <p className="text-base sm:text-lg text-brand-secondary dark:text-emerald-400/90 max-w-xl mx-auto leading-relaxed font-medium">
-              Monitor your screen habits, build healthy routines, and improve your digital wellbeing.
-            </p>
+              <p className="text-base sm:text-lg text-brand-secondary dark:text-emerald-400/90 max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium">
+                Monitor your screen habits, build healthy routines, and improve your digital wellbeing.
+              </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-              {currentUser ? (
-                <Link
-                  to="/dashboard"
-                  className="w-full sm:w-auto px-8 py-4 bg-brand-primary hover:bg-brand-primary/90 text-brand-dark rounded-2xl font-bold shadow-lg shadow-brand-primary/20 transition-all text-center flex items-center justify-center space-x-2 cursor-pointer active:scale-98"
-                >
-                  <span>Masuk ke Dashboard</span>
-                  <ArrowRight className="h-5 w-5" />
-                </Link>
-              ) : (
-                <>
-                  <button
-                    onClick={openRegisterModal}
-                    className="w-full sm:w-auto px-8 py-4 bg-brand-primary hover:bg-brand-primary/95 text-brand-dark rounded-2xl font-bold shadow-lg shadow-brand-primary/20 transition-all text-center flex items-center justify-center space-x-2 cursor-pointer active:scale-98"
+              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                {currentUser ? (
+                  <Link
+                    to="/dashboard"
+                    className="w-full sm:w-auto px-8 py-4 bg-brand-primary hover:bg-brand-primary/90 text-brand-dark rounded-2xl font-bold shadow-lg shadow-brand-primary/20 transition-all text-center flex items-center justify-center space-x-2 cursor-pointer active:scale-98"
                   >
-                    <span>Start Tracking</span>
+                    <span>Masuk ke Dashboard</span>
                     <ArrowRight className="h-5 w-5" />
-                  </button>
-                  <button
-                    onClick={openLoginModal}
-                    className="w-full sm:w-auto px-8 py-4 bg-white hover:bg-slate-50 border border-slate-200 text-brand-secondary rounded-2xl font-bold shadow-sm transition-all text-center cursor-pointer active:scale-98"
-                  >
-                    Login
-                  </button>
-                </>
-              )}
+                  </Link>
+                ) : (
+                  <>
+                    <button
+                      onClick={openRegisterModal}
+                      className="w-full sm:w-auto px-8 py-4 bg-brand-primary hover:bg-brand-primary/95 text-brand-dark rounded-2xl font-bold shadow-lg shadow-brand-primary/20 transition-all text-center flex items-center justify-center space-x-2 cursor-pointer active:scale-98"
+                    >
+                      <span>Start Tracking</span>
+                      <ArrowRight className="h-5 w-5" />
+                    </button>
+                    <button
+                      onClick={openLoginModal}
+                      className="w-full sm:w-auto px-8 py-4 bg-white hover:bg-slate-50 border border-slate-200 text-brand-secondary rounded-2xl font-bold shadow-sm transition-all text-center cursor-pointer active:scale-98"
+                    >
+                      Login
+                    </button>
+                  </>
+                )}
+              </div>
             </div>
+
+            {/* Empty Right Column */}
+            <div className="hidden lg:block lg:col-span-6" />
+
           </div>
         </div>
       </section>
