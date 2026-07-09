@@ -15,7 +15,7 @@ import {
   Activity, Clock, Droplet, Dumbbell, ShieldAlert,
   ArrowRight, Shield, Zap, Sparkles, TrendingUp,
   X, Mail, Lock, User, AlertCircle, CheckCircle2,
-  Play, Volume2
+  Play, Volume2, Star
 } from 'lucide-react';
 
 const LandingPage = () => {
@@ -598,6 +598,210 @@ const LandingPage = () => {
                     </div>
                     <Volume2 className="h-3.5 w-3.5 text-slate-300" />
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-24 bg-slate-50 dark:bg-slate-900/30 border-t border-brand-secondary/10 scroll-reveal">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+            <h2 className="text-xs font-bold text-brand-secondary uppercase tracking-widest">Testimoni Pengguna</h2>
+            <h3 className="text-3xl sm:text-4xl font-black text-brand-dark dark:text-white">Kata Mereka Tentang WorkWell</h3>
+            <p className="text-brand-secondary dark:text-slate-400 text-sm font-medium">Umpan balik nyata dari mahasiswa dan praktisi profesional yang telah mentransformasi kebiasaan harian mereka.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Testimonial 1 */}
+            <div className="glass-card-light p-6 rounded-3xl border border-brand-secondary/10 flex flex-col justify-between hover:shadow-lg transition-all duration-300">
+              <div className="space-y-4 text-left">
+                <div className="flex space-x-1">
+                  {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 text-amber-500 fill-amber-500" />)}
+                </div>
+                <p className="text-xs sm:text-sm text-brand-secondary dark:text-slate-350 leading-relaxed font-semibold italic">
+                  "Sebagai mahasiswa ilmu komputer, tugas pemrograman sangat menyita waktu di depan laptop. Sejak memakai WorkWell, fitur peregangan ototnya sangat membantu meredakan pegal pundak saya."
+                </p>
+              </div>
+              <div className="flex items-center space-x-3.5 pt-6 border-t border-brand-secondary/10 dark:border-slate-800 mt-6">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-brand-secondary to-brand-primary text-white flex items-center justify-center font-black text-sm shadow-inner">
+                  AP
+                </div>
+                <div className="text-left">
+                  <h5 className="text-xs font-bold text-brand-dark dark:text-white">Aditya Pratama</h5>
+                  <p className="text-[10px] text-brand-secondary dark:text-slate-400 font-semibold">Mahasiswa Ilmu Komputer UNJ</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Testimonial 2 */}
+            <div className="glass-card-light p-6 rounded-3xl border border-brand-secondary/10 flex flex-col justify-between hover:shadow-lg transition-all duration-300">
+              <div className="space-y-4 text-left">
+                <div className="flex space-x-1">
+                  {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 text-amber-500 fill-amber-500" />)}
+                </div>
+                <p className="text-xs sm:text-sm text-brand-secondary dark:text-slate-350 leading-relaxed font-semibold italic">
+                  "Notifikasi pengingat layar dan rehatnya sangat adaptif. Sangat menunjang kesehatan mata saya saat harus fokus mengoding sistem klasifikasi sepanjang hari kerja."
+                </p>
+              </div>
+              <div className="flex items-center space-x-3.5 pt-6 border-t border-brand-secondary/10 dark:border-slate-800 mt-6">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-indigo-500 to-cyan-500 text-white flex items-center justify-center font-black text-sm shadow-inner">
+                  DL
+                </div>
+                <div className="text-left">
+                  <h5 className="text-xs font-bold text-brand-dark dark:text-white">Dewi Lestari</h5>
+                  <p className="text-[10px] text-brand-secondary dark:text-slate-400 font-semibold">IT Developer Biro Klasifikasi Indonesia (Persero)</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Testimonial 3 */}
+            <div className="glass-card-light p-6 rounded-3xl border border-brand-secondary/10 flex flex-col justify-between hover:shadow-lg transition-all duration-300">
+              <div className="space-y-4 text-left">
+                <div className="flex space-x-1">
+                  {[...Array(4)].map((_, i) => <Star key={i} className="h-4 w-4 text-amber-500 fill-amber-500" />)}
+                  <Star className="h-4 w-4 text-slate-300 dark:text-slate-700" />
+                </div>
+                <p className="text-xs sm:text-sm text-brand-secondary dark:text-slate-350 leading-relaxed font-semibold italic">
+                  "Fitur pelacak air minumnya sangat memotivasi saya untuk teratur menghidrasi tubuh saat kuliah daring. Target harian tercapai secara presisi."
+                </p>
+              </div>
+              <div className="flex items-center space-x-3.5 pt-6 border-t border-brand-secondary/10 dark:border-slate-800 mt-6">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-rose-500 to-amber-500 text-white flex items-center justify-center font-black text-sm shadow-inner">
+                  RH
+                </div>
+                <div className="text-left">
+                  <h5 className="text-xs font-bold text-brand-dark dark:text-white">Rian Hidayat</h5>
+                  <p className="text-[10px] text-brand-secondary dark:text-slate-400 font-semibold">Mahasiswa Sistem Informasi Universitas Trisakti</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Testimonial 4 */}
+            <div className="glass-card-light p-6 rounded-3xl border border-brand-secondary/10 flex flex-col justify-between hover:shadow-lg transition-all duration-300">
+              <div className="space-y-4 text-left">
+                <div className="flex space-x-1">
+                  {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 text-amber-500 fill-amber-500" />)}
+                </div>
+                <p className="text-xs sm:text-sm text-brand-secondary dark:text-slate-350 leading-relaxed font-semibold italic">
+                  "Wellness Center dengan musik latar alam tenangnya sangat membantu meredakan kepenatan saya setelah praktikum panjang. Desain aplikasinya menenangkan."
+                </p>
+              </div>
+              <div className="flex items-center space-x-3.5 pt-6 border-t border-brand-secondary/10 dark:border-slate-800 mt-6">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-emerald-500 to-teal-500 text-white flex items-center justify-center font-black text-sm shadow-inner">
+                  SR
+                </div>
+                <div className="text-left">
+                  <h5 className="text-xs font-bold text-brand-dark dark:text-white">Siti Rahma</h5>
+                  <p className="text-[10px] text-brand-secondary dark:text-slate-400 font-semibold">Mahasiswa Pendidikan Teknik Informatika UNJ</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Testimonial 5 */}
+            <div className="glass-card-light p-6 rounded-3xl border border-brand-secondary/10 flex flex-col justify-between hover:shadow-lg transition-all duration-300">
+              <div className="space-y-4 text-left">
+                <div className="flex space-x-1">
+                  {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 text-amber-500 fill-amber-500" />)}
+                </div>
+                <p className="text-xs sm:text-sm text-brand-secondary dark:text-slate-350 leading-relaxed font-semibold italic">
+                  "Menjaga konsistensi rutinitas sehat kini lebih mudah berkat fitur habit streaks. Tracker otomatis ini sangat membantu integrasi kebiasaan sehat saat WFO."
+                </p>
+              </div>
+              <div className="flex items-center space-x-3.5 pt-6 border-t border-brand-secondary/10 dark:border-slate-800 mt-6">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-blue-500 to-indigo-500 text-white flex items-center justify-center font-black text-sm shadow-inner">
+                  BS
+                </div>
+                <div className="text-left">
+                  <h5 className="text-xs font-bold text-brand-dark dark:text-white">Budi Santoso</h5>
+                  <p className="text-[10px] text-brand-secondary dark:text-slate-400 font-semibold">DevOps Engineer Biro Klasifikasi Indonesia (Persero)</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Testimonial 6 */}
+            <div className="glass-card-light p-6 rounded-3xl border border-brand-secondary/10 flex flex-col justify-between hover:shadow-lg transition-all duration-300">
+              <div className="space-y-4 text-left">
+                <div className="flex space-x-1">
+                  {[...Array(4)].map((_, i) => <Star key={i} className="h-4 w-4 text-amber-500 fill-amber-500" />)}
+                  <Star className="h-4 w-4 text-slate-300 dark:text-slate-700" />
+                </div>
+                <p className="text-xs sm:text-sm text-brand-secondary dark:text-slate-350 leading-relaxed font-semibold italic">
+                  "Latihan pernapasan box breathing di Wellness Center sangat berguna untuk meredakan kecemasan dan stres saat saya dikejar tenggat waktu tugas akhir."
+                </p>
+              </div>
+              <div className="flex items-center space-x-3.5 pt-6 border-t border-brand-secondary/10 dark:border-slate-800 mt-6">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-purple-500 to-pink-500 text-white flex items-center justify-center font-black text-sm shadow-inner">
+                  AP
+                </div>
+                <div className="text-left">
+                  <h5 className="text-xs font-bold text-brand-dark dark:text-white">Alisha Putri</h5>
+                  <p className="text-[10px] text-brand-secondary dark:text-slate-400 font-semibold">Mahasiswa DKV Universitas Trisakti</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Testimonial 7 */}
+            <div className="glass-card-light p-6 rounded-3xl border border-brand-secondary/10 flex flex-col justify-between hover:shadow-lg transition-all duration-300">
+              <div className="space-y-4 text-left">
+                <div className="flex space-x-1">
+                  {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 text-amber-500 fill-amber-500" />)}
+                </div>
+                <p className="text-xs sm:text-sm text-brand-secondary dark:text-slate-350 leading-relaxed font-semibold italic">
+                  "Aplikasi yang sangat ringan dan mudah dioperasikan. Sangat cocok bagi mahasiswa yang sering harus begadang mengerjakan tugas riset di depan komputer."
+                </p>
+              </div>
+              <div className="flex items-center space-x-3.5 pt-6 border-t border-brand-secondary/10 dark:border-slate-800 mt-6">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-amber-400 to-orange-500 text-white flex items-center justify-center font-black text-sm shadow-inner">
+                  FR
+                </div>
+                <div className="text-left">
+                  <h5 className="text-xs font-bold text-brand-dark dark:text-white">Fikri Ramadhan</h5>
+                  <p className="text-[10px] text-brand-secondary dark:text-slate-400 font-semibold">Mahasiswa Teknologi Pendidikan UNJ</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Testimonial 8 */}
+            <div className="glass-card-light p-6 rounded-3xl border border-brand-secondary/10 flex flex-col justify-between hover:shadow-lg transition-all duration-300">
+              <div className="space-y-4 text-left">
+                <div className="flex space-x-1">
+                  {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 text-amber-500 fill-amber-500" />)}
+                </div>
+                <p className="text-xs sm:text-sm text-brand-secondary dark:text-slate-350 leading-relaxed font-semibold italic">
+                  "Membantu melacak kebiasaan kesehatan kerja tim developer kami di kantor. Tingkat kebugaran dan kebahagiaan karyawan meningkat signifikan."
+                </p>
+              </div>
+              <div className="flex items-center space-x-3.5 pt-6 border-t border-brand-secondary/10 dark:border-slate-800 mt-6">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-teal-500 to-cyan-500 text-white flex items-center justify-center font-black text-sm shadow-inner">
+                  DN
+                </div>
+                <div className="text-left">
+                  <h5 className="text-xs font-bold text-brand-dark dark:text-white">Diana Nastiti</h5>
+                  <p className="text-[10px] text-brand-secondary dark:text-slate-400 font-semibold">System Analyst Biro Klasifikasi Indonesia (Persero)</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Testimonial 9 */}
+            <div className="glass-card-light p-6 rounded-3xl border border-brand-secondary/10 flex flex-col justify-between hover:shadow-lg transition-all duration-300">
+              <div className="space-y-4 text-left">
+                <div className="flex space-x-1">
+                  {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 text-amber-500 fill-amber-500" />)}
+                </div>
+                <p className="text-xs sm:text-sm text-brand-secondary dark:text-slate-350 leading-relaxed font-semibold italic">
+                  "Panduan peregangan dinamis di Wellness Center sangat mudah diikuti dan langsung meredakan pegal bahu serta punggung saya setelah kuliah panjang."
+                </p>
+              </div>
+              <div className="flex items-center space-x-3.5 pt-6 border-t border-brand-secondary/10 dark:border-slate-800 mt-6">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-violet-500 to-fuchsia-500 text-white flex items-center justify-center font-black text-sm shadow-inner">
+                  KW
+                </div>
+                <div className="text-left">
+                  <h5 className="text-xs font-bold text-brand-dark dark:text-white">Kevin Wijaya</h5>
+                  <p className="text-[10px] text-brand-secondary dark:text-slate-400 font-semibold">Mahasiswa Teknik Industri Universitas Trisakti</p>
                 </div>
               </div>
             </div>
