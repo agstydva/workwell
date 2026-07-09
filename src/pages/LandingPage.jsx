@@ -3,8 +3,8 @@ import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import Navbar from '../components/Navbar';
 import WorkWellLogo from '../components/WorkWellLogo';
-import authIllustration from '../assets/auth_illustration.png';
-import registerIllustration from '../assets/register_illustration.png';
+import loginImg from '../assets/login.jpg';
+import registerImg from '../assets/register.jpg';
 import heroWorkspaceBg from '../assets/hero_workspace_bg.png';
 import screenTimeIcon from '../assets/screen_time.png';
 import waterIntakeIcon from '../assets/water_intake.png';
@@ -761,19 +761,16 @@ const LandingPage = () => {
           {/* Modal Container */}
           <div className="bg-white border border-brand-secondary/15 w-full max-w-3xl rounded-[32px] shadow-2xl relative z-10 flex overflow-hidden animate-in fade-in zoom-in-95 duration-200">
 
-            {/* Left Pane - Illustration (Hidden on mobile) */}
-            <div className="hidden md:flex md:w-1/2 flex-col justify-center items-center p-8 bg-brand-secondary/5 border-r border-brand-secondary/10 text-center space-y-6">
-              <div className="relative">
-                <div className="w-56 h-56 rounded-full bg-brand-primary/10 absolute -inset-1 blur-md animate-pulse" />
-                <img
-                  src={authIllustration}
-                  alt="WorkWell Illustration"
-                  className="w-52 h-52 object-contain rounded-full relative z-10 border border-brand-secondary/20 shadow-sm"
-                />
-              </div>
-              <div className="space-y-2 max-w-xs mx-auto text-center">
-                <h3 className="font-extrabold text-brand-dark text-base">Mulai Hidup Sehat Saat Bekerja</h3>
-                <p className="text-[10px] text-brand-secondary font-semibold leading-relaxed">
+            {/* Left Pane - Cover Image (Hidden on mobile) */}
+            <div className="hidden md:block md:w-1/2 relative bg-brand-secondary/5 border-r border-brand-secondary/10 overflow-hidden">
+              <img
+                src={loginImg}
+                alt="Login Visual"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent flex flex-col justify-end p-8 text-center md:text-left space-y-2 z-10">
+                <h3 className="font-extrabold text-white text-base">Mulai Hidup Sehat Saat Bekerja</h3>
+                <p className="text-[10px] text-brand-primary font-bold leading-relaxed">
                   Pantau durasi layar, asupan air minum harian, peregangan fisik, dan pantau tingkat stres psikologis Anda secara berkala.
                 </p>
               </div>
@@ -891,19 +888,16 @@ const LandingPage = () => {
           {/* Modal Container */}
           <div className="bg-white border border-brand-secondary/15 w-full max-w-3xl rounded-[32px] shadow-2xl relative z-10 flex overflow-hidden animate-in fade-in zoom-in-95 duration-200">
 
-            {/* Left Pane - Illustration (Hidden on mobile) */}
-            <div className="hidden md:flex md:w-1/2 flex-col justify-center items-center p-8 bg-brand-secondary/5 border-r border-brand-secondary/10 text-center space-y-6">
-              <div className="relative">
-                <div className="w-56 h-56 rounded-full bg-brand-primary/10 absolute -inset-1 blur-md animate-pulse" />
-                <img
-                  src={registerIllustration}
-                  alt="WorkWell Illustration"
-                  className="w-52 h-52 object-contain rounded-full relative z-10 border border-brand-secondary/20 shadow-sm"
-                />
-              </div>
-              <div className="space-y-2 max-w-xs mx-auto text-center">
-                <h3 className="font-extrabold text-brand-dark text-base">Gabung Bersama WorkWell</h3>
-                <p className="text-[10px] text-brand-secondary font-semibold leading-relaxed">
+            {/* Left Pane - Cover Image (Hidden on mobile) */}
+            <div className="hidden md:block md:w-1/2 relative bg-brand-secondary/5 border-r border-brand-secondary/10 overflow-hidden">
+              <img
+                src={registerImg}
+                alt="Register Visual"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent flex flex-col justify-end p-8 text-center md:text-left space-y-2 z-10">
+                <h3 className="font-extrabold text-white text-base">Gabung Bersama WorkWell</h3>
+                <p className="text-[10px] text-brand-primary font-bold leading-relaxed">
                   Bergabunglah bersama ribuan pekerja & mahasiswa untuk hidup lebih sehat, produktif, dan seimbang di depan layar komputer.
                 </p>
               </div>
