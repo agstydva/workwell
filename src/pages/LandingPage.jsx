@@ -230,31 +230,26 @@ const LandingPage = () => {
           }}
         />
         {/* Overlay — strong fade on left (text area) → transparent on right (photo visible) */}
-        <div
-          className="absolute inset-0 z-[1]"
-          style={{
-            background: 'linear-gradient(100deg, rgba(238,238,238,0.97) 0%, rgba(238,238,238,0.93) 32%, rgba(238,238,238,0.55) 55%, rgba(238,238,238,0.18) 78%, rgba(238,238,238,0.05) 100%)',
-          }}
-        />
+        <div className="absolute inset-0 z-[1] hero-overlay" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="lg:grid lg:grid-cols-12 lg:gap-16 items-center">
 
             {/* Left Content */}
             <div className="text-center lg:text-left lg:col-span-6 space-y-6">
-              <div className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-brand-secondary/10 border border-brand-secondary/25 text-brand-dark text-xs font-bold animate-pulse">
+              <div className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-brand-secondary/10 border border-brand-secondary/25 text-brand-dark dark:text-brand-primary text-xs font-bold animate-pulse">
                 <Sparkles className="h-4.5 w-4.5 text-brand-secondary" />
                 <span>Modern Digital Wellbeing Platform</span>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] text-brand-dark min-h-[7rem] md:min-h-[8.5rem] lg:min-h-[11rem]">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] text-brand-dark dark:text-white min-h-[7rem] md:min-h-[8.5rem] lg:min-h-[11rem]">
                 {typedText1}
                 <br />
                 {typedText2}
                 <span className="inline-block w-1.5 h-8 md:h-12 bg-brand-secondary ml-1 animate-pulse" />
               </h1>
 
-              <p className="text-base sm:text-lg text-brand-secondary max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium">
+              <p className="text-base sm:text-lg text-brand-secondary dark:text-emerald-400/90 max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium">
                 Monitor your screen habits, build healthy routines, and improve your digital wellbeing.
               </p>
 
