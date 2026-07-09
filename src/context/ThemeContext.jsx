@@ -4,10 +4,10 @@ export const ThemeContext = createContext(null);
 
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('workwell_theme') || 'system';
+    return localStorage.getItem('workwell_theme') || 'light';
   });
 
-  const [activeTheme, setActiveTheme] = useState('dark');
+  const [activeTheme, setActiveTheme] = useState('light');
 
   useEffect(() => {
     const root = window.document.documentElement;
