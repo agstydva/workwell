@@ -6,6 +6,10 @@ import WorkWellLogo from '../components/WorkWellLogo';
 import authIllustration from '../assets/auth_illustration.png';
 import registerIllustration from '../assets/register_illustration.png';
 import heroWorkspaceBg from '../assets/hero_workspace_bg.png';
+import screenTimeIcon from '../assets/screen_time.png';
+import waterIntakeIcon from '../assets/water_intake.png';
+import movementTrackerIcon from '../assets/movement_tracker.png';
+import stressAnalyticsIcon from '../assets/stress_analytics.png';
 
 import {
   Activity, Clock, Droplet, Dumbbell, ShieldAlert,
@@ -386,8 +390,8 @@ const LandingPage = () => {
             {/* Feature 1 */}
             <div className="glass-card-light p-6 rounded-3xl border border-brand-secondary/10 flex flex-col justify-between hover:shadow-lg transition-all duration-300">
               <div className="space-y-4 text-left">
-                <div className="p-3.5 bg-brand-secondary/10 text-brand-secondary rounded-2xl w-fit">
-                  <Clock className="h-6 w-6" />
+                <div className="p-2 bg-brand-secondary/10 rounded-2xl w-fit flex items-center justify-center">
+                  <img src={screenTimeIcon} alt="Screen Time" className="h-8 w-8 object-contain" />
                 </div>
                 <h3 className="text-lg font-bold text-brand-dark">Screen Time Monitor</h3>
                 <p className="text-xs text-brand-secondary font-medium leading-relaxed">Timer durasi kerja dengan reminder otomatis ketika melebihi batas waktu sehat. Jaga mata Anda agar tetap rileks.</p>
@@ -397,8 +401,8 @@ const LandingPage = () => {
             {/* Feature 2 */}
             <div className="glass-card-light p-6 rounded-3xl border border-brand-secondary/10 flex flex-col justify-between hover:shadow-lg transition-all duration-300">
               <div className="space-y-4 text-left">
-                <div className="p-3.5 bg-brand-secondary/10 text-brand-secondary rounded-2xl w-fit">
-                  <Droplet className="h-6 w-6" />
+                <div className="p-2 bg-brand-secondary/10 rounded-2xl w-fit flex items-center justify-center">
+                  <img src={waterIntakeIcon} alt="Water Intake" className="h-8 w-8 object-contain" />
                 </div>
                 <h3 className="text-lg font-bold text-brand-dark">Habit Water Intake</h3>
                 <p className="text-xs text-brand-secondary font-medium leading-relaxed">Pengingat berkala untuk minum air. Capai target gelas harian Anda secara teratur agar tubuh tetap terhidrasi dengan baik.</p>
@@ -408,8 +412,8 @@ const LandingPage = () => {
             {/* Feature 3 */}
             <div className="glass-card-light p-6 rounded-3xl border border-brand-secondary/10 flex flex-col justify-between hover:shadow-lg transition-all duration-300">
               <div className="space-y-4 text-left">
-                <div className="p-3.5 bg-brand-secondary/10 text-brand-secondary rounded-2xl w-fit">
-                  <Dumbbell className="h-6 w-6" />
+                <div className="p-2 bg-brand-secondary/10 rounded-2xl w-fit flex items-center justify-center">
+                  <img src={movementTrackerIcon} alt="Movement Tracker" className="h-8 w-8 object-contain" />
                 </div>
                 <h3 className="text-lg font-bold text-brand-dark">Movement Tracker</h3>
                 <p className="text-xs text-brand-secondary font-medium leading-relaxed">Mencatat aktivitas peregangan dan olahraga ringan Anda. Hindari kekakuan otot leher, punggung, dan bahu.</p>
@@ -419,8 +423,8 @@ const LandingPage = () => {
             {/* Feature 4 */}
             <div className="glass-card-light p-6 rounded-3xl border border-brand-secondary/10 flex flex-col justify-between hover:shadow-lg transition-all duration-300">
               <div className="space-y-4 text-left">
-                <div className="p-3.5 bg-brand-secondary/10 text-brand-secondary rounded-2xl w-fit">
-                  <TrendingUp className="h-6 w-6" />
+                <div className="p-2 bg-brand-secondary/10 rounded-2xl w-fit flex items-center justify-center">
+                  <img src={stressAnalyticsIcon} alt="Stress & Analytics" className="h-8 w-8 object-contain" />
                 </div>
                 <h3 className="text-lg font-bold text-brand-dark">Stress & Analytics</h3>
                 <p className="text-xs text-brand-secondary font-medium leading-relaxed">Pantau mood harian Anda dengan indikator tingkat stres, dan visualisasikan kemajuan mingguan Anda melalui grafik analitik interaktif.</p>
