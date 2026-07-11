@@ -39,21 +39,9 @@ export const moodService = {
   getMoodByDate: async (userId, date) => {
     await delay(100);
 
-    const allMoods = storageService.query(storageService.KEYS.MOODS, m => m.userId === userId);
-    if (allMoods.length === 0) {
-      seedMockMoods(userId);
-    }
+
 
     let moodRecord = storageService.find(storageService.KEYS.MOODS, m => m.userId === userId && m.date === date);
-
-    if (!moodRecord) {
-      moodRecord = storageService.save(storageService.KEYS.MOODS, {
-        userId,
-        date,
-        mood: 'normal',
-        stressLevel: 'Low Stress'
-      });
-    }
 
     return moodRecord;
   },
@@ -84,10 +72,7 @@ export const moodService = {
   getWeeklyMoods: async (userId) => {
     await delay(200);
 
-    const allMoods = storageService.query(storageService.KEYS.MOODS, m => m.userId === userId);
-    if (allMoods.length === 0) {
-      seedMockMoods(userId);
-    }
+
 
     const weeklyMoods = [];
     for (let i = 6; i >= 0; i--) {
@@ -98,8 +83,8 @@ export const moodService = {
         moodRecord = {
           userId,
           date: dateStr,
-          mood: 'normal',
-          stressLevel: 'Low Stress'
+          mood: null,
+          stressLevel: 'Belum diisi'
         };
       }
 

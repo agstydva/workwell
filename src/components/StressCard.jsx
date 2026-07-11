@@ -18,8 +18,8 @@ const stressLevels = {
 
 const StressCard = () => {
   const { todayMood, logMood } = useTracker();
-  const currentMood = todayMood?.mood || 'normal';
-  const stressInfo = stressLevels[currentMood] || stressLevels.normal;
+  const currentMood = todayMood?.mood;
+  const stressInfo = currentMood ? (stressLevels[currentMood] || stressLevels.normal) : { name: 'Belum diisi', text: 'text-brand-primary/85 bg-brand-dark/25 border border-brand-dark/20', width: 'w-0' };
 
   return (
     <div className="glass-card rounded-3xl p-6 hover:shadow-xl hover:shadow-brand-dark/10 transition-all duration-300 border border-brand-dark/20 w-full h-full flex flex-col justify-between">
@@ -74,6 +74,7 @@ const StressCard = () => {
         </div>
 
         <p className="text-[10px] text-white/85 mt-3 leading-relaxed font-semibold">
+          {!currentMood && '🔍 Pilih mood Anda di atas untuk memantau tingkat stres hari ini.'}
           {currentMood === 'stress' && '⚠️ Tingkat stres Anda tinggi. Segera ambil istirahat, lakukan pernapasan dalam, atau jalan-jalan sebentar.'}
           {currentMood === 'tired' && '💤 Anda merasa lelah. Cobalah meregangkan badan dan minum segelas air untuk memulihkan energi.'}
           {currentMood === 'normal' && '✅ Tingkat stres normal. Jaga ritme kerja Anda tetap seimbang.'}

@@ -70,11 +70,7 @@ export const screenTimeService = {
   getWeeklySessions: async (userId) => {
     await delay(200);
 
-    // Check & seed if user is new
-    const allUserSessions = storageService.query(storageService.KEYS.SESSIONS, s => s.userId === userId);
-    if (allUserSessions.length === 0) {
-      seedMockSessions(userId);
-    }
+
 
     const weeklyStats = [];
     const allSessions = storageService.query(storageService.KEYS.SESSIONS, s => s.userId === userId);

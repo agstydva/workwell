@@ -22,7 +22,9 @@ const WellnessScore = () => {
 
   // 2. Score Component: Screen Time (Weight: 25%)
   let screenScore = 25;
-  if (todayScreenTimeMinutes > limitMinutes) {
+  if (todayScreenTimeMinutes === 0) {
+    screenScore = 0;
+  } else if (todayScreenTimeMinutes > limitMinutes) {
     const excessRatio = (todayScreenTimeMinutes - limitMinutes) / limitMinutes;
     screenScore = Math.max(0, 25 - excessRatio * 25);
   }
@@ -38,11 +40,12 @@ const WellnessScore = () => {
   const movementScore = Math.min(25, (totalMovement / movementTarget) * 25);
 
   // 5. Score Component: Mood & Stress (Weight: 25%)
-  const currentMood = todayMood?.mood || 'normal';
-  let moodScore = 20; 
+  const currentMood = todayMood?.mood;
+  let moodScore = 0; 
   if (currentMood === 'happy') moodScore = 25;
-  if (currentMood === 'tired') moodScore = 12;
-  if (currentMood === 'stress') moodScore = 6;
+  else if (currentMood === 'normal') moodScore = 20;
+  else if (currentMood === 'tired') moodScore = 12;
+  else if (currentMood === 'stress') moodScore = 6;
 
   // Calculate final score
   const finalScore = Math.round(screenScore + waterScore + movementScore + moodScore);
@@ -144,6 +147,7 @@ const WellnessScore = () => {
 
   // Indonesian mood labels
   const getMoodLabel = (m) => {
+    if (!m) return 'Belum diisi';
     if (m === 'happy') return 'Senang';
     if (m === 'tired') return 'Kelelahan';
     if (m === 'stress') return 'Stres';

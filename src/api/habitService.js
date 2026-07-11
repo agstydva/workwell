@@ -34,11 +34,7 @@ export const habitService = {
   getHabitByDate: async (userId, date) => {
     await delay(100);
     
-    // Check if user has any habit records at all; if not, seed history once!
-    const allUserHabits = storageService.query(storageService.KEYS.HABITS, h => h.userId === userId);
-    if (allUserHabits.length === 0) {
-      seedMockHabits(userId);
-    }
+
 
     let habit = storageService.find(storageService.KEYS.HABITS, h => h.userId === userId && h.date === date);
     
@@ -80,11 +76,7 @@ export const habitService = {
   getWeeklyHabits: async (userId) => {
     await delay(200);
     
-    // Check & seed if user is new
-    const allUserHabits = storageService.query(storageService.KEYS.HABITS, h => h.userId === userId);
-    if (allUserHabits.length === 0) {
-      seedMockHabits(userId);
-    }
+
 
     const weeklyData = [];
     for (let i = 6; i >= 0; i--) {

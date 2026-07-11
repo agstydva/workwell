@@ -52,17 +52,20 @@ const Dashboard = () => {
   // Calculations for Today's Wellness Score (displayed in top stats)
   const getTodayWellnessScore = () => {
     let sScore = 25;
-    if (totalScreenMinutes > limitMinutes) {
+    if (totalScreenMinutes === 0) {
+      sScore = 0;
+    } else if (totalScreenMinutes > limitMinutes) {
       const excess = (totalScreenMinutes - limitMinutes) / limitMinutes;
       sScore = Math.max(0, 25 - excess * 25);
     }
     const wScore = Math.min(25, (totalWater / 8) * 25);
     const mScore = Math.min(25, (totalMovement / 5) * 25);
-    let mdScore = 20; 
-    const mKey = todayMood?.mood || 'normal';
+    let mdScore = 0; 
+    const mKey = todayMood?.mood;
     if (mKey === 'happy') mdScore = 25;
-    if (mKey === 'tired') mdScore = 12;
-    if (mKey === 'stress') mdScore = 6;
+    else if (mKey === 'normal') mdScore = 20;
+    else if (mKey === 'tired') mdScore = 12;
+    else if (mKey === 'stress') mdScore = 6;
     return Math.round(sScore + wScore + mScore + mdScore);
   };
   const todayScore = getTodayWellnessScore();
@@ -74,22 +77,25 @@ const Dashboard = () => {
     const getWellnessScoreForDay = (session, habit, moodKey) => {
       const limitVal = limitMinutes;
       let sScore = 25;
-      if (session.screenTime > limitVal) {
+      if (session.screenTime === 0) {
+        sScore = 0;
+      } else if (session.screenTime > limitVal) {
         const excess = (session.screenTime - limitVal) / limitVal;
         sScore = Math.max(0, 25 - excess * 25);
       }
       const wScore = Math.min(25, ((habit.waterIntake || 0) / 8) * 25);
       const mScore = Math.min(25, (((habit.stretchingCount || 0) + (habit.exerciseCount || 0)) / 5) * 25);
-      let mdScore = 20;
+      let mdScore = 0;
       if (moodKey === 'happy') mdScore = 25;
-      if (moodKey === 'tired') mdScore = 12;
-      if (moodKey === 'stress') mdScore = 6;
+      else if (moodKey === 'normal') mdScore = 20;
+      else if (moodKey === 'tired') mdScore = 12;
+      else if (moodKey === 'stress') mdScore = 6;
       return Math.round(sScore + wScore + mScore + mdScore);
     };
 
     const scores = weeklySessions.map(session => {
       const habit = weeklyHabits.find(h => h.date === session.date) || { waterIntake: 0, stretchingCount: 0, exerciseCount: 0 };
-      const moodLog = weeklyMoods.find(m => m.date === session.date) || { mood: 'normal' };
+      const moodLog = weeklyMoods.find(m => m.date === session.date) || { mood: null };
       return getWellnessScoreForDay(session, habit, moodLog.mood);
     });
 
@@ -367,17 +373,24 @@ const Dashboard = () => {
             <tbody>
               ${weeklySessions.map((session, index) => {
                 const habit = weeklyHabits.find(h => h.date === session.date) || { waterIntake: 0, stretchingCount: 0, exerciseCount: 0 };
-                const moodLog = weeklyMoods.find(m => m.date === session.date) || { mood: 'normal', stressLevel: 'Rendah' };
-                const dailyScore = scores[index];
-                
-                let moodLabel = 'Biasa';
-                if (moodLog.mood === 'happy') moodLabel = 'Senang';
-                if (moodLog.mood === 'tired') moodLabel = 'Lelah';
-                if (moodLog.mood === 'stress') moodLabel = 'Stres';
-
-                let stressLabel = 'Rendah';
-                if (moodLog.mood === 'tired') stressLabel = 'Sedang';
-                if (moodLog.mood === 'stress') stressLabel = 'Tinggi';
+                 const moodLog = weeklyMoods.find(m => m.date === session.date) || { mood: null, stressLevel: 'Belum diisi' };
+                 const dailyScore = scores[index];
+                 
+                 let moodLabel = 'Belum diisi';
+                 let stressLabel = 'Belum diisi';
+                 if (moodLog.mood === 'happy') {
+                   moodLabel = 'Senang';
+                   stressLabel = 'Rendah';
+                 } else if (moodLog.mood === 'normal') {
+                   moodLabel = 'Biasa';
+                   stressLabel = 'Rendah';
+                 } else if (moodLog.mood === 'tired') {
+                   moodLabel = 'Lelah';
+                   stressLabel = 'Sedang';
+                 } else if (moodLog.mood === 'stress') {
+                   moodLabel = 'Stres';
+                   stressLabel = 'Tinggi';
+                 }
 
                 return `
                   <tr>

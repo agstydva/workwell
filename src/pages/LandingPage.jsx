@@ -226,7 +226,7 @@ const LandingPage = () => {
       const current = loopNum % phrases.length;
       const fullL1 = phrases[current].line1;
       const fullL2 = phrases[current].line2;
-      
+
       if (!isDeleting) {
         // Typing phase (slower, more natural)
         if (typedText1.length < fullL1.length) {
@@ -255,7 +255,7 @@ const LandingPage = () => {
           return;
         }
       }
-      
+
       timer = setTimeout(handleType, typingSpeed);
     };
 
@@ -291,7 +291,8 @@ const LandingPage = () => {
 
   return (
     <div className="min-h-screen bg-brand-bg text-brand-dark flex flex-col selection:bg-brand-primary selection:text-brand-dark relative font-sans">
-      <style dangerouslySetInnerHTML={{__html: `
+      <style dangerouslySetInnerHTML={{
+        __html: `
         .scroll-reveal {
           opacity: 0;
           transform: translateY(45px);
@@ -382,7 +383,7 @@ const LandingPage = () => {
       {/* Feature section */}
       <section id="fitur" className="py-24 bg-white border-y border-brand-secondary/10 relative overflow-hidden scroll-reveal">
         {/* Animated Background Blobs */}
-        <div className="absolute top-10 left-10 w-72 h-72 rounded-full bg-brand-primary/10 blur-3xl pointer-events-none" 
+        <div className="absolute top-10 left-10 w-72 h-72 rounded-full bg-brand-primary/10 blur-3xl pointer-events-none"
           style={{
             animation: 'float-blob-1 14s infinite alternate ease-in-out'
           }}
@@ -392,7 +393,8 @@ const LandingPage = () => {
             animation: 'float-blob-2 18s infinite alternate-reverse ease-in-out'
           }}
         />
-        <style dangerouslySetInnerHTML={{__html: `
+        <style dangerouslySetInnerHTML={{
+          __html: `
           @keyframes float-blob-1 {
             0% { transform: translate(0px, 0px) scale(1); }
             50% { transform: translate(30px, -50px) scale(1.1); }
@@ -569,7 +571,7 @@ const LandingPage = () => {
       <section className="py-24 bg-white dark:bg-slate-950 border-t border-brand-secondary/10 scroll-reveal">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="lg:grid lg:grid-cols-12 lg:gap-16 items-center">
-            
+
             {/* Left Description */}
             <div className="lg:col-span-5 space-y-6 text-center lg:text-left">
               <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-brand-primary/10 border border-brand-primary/20 text-brand-dark dark:text-brand-primary text-xs font-bold w-fit">
@@ -580,7 +582,7 @@ const LandingPage = () => {
               <p className="text-brand-secondary dark:text-slate-400 font-medium text-sm leading-relaxed">
                 Di dalam modul Wellness Center, kami menyediakan panduan visual yoga singkat, latihan peregangan statis, panduan pernapasan terarah, serta musik meditasi ambient berkualitas tinggi untuk meredakan ketegangan mata dan tubuh Anda sewaktu-waktu.
               </p>
-              
+
               <div className="pt-2 flex justify-center lg:justify-start">
                 <button
                   onClick={currentUser ? () => navigate('/wellness-center') : openRegisterModal}
@@ -595,10 +597,10 @@ const LandingPage = () => {
             {/* Right Video Player Mockup */}
             <div className="lg:col-span-7 mt-16 lg:mt-0 flex justify-center">
               <div className="w-full max-w-xl bg-slate-950 rounded-[32px] overflow-hidden border border-slate-800 shadow-2xl relative aspect-video flex items-center justify-center group">
-                
+
                 {/* Visual Placeholder: Zen Garden Scene */}
                 <div className="absolute inset-0 bg-gradient-to-tr from-brand-dark/40 via-emerald-950/20 to-brand-primary/10 opacity-80 z-0" />
-                
+
                 <div className="relative z-10 flex flex-col items-center space-y-4 text-center p-6">
                   {/* Animated Breath Circle inside player */}
                   <div className="w-20 h-20 rounded-full bg-brand-secondary/25 flex items-center justify-center relative cursor-pointer group-hover:scale-110 group-hover:bg-brand-secondary/35 transition-all duration-300">
@@ -641,7 +643,7 @@ const LandingPage = () => {
 
           {/* Testimonial Slider Container */}
           <div className="relative max-w-6xl mx-auto px-2 sm:px-12">
-            
+
             {/* Left/Right Arrow Buttons (Desktop/Tablet) */}
             <button
               onClick={() => setCurrentTestimonialIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)}
@@ -664,7 +666,7 @@ const LandingPage = () => {
               {[0, 1, 2].map((offset) => {
                 const index = (currentTestimonialIndex + offset) % testimonials.length;
                 const t = testimonials[index];
-                
+
                 // Hide second card on mobile, third card on tablet/mobile
                 const visibilityClass = offset === 1 ? 'hidden md:flex' : offset === 2 ? 'hidden lg:flex' : 'flex';
 
@@ -688,7 +690,7 @@ const LandingPage = () => {
                           </div>
                         </div>
                       </div>
-                      
+
                       {/* Comment text at the BOTTOM */}
                       <p className="text-xs text-brand-secondary dark:text-slate-350 leading-relaxed font-semibold italic text-left line-clamp-4">
                         "{t.comment}"
@@ -721,11 +723,10 @@ const LandingPage = () => {
                 <button
                   key={idx}
                   onClick={() => setCurrentTestimonialIndex(idx)}
-                  className={`w-2 h-2 rounded-full transition-all cursor-pointer ${
-                    currentTestimonialIndex === idx 
-                      ? 'bg-brand-secondary w-5' 
+                  className={`w-2 h-2 rounded-full transition-all cursor-pointer ${currentTestimonialIndex === idx
+                      ? 'bg-brand-secondary w-5'
                       : 'bg-slate-300 dark:bg-slate-700'
-                  }`}
+                    }`}
                   title={`Ke slide ${idx + 1}`}
                 />
               ))}
