@@ -43,12 +43,12 @@ const Sidebar = () => {
       if (location.pathname !== '/dashboard') {
         navigate('/dashboard');
       } else {
+        navigate('/dashboard');
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     } else if (target === 'habits' || target === 'analytics') {
-      if (location.pathname !== '/dashboard') {
-        navigate(`/dashboard?scroll=${target}`);
-      } else {
+      navigate(`/dashboard?scroll=${target}`);
+      if (location.pathname === '/dashboard') {
         const el = document.getElementById(target);
         if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
