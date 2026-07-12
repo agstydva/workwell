@@ -50,7 +50,7 @@ const WellnessCenter = () => {
       duration: '5 Menit',
       difficulty: 'Pemula',
       embedUrl: 'https://www.youtube.com/embed/Ef6LwAaB3_E',
-      thumbnail: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&auto=format&fit=crop&q=60'
+      thumbnail: 'https://img.youtube.com/vi/Ef6LwAaB3_E/hqdefault.jpg'
     },
     {
       id: 'EBxV9YDEtAk',
@@ -59,7 +59,7 @@ const WellnessCenter = () => {
       duration: '6 Menit',
       difficulty: 'Pemula',
       embedUrl: 'https://www.youtube.com/embed/EBxV9YDEtAk',
-      thumbnail: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&auto=format&fit=crop&q=60'
+      thumbnail: 'https://img.youtube.com/vi/EBxV9YDEtAk/hqdefault.jpg'
     },
     {
       id: 'T64es5lGZr8',
@@ -68,7 +68,7 @@ const WellnessCenter = () => {
       duration: '5 Menit',
       difficulty: 'Pemula',
       embedUrl: 'https://www.youtube.com/embed/T64es5lGZr8',
-      thumbnail: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&auto=format&fit=crop&q=60'
+      thumbnail: 'https://img.youtube.com/vi/T64es5lGZr8/hqdefault.jpg'
     },
     {
       id: 'bOXI-wxepmI',
@@ -77,16 +77,16 @@ const WellnessCenter = () => {
       duration: '8 Menit',
       difficulty: 'Pemula',
       embedUrl: 'https://www.youtube.com/embed/bOXI-wxepmI',
-      thumbnail: 'https://images.unsplash.com/photo-1456406644174-8ddd4cd52a06?w=600&auto=format&fit=crop&q=60'
+      thumbnail: 'https://img.youtube.com/vi/bOXI-wxepmI/hqdefault.jpg'
     },
     {
       id: 'p6CMso14NWk',
       title: '20 Min Lower Back Rehab',
-      description: 'Program peregangan mendalam dari HASfit khusus rehabilitasi otot pinggang dan punggung bawah.',
+      description: 'Program peregangan mendalam dari HASfit khusus rehabilitasi otot pinggang dan punggang bawah.',
       duration: '20 Menit',
       difficulty: 'Sedang',
       embedUrl: 'https://www.youtube.com/embed/p6CMso14NWk',
-      thumbnail: 'https://images.unsplash.com/photo-1599447421416-3414500d18a5?w=600&auto=format&fit=crop&q=60'
+      thumbnail: 'https://img.youtube.com/vi/p6CMso14NWk/hqdefault.jpg'
     },
     {
       id: 't2NUI7jM4tg',
@@ -95,7 +95,7 @@ const WellnessCenter = () => {
       duration: '7 Menit',
       difficulty: 'Semua Tingkat',
       embedUrl: 'https://www.youtube.com/embed/t2NUI7jM4tg',
-      thumbnail: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&auto=format&fit=crop&q=60'
+      thumbnail: 'https://img.youtube.com/vi/t2NUI7jM4tg/hqdefault.jpg'
     }
   ];
 
