@@ -37,6 +37,7 @@ const LandingPage = () => {
   // Status states
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [isPlayingVideo, setIsPlayingVideo] = useState(false);
 
   // Sync url search parameters with modals
   useEffect(() => {
@@ -595,37 +596,53 @@ const LandingPage = () => {
             </div>
 
             {/* Right Video Player Mockup */}
-            <div className="lg:col-span-7 mt-16 lg:mt-0 flex justify-center">
+            <div className="lg:col-span-7 mt-16 lg:mt-0 flex justify-center w-full">
               <div className="w-full max-w-xl bg-slate-950 rounded-[32px] overflow-hidden border border-slate-800 shadow-2xl relative aspect-video flex items-center justify-center group">
+                {isPlayingVideo ? (
+                  <iframe
+                    className="w-full h-full absolute inset-0 rounded-[32px]"
+                    src="https://www.youtube.com/embed/0LqWXlBfBxE?autoplay=1"
+                    title="Pulihkan Pikiran & Regangkan Otot Anda"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                  ></iframe>
+                ) : (
+                  <>
+                    {/* Visual Placeholder: Zen Garden Scene */}
+                    <div className="absolute inset-0 bg-gradient-to-tr from-brand-dark/40 via-emerald-950/20 to-brand-primary/10 opacity-80 z-0" />
 
-                {/* Visual Placeholder: Zen Garden Scene */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-brand-dark/40 via-emerald-950/20 to-brand-primary/10 opacity-80 z-0" />
-
-                <div className="relative z-10 flex flex-col items-center space-y-4 text-center p-6">
-                  {/* Animated Breath Circle inside player */}
-                  <div className="w-20 h-20 rounded-full bg-brand-secondary/25 flex items-center justify-center relative cursor-pointer group-hover:scale-110 group-hover:bg-brand-secondary/35 transition-all duration-300">
-                    <div className="absolute inset-0 bg-brand-secondary/20 rounded-full animate-ping" />
-                    <Play className="h-7 w-7 text-white fill-white relative z-10 translate-x-0.5" />
-                  </div>
-                  <div>
-                    <h5 className="font-extrabold text-white text-sm">Zen Meditation: Napas Tenang</h5>
-                    <p className="text-[10px] text-brand-primary font-bold">2 Menit Sesi Latihan</p>
-                  </div>
-                </div>
-
-                {/* Video controls mockup bar */}
-                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-slate-950 to-transparent flex justify-between items-center text-slate-450 z-10 text-[10px]">
-                  <div className="flex items-center space-x-2">
-                    <Play className="h-3 w-3 fill-slate-300 text-slate-300" />
-                    <span>0:42 / 2:00</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <div className="w-12 h-1 bg-slate-700 rounded-full">
-                      <div className="bg-brand-secondary h-full w-1/2" />
+                    <div className="relative z-10 flex flex-col items-center space-y-4 text-center p-6">
+                      {/* Animated Breath Circle inside player */}
+                      <button
+                        onClick={() => setIsPlayingVideo(true)}
+                        aria-label="Play video"
+                        className="w-20 h-20 rounded-full bg-brand-secondary/25 flex items-center justify-center relative cursor-pointer hover:scale-110 hover:bg-brand-secondary/35 transition-all duration-300 border-0 focus:outline-none"
+                      >
+                        <div className="absolute inset-0 bg-brand-secondary/20 rounded-full animate-ping" />
+                        <Play className="h-7 w-7 text-white fill-white relative z-10 translate-x-0.5" />
+                      </button>
+                      <div>
+                        <h5 className="font-extrabold text-white text-sm">Zen Meditation: Napas Tenang</h5>
+                        <p className="text-[10px] text-brand-primary font-bold">Sesi Latihan Peregangan & Relaksasi</p>
+                      </div>
                     </div>
-                    <Volume2 className="h-3.5 w-3.5 text-slate-300" />
-                  </div>
-                </div>
+
+                    {/* Video controls mockup bar */}
+                    <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-slate-950 to-transparent flex justify-between items-center text-slate-450 z-10 text-[10px]">
+                      <div className="flex items-center space-x-2">
+                        <Play className="h-3 w-3 fill-slate-300 text-slate-300" />
+                        <span>0:00 / 3:00</span>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <div className="w-12 h-1 bg-slate-700 rounded-full">
+                          <div className="bg-brand-secondary h-full w-0" />
+                        </div>
+                        <Volume2 className="h-3.5 w-3.5 text-slate-300" />
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </div>
