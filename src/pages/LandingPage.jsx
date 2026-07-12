@@ -65,7 +65,7 @@ const LandingPage = () => {
   const testimonials = [
     {
       name: "Aksan Angelo",
-      role: "Mahasiswa Ilmu Komputer UNJ",
+      role: "Mahasiswa Sistem Informasi UMN 2023",
       initials: "AA",
       image: aksanAngeloImg,
       bgClass: "from-brand-secondary to-brand-primary",
