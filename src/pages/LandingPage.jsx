@@ -1012,7 +1012,7 @@ const LandingPage = () => {
               <button
                 type="button"
                 onClick={() => alert('Fitur Google Sign-In sedang disiapkan!')}
-                className="w-full py-3.5 px-4 bg-white hover:bg-slate-50 text-slate-700 font-bold rounded-2xl text-sm border border-slate-200 hover:border-slate-300 shadow-sm transition-all cursor-pointer flex items-center justify-center space-x-2 active:scale-98"
+                className="w-full py-3.5 px-4 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-white font-bold rounded-2xl text-sm border border-slate-200 dark:border-slate-850 shadow-sm transition-all cursor-pointer flex items-center justify-center space-x-2 active:scale-98"
               >
                 <svg className="h-5 w-5 mr-1" viewBox="0 0 24 24">
                   <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
