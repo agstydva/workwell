@@ -59,7 +59,7 @@ const Navbar = ({ onLoginClick, onRegisterClick }) => {
 
           {/* Logo */}
           <div className="flex items-center">
-            <Link to="/" className="flex items-center group">
+            <Link to="/" onClick={() => window.scrollTo(0, 0)} className="flex items-center group">
               <WorkWellLogo logoColorClass="text-brand-dark dark:text-white" />
             </Link>
           </div>

@@ -7,6 +7,8 @@ import { useAuth } from './hooks/useAuth';
 import { RefreshCw } from 'lucide-react';
 import ErrorBoundary from './components/ErrorBoundary';
 
+import ScrollToTop from './components/ScrollToTop';
+
 // Pages
 import LandingPage from './pages/LandingPage';
 import Dashboard from './pages/Dashboard';
@@ -42,6 +44,7 @@ function App() {
         <AuthProvider>
           <TrackerProvider>
             <Router>
+              <ScrollToTop />
               <Routes>
                 {/* Public / Landing Routes */}
                 <Route path="/" element={<LandingPage />} />
