@@ -44,49 +44,58 @@ const WellnessCenter = () => {
   // Static Data with Real YouTube Videos and Real Article Resource Links
   const videos = [
     {
-      id: 'z43n5W_RjEM',
-      title: '5-Minute Desk Stretching',
-      description: 'Latihan peregangan singkat dan cepat di meja kerja Anda untuk melenturkan otot punggung, leher, dan bahu.',
+      id: 'Ef6LwAaB3_E',
+      title: '5 Min Daily Full Body Stretch',
+      description: 'Rutin peregangan seluruh tubuh harian selama 5 menit oleh MadFit untuk meningkatkan fleksibilitas dan kebugaran.',
       duration: '5 Menit',
       difficulty: 'Pemula',
-      embedUrl: 'https://www.youtube.com/embed/z43n5W_RjEM',
-      thumbnail: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&auto=format&fit=crop&q=60' // Stretching
+      embedUrl: 'https://www.youtube.com/embed/Ef6LwAaB3_E',
+      thumbnail: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&auto=format&fit=crop&q=60'
     },
     {
-      id: 'tAUf7aajBWE',
-      title: 'Office Break Stretch Workout',
-      description: 'Latihan khusus memulihkan otot seluruh tubuh yang kaku akibat duduk terlalu lama menatap layar komputer.',
-      duration: '10 Menit',
-      difficulty: 'Pemula',
-      embedUrl: 'https://www.youtube.com/embed/tAUf7aajBWE',
-      thumbnail: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=600&auto=format&fit=crop&q=60' // Fitness / Active
-    },
-    {
-      id: 'zSXp8tGfl-k',
-      title: 'Hand & Wrist Stretches',
-      description: 'Cegah risiko Carpal Tunnel Syndrome dengan serangkaian peregangan dan gerakan aktif pergelangan tangan.',
+      id: 'EBxV9YDEtAk',
+      title: 'Movement Break for Stationary Jobs',
+      description: 'Latihan jeda bergerak yang dirancang untuk mengurangi kaku akibat duduk terlalu lama bekerja.',
       duration: '6 Menit',
-      difficulty: 'Semua Tingkat',
-      embedUrl: 'https://www.youtube.com/embed/zSXp8tGfl-k',
-      thumbnail: 'https://images.unsplash.com/photo-1456406644174-8ddd4cd52a06?w=600&auto=format&fit=crop&q=60' // Workspace typing / hands
+      difficulty: 'Pemula',
+      embedUrl: 'https://www.youtube.com/embed/EBxV9YDEtAk',
+      thumbnail: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&auto=format&fit=crop&q=60'
     },
     {
-      id: 'Je336SgNf60',
-      title: 'Lower Back Pain Relief Stretch',
-      description: 'Bebaskan ketegangan di punggung bawah akibat duduk tegak statis dengan gerakan peregangan yang aman.',
-      duration: '7 Menit',
-      difficulty: 'Sedang',
-      embedUrl: 'https://www.youtube.com/embed/Je336SgNf60',
-      thumbnail: 'https://images.unsplash.com/photo-1599447421416-3414500d18a5?w=600&auto=format&fit=crop&q=60' // Posture / Ergonomics
+      id: 'T64es5lGZr8',
+      title: 'Fast Neck Pain Relief Stretch',
+      description: 'Gerakan terapi fisik cepat selama 5 menit untuk meredakan ketegangan dan sakit pada otot leher.',
+      duration: '5 Menit',
+      difficulty: 'Pemula',
+      embedUrl: 'https://www.youtube.com/embed/T64es5lGZr8',
+      thumbnail: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&auto=format&fit=crop&q=60'
     },
     {
-      id: 'z43n5W_RjEM',
-      title: 'Neck and Shoulder Stretch',
-      description: 'Aktivasi otot leher dan bahu atas tanpa memerlukan alat tambahan, langsung dari workspace atau kursi kantor Anda.',
+      id: 'bOXI-wxepmI',
+      title: 'Fast Wrist Pain Relief Exercises',
+      description: 'Latihan pergelangan tangan yang efektif untuk mengatasi pegal, tendonitis, dan mencegah gejala Carpal Tunnel.',
       duration: '8 Menit',
+      difficulty: 'Pemula',
+      embedUrl: 'https://www.youtube.com/embed/bOXI-wxepmI',
+      thumbnail: 'https://images.unsplash.com/photo-1456406644174-8ddd4cd52a06?w=600&auto=format&fit=crop&q=60'
+    },
+    {
+      id: 'p6CMso14NWk',
+      title: '20 Min Lower Back Rehab',
+      description: 'Program peregangan mendalam dari HASfit khusus rehabilitasi otot pinggang dan punggung bawah.',
+      duration: '20 Menit',
+      difficulty: 'Sedang',
+      embedUrl: 'https://www.youtube.com/embed/p6CMso14NWk',
+      thumbnail: 'https://images.unsplash.com/photo-1599447421416-3414500d18a5?w=600&auto=format&fit=crop&q=60'
+    },
+    {
+      id: 't2NUI7jM4tg',
+      title: '3 Stretches to Loosen WFH Stiffness',
+      description: 'Tiga gerakan peregangan wajib untuk melenturkan otot yang kaku setelah seharian bekerja dari rumah (WFH).',
+      duration: '7 Menit',
       difficulty: 'Semua Tingkat',
-      embedUrl: 'https://www.youtube.com/embed/z43n5W_RjEM',
-      thumbnail: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&auto=format&fit=crop&q=60' // Workspace collaborative / stretch
+      embedUrl: 'https://www.youtube.com/embed/t2NUI7jM4tg',
+      thumbnail: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&auto=format&fit=crop&q=60'
     }
   ];
 
