@@ -18,6 +18,7 @@ import aksanAngeloImg from '../assets/testimonials/aksan_angelo.jpg';
 import ghanimAsadelImg from '../assets/testimonials/ghanim_asadel.jpg';
 import nadiaLubisImg from '../assets/testimonials/nadia_lubis.png';
 import agastyaDavaImg from '../assets/testimonials/agastya_dava.png';
+import vidiaAmaliaImg from '../assets/testimonials/vidia_amalia.jpg';
 
 import {
   Activity, Clock, Droplet, Dumbbell, ShieldAlert,
@@ -122,7 +123,7 @@ const LandingPage = () => {
       name: "Vidia Amalia Tunisa",
       role: "Mahasiswa Teknologi Pendidikan UNJ",
       initials: "VT",
-      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&auto=format&fit=crop&q=80",
+      image: vidiaAmaliaImg,
       bgClass: "from-amber-400 to-orange-500",
       rating: 5,
       comment: "Aplikasi yang sangat ringan dan mudah dioperasikan. Sangat cocok bagi mahasiswa yang sering harus begadang mengerjakan tugas riset di depan komputer."
