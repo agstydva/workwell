@@ -20,12 +20,17 @@ import nadiaLubisImg from '../assets/testimonials/nadia_lubis.png';
 import agastyaDavaImg from '../assets/testimonials/agastya_dava.png';
 import vidiaAmaliaImg from '../assets/testimonials/vidia_amalia.jpg';
 
-// New testimonials
 import junedImg from '../assets/testimonials/juned.png';
 import putriRImg from '../assets/testimonials/putri_r.jpg';
 import dericImg from '../assets/testimonials/deric.jpg';
 import andrisImg from '../assets/testimonials/andris.jpg';
 import joreImg from '../assets/testimonials/jore.png';
+
+// 4 New testimonials
+import athayaImg from '../assets/testimonials/athaya.jpg';
+import nadiyahImg from '../assets/testimonials/nadiyah.jpg';
+import taufiqImg from '../assets/testimonials/taufiq.jpg';
+import mulkyaImg from '../assets/testimonials/mulkya.jpg';
 
 import {
   Activity, Clock, Droplet, Dumbbell, ShieldAlert,
@@ -197,6 +202,42 @@ const LandingPage = () => {
       bgClass: "from-indigo-500 to-cyan-500",
       rating: 5,
       comment: "Aplikasi wellness terbaik bagi tim IT korporat kami. Desain Wellness Center yang menenangkan membantu meredakan penat pekerjaan."
+    },
+    {
+      name: "Athaya Abirama",
+      role: "Maintenece Technician at Tesla",
+      initials: "AA",
+      image: athayaImg,
+      bgClass: "from-brand-secondary to-brand-primary",
+      rating: 5,
+      comment: "Sangat membantu mengontrol waktu istirahat mata dan fisik di tengah-tengah jadwal pemeliharaan sistem industri elektrikal."
+    },
+    {
+      name: "Nadiyah Elman Ghani",
+      role: "Tax Staff at Kalbe Group",
+      initials: "NEG",
+      image: nadiyahImg,
+      bgClass: "from-emerald-500 to-teal-500",
+      rating: 5,
+      comment: "Setiap masa pelaporan pajak bulanan, WorkWell menjadi andalan saya untuk meredakan stres dengan box breathing dan reminder air minum."
+    },
+    {
+      name: "Taufiq Raharjo",
+      role: "D3 Elektronika Industri PNJ",
+      initials: "TR",
+      image: taufiqImg,
+      bgClass: "from-blue-500 to-indigo-500",
+      rating: 5,
+      comment: "Fitur peregangan ototnya sangat membantu meredakan pegal pinggang saya setelah praktikum berjam-jam merakit rangkaian elektronik."
+    },
+    {
+      name: "Mulkya Wahida",
+      role: "Electrical Maintenance Technician PT Arnotts",
+      initials: "MW",
+      image: mulkyaImg,
+      bgClass: "from-purple-500 to-pink-500",
+      rating: 5,
+      comment: "Tracker waktu rehatnya intuitif dan andal. Sangat merekomendasikan aplikasi ini untuk seluruh pekerja teknik di lapangan."
     }
   ];
 
