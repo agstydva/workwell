@@ -609,8 +609,12 @@ const LandingPage = () => {
                   ></iframe>
                 ) : (
                   <>
-                    {/* Visual Placeholder: Zen Garden Scene */}
-                    <div className="absolute inset-0 bg-gradient-to-tr from-brand-dark/40 via-emerald-950/20 to-brand-primary/10 opacity-80 z-0" />
+                    {/* Visual Placeholder: YouTube Thumbnail with gradient overlay */}
+                    <div 
+                      className="absolute inset-0 bg-cover bg-center z-0"
+                      style={{ backgroundImage: "url('https://img.youtube.com/vi/0LqWXlBfBxE/maxresdefault.jpg')" }}
+                    />
+                    <div className="absolute inset-0 bg-slate-950/40 group-hover:bg-slate-950/30 transition-all duration-300 z-0" />
 
                     <div className="relative z-10 flex flex-col items-center space-y-4 text-center p-6">
                       {/* Animated Breath Circle inside player */}
