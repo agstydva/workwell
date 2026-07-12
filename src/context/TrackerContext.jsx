@@ -7,7 +7,7 @@ import { storageService } from '../services/storageService';
 
 export const TrackerContext = createContext(null);
 
-const getLocalDateString = () => new Date().toISOString().split('T')[0];
+const getLocalDateString = () => new Date().toLocaleDateString('sv-SE');
 
 export const TrackerProvider = ({ children }) => {
   const { currentUser, userSettings } = useAuth();

@@ -5,7 +5,7 @@ const delay = (ms = 150) => new Promise(resolve => setTimeout(resolve, ms));
 const getLocalDateString = (offset = 0) => {
   const d = new Date();
   d.setDate(d.getDate() - offset);
-  return d.toISOString().split('T')[0];
+  return d.toLocaleDateString('sv-SE');
 };
 
 // Seed mock habits for new users so the charts are not blank
