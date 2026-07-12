@@ -17,6 +17,7 @@ import vyoNainggolanImg from '../assets/testimonials/vyo_nainggolan.jpg';
 import aksanAngeloImg from '../assets/testimonials/aksan_angelo.jpg';
 import ghanimAsadelImg from '../assets/testimonials/ghanim_asadel.jpg';
 import nadiaLubisImg from '../assets/testimonials/nadia_lubis.png';
+import agastyaDavaImg from '../assets/testimonials/agastya_dava.png';
 
 import {
   Activity, Clock, Droplet, Dumbbell, ShieldAlert,
@@ -100,10 +101,10 @@ const LandingPage = () => {
       comment: "Wellness Center dengan musik latar alam tenangnya sangat membantu meredakan kepenatan saya setelah praktikum panjang. Desain aplikasinya menenangkan."
     },
     {
-      name: "Budi Santoso",
-      role: "DevOps Engineer Biro Klasifikasi Indonesia (Persero)",
-      initials: "BS",
-      image: "https://images.unsplash.com/photo-1607990283143-e81e7a2c93ab?w=150&auto=format&fit=crop&q=80",
+      name: "Agastya Dava",
+      role: "IT Data Management Intern BKI Persero",
+      initials: "AD",
+      image: agastyaDavaImg,
       bgClass: "from-blue-500 to-indigo-500",
       rating: 5,
       comment: "Menjaga konsistensi rutinitas sehat kini lebih mudah berkat fitur habit streaks. Tracker otomatis ini sangat membantu integrasi kebiasaan sehat saat WFO."
