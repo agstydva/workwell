@@ -20,6 +20,13 @@ import nadiaLubisImg from '../assets/testimonials/nadia_lubis.png';
 import agastyaDavaImg from '../assets/testimonials/agastya_dava.png';
 import vidiaAmaliaImg from '../assets/testimonials/vidia_amalia.jpg';
 
+// New testimonials
+import junedImg from '../assets/testimonials/juned.png';
+import putriRImg from '../assets/testimonials/putri_r.jpg';
+import dericImg from '../assets/testimonials/deric.jpg';
+import andrisImg from '../assets/testimonials/andris.jpg';
+import joreImg from '../assets/testimonials/jore.png';
+
 import {
   Activity, Clock, Droplet, Dumbbell, ShieldAlert,
   ArrowRight, Shield, Zap, Sparkles, TrendingUp,
@@ -120,8 +127,8 @@ const LandingPage = () => {
       comment: "Latihan pernapasan box breathing di Wellness Center sangat berguna untuk meredakan kecemasan dan stres saat saya dikejar tenggat waktu tugas akhir."
     },
     {
-      name: "Vidia Amalia Tunisa",
-      role: "Mahasiswa Teknologi Pendidikan UNJ",
+      name: "Vidia Amalia Tunnisa",
+      role: "Mahasiswa Manajemen Pendidikan UNJ",
       initials: "VT",
       image: vidiaAmaliaImg,
       bgClass: "from-amber-400 to-orange-500",
@@ -138,13 +145,58 @@ const LandingPage = () => {
       comment: "Membantu melacak kebiasaan kesehatan kerja tim developer kami di kantor. Tingkat kebugaran dan kebahagiaan karyawan meningkat signifikan."
     },
     {
-      name: "Ghanim Asadel",
+      name: "Asadel Ghanim",
       role: "FTMD ITB 2024",
       initials: "GA",
       image: ghanimAsadelImg,
       bgClass: "from-violet-500 to-fuchsia-500",
       rating: 5,
       comment: "Panduan peregangan dinamis di Wellness Center sangat mudah diikuti dan langsung meredakan pegal bahu serta punggung saya setelah kuliah panjang."
+    },
+    {
+      name: "Juned",
+      role: "Web Developer at ToffeeDev",
+      initials: "J",
+      image: junedImg,
+      bgClass: "from-emerald-500 to-teal-500",
+      rating: 5,
+      comment: "Fitur pelacak waktu layar otomatisnya sangat membantu saya disiplin mengambil jeda rehat di sela-sela coding project client yang padat."
+    },
+    {
+      name: "Putri R",
+      role: "Aktuaria UI 2022",
+      initials: "PR",
+      image: putriRImg,
+      bgClass: "from-rose-500 to-amber-500",
+      rating: 5,
+      comment: "Sebagai mahasiswi aktuaria yang sering menghabiskan waktu berjam-jam menganalisis data keuangan, WorkWell membantu menjaga postur duduk saya agar tidak pegal."
+    },
+    {
+      name: "Deric Pokemonch",
+      role: "Web Developer at Jasa Raharja",
+      initials: "DP",
+      image: dericImg,
+      bgClass: "from-blue-500 to-indigo-500",
+      rating: 4,
+      comment: "Fitur pengingat rehatnya sangat adaptif. Sangat menunjang kesehatan mata saya saat harus fokus coding sistem sepanjang hari kerja."
+    },
+    {
+      name: "Andris M",
+      role: "Web Developer Jasa raharja",
+      initials: "AM",
+      image: andrisImg,
+      bgClass: "from-purple-500 to-pink-500",
+      rating: 5,
+      comment: "Sangat menyukai fitur pelacak air minumnya yang memotivasi saya untuk selalu menghidrasi tubuh di tengah kesibukan WFO."
+    },
+    {
+      name: "Jore Kirana",
+      role: "ICT at Pertamina",
+      initials: "JK",
+      image: joreImg,
+      bgClass: "from-indigo-500 to-cyan-500",
+      rating: 5,
+      comment: "Aplikasi wellness terbaik bagi tim IT korporat kami. Desain Wellness Center yang menenangkan membantu meredakan penat pekerjaan."
     }
   ];
 
