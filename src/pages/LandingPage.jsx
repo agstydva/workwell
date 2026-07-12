@@ -11,6 +11,13 @@ import waterIntakeIcon from '../assets/water_intake.png';
 import movementTrackerIcon from '../assets/movement_tracker.png';
 import stressAnalyticsIcon from '../assets/stress_analytics.png';
 
+// Testimonial images
+import ryanTsanyImg from '../assets/testimonials/ryan_tsany.jpg';
+import vyoNainggolanImg from '../assets/testimonials/vyo_nainggolan.jpg';
+import aksanAngeloImg from '../assets/testimonials/aksan_angelo.jpg';
+import ghanimAsadelImg from '../assets/testimonials/ghanim_asadel.jpg';
+import nadiaLubisImg from '../assets/testimonials/nadia_lubis.png';
+
 import {
   Activity, Clock, Droplet, Dumbbell, ShieldAlert,
   ArrowRight, Shield, Zap, Sparkles, TrendingUp,
@@ -57,9 +64,10 @@ const LandingPage = () => {
 
   const testimonials = [
     {
-      name: "Aditya Wardana",
+      name: "Aksan Angelo",
       role: "Mahasiswa Ilmu Komputer UNJ",
-      initials: "AP",
+      initials: "AA",
+      image: aksanAngeloImg,
       bgClass: "from-brand-secondary to-brand-primary",
       rating: 5,
       comment: "Sebagai mahasiswa ilmu komputer, tugas pemrograman sangat menyita waktu di depan laptop. Sejak memakai WorkWell, fitur peregangan ototnya sangat membantu meredakan pegal pundak saya."
@@ -68,22 +76,25 @@ const LandingPage = () => {
       name: "Dewi Lestari",
       role: "IT Developer Biro Klasifikasi Indonesia (Persero)",
       initials: "DL",
+      image: "https://randomuser.me/api/portraits/women/1.jpg",
       bgClass: "from-indigo-500 to-cyan-500",
       rating: 5,
       comment: "Notifikasi pengingat layar dan rehatnya sangat adaptif. Sangat menunjang kesehatan mata saya saat harus fokus mengoding sistem klasifikasi sepanjang hari kerja."
     },
     {
-      name: "Rian Hidayat",
+      name: "Ryan Tsany",
       role: "Mahasiswa Sistem Informasi Universitas Trisakti",
-      initials: "RH",
+      initials: "RT",
+      image: ryanTsanyImg,
       bgClass: "from-rose-500 to-amber-500",
       rating: 4,
       comment: "Fitur pelacak air minumnya sangat memotivasi saya untuk teratur menghidrasi tubuh saat kuliah daring. Target harian tercapai secara presisi."
     },
     {
-      name: "Siti Rahma",
+      name: "Nadia Lubis",
       role: "Mahasiswa Pendidikan Teknik Informatika UNJ",
-      initials: "SR",
+      initials: "NL",
+      image: nadiaLubisImg,
       bgClass: "from-emerald-500 to-teal-500",
       rating: 5,
       comment: "Wellness Center dengan musik latar alam tenangnya sangat membantu meredakan kepenatan saya setelah praktikum panjang. Desain aplikasinya menenangkan."
@@ -92,14 +103,16 @@ const LandingPage = () => {
       name: "Budi Santoso",
       role: "DevOps Engineer Biro Klasifikasi Indonesia (Persero)",
       initials: "BS",
+      image: "https://randomuser.me/api/portraits/men/1.jpg",
       bgClass: "from-blue-500 to-indigo-500",
       rating: 5,
       comment: "Menjaga konsistensi rutinitas sehat kini lebih mudah berkat fitur habit streaks. Tracker otomatis ini sangat membantu integrasi kebiasaan sehat saat WFO."
     },
     {
-      name: "Vyoo Nainggolan",
+      name: "Vyo Nainggolan",
       role: "Mahasiswa DKV Universitas Trisakti",
-      initials: "AP",
+      initials: "VN",
+      image: vyoNainggolanImg,
       bgClass: "from-purple-500 to-pink-500",
       rating: 4,
       comment: "Latihan pernapasan box breathing di Wellness Center sangat berguna untuk meredakan kecemasan dan stres saat saya dikejar tenggat waktu tugas akhir."
@@ -107,7 +120,8 @@ const LandingPage = () => {
     {
       name: "Vidia Amalia Tunisa",
       role: "Mahasiswa Teknologi Pendidikan UNJ",
-      initials: "FR",
+      initials: "VT",
+      image: "https://randomuser.me/api/portraits/women/2.jpg",
       bgClass: "from-amber-400 to-orange-500",
       rating: 5,
       comment: "Aplikasi yang sangat ringan dan mudah dioperasikan. Sangat cocok bagi mahasiswa yang sering harus begadang mengerjakan tugas riset di depan komputer."
@@ -115,15 +129,17 @@ const LandingPage = () => {
     {
       name: "Mba Tiara",
       role: "System Analyst Biro Klasifikasi Indonesia (Persero)",
-      initials: "DN",
+      initials: "MT",
+      image: "https://randomuser.me/api/portraits/women/3.jpg",
       bgClass: "from-teal-500 to-cyan-500",
       rating: 5,
       comment: "Membantu melacak kebiasaan kesehatan kerja tim developer kami di kantor. Tingkat kebugaran dan kebahagiaan karyawan meningkat signifikan."
     },
     {
-      name: "Kevin Wijaya",
+      name: "Ghanim Asadel",
       role: "Mahasiswa Teknik Industri Universitas Trisakti",
-      initials: "KW",
+      initials: "GA",
+      image: ghanimAsadelImg,
       bgClass: "from-violet-500 to-fuchsia-500",
       rating: 5,
       comment: "Panduan peregangan dinamis di Wellness Center sangat mudah diikuti dan langsung meredakan pegal bahu serta punggung saya setelah kuliah panjang."
@@ -699,9 +715,17 @@ const LandingPage = () => {
                     <div>
                       {/* Profile details at the TOP */}
                       <div className="flex items-center space-x-3.5 pb-4 border-b border-brand-secondary/10 dark:border-slate-800 mb-4">
-                        <div className={`w-10 h-10 rounded-full bg-gradient-to-tr ${t.bgClass} text-white flex items-center justify-center font-black text-xs shadow-inner flex-shrink-0`}>
-                          {t.initials}
-                        </div>
+                        {t.image ? (
+                          <img
+                            src={t.image}
+                            alt={t.name}
+                            className="w-10 h-10 rounded-full object-cover shadow-inner flex-shrink-0 border border-brand-secondary/10"
+                          />
+                        ) : (
+                          <div className={`w-10 h-10 rounded-full bg-gradient-to-tr ${t.bgClass} text-white flex items-center justify-center font-black text-xs shadow-inner flex-shrink-0`}>
+                            {t.initials}
+                          </div>
+                        )}
                         <div className="text-left">
                           <h5 className="text-xs font-bold text-brand-dark dark:text-white line-clamp-1">{t.name}</h5>
                           <p className="text-[9px] text-brand-secondary dark:text-slate-400 font-semibold line-clamp-1">{t.role}</p>
