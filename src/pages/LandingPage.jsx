@@ -37,6 +37,7 @@ const LandingPage = () => {
   // Status states
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [isPlayingVideo, setIsPlayingVideo] = useState(false);
 
   // Sync url search parameters with modals
   useEffect(() => {
@@ -595,37 +596,57 @@ const LandingPage = () => {
             </div>
 
             {/* Right Video Player Mockup */}
-            <div className="lg:col-span-7 mt-16 lg:mt-0 flex justify-center">
+            <div className="lg:col-span-7 mt-16 lg:mt-0 flex justify-center w-full">
               <div className="w-full max-w-xl bg-slate-950 rounded-[32px] overflow-hidden border border-slate-800 shadow-2xl relative aspect-video flex items-center justify-center group">
+                {isPlayingVideo ? (
+                  <iframe
+                    className="w-full h-full absolute inset-0 rounded-[32px]"
+                    src="https://www.youtube.com/embed/0LqWXlBfBxE?autoplay=1"
+                    title="Pulihkan Pikiran & Regangkan Otot Anda"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                  ></iframe>
+                ) : (
+                  <>
+                    {/* Visual Placeholder: YouTube Thumbnail with gradient overlay */}
+                    <div 
+                      className="absolute inset-0 bg-cover bg-center z-0"
+                      style={{ backgroundImage: "url('https://img.youtube.com/vi/0LqWXlBfBxE/maxresdefault.jpg')" }}
+                    />
+                    <div className="absolute inset-0 bg-slate-950/40 group-hover:bg-slate-950/30 transition-all duration-300 z-0" />
 
-                {/* Visual Placeholder: Zen Garden Scene */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-brand-dark/40 via-emerald-950/20 to-brand-primary/10 opacity-80 z-0" />
-
-                <div className="relative z-10 flex flex-col items-center space-y-4 text-center p-6">
-                  {/* Animated Breath Circle inside player */}
-                  <div className="w-20 h-20 rounded-full bg-brand-secondary/25 flex items-center justify-center relative cursor-pointer group-hover:scale-110 group-hover:bg-brand-secondary/35 transition-all duration-300">
-                    <div className="absolute inset-0 bg-brand-secondary/20 rounded-full animate-ping" />
-                    <Play className="h-7 w-7 text-white fill-white relative z-10 translate-x-0.5" />
-                  </div>
-                  <div>
-                    <h5 className="font-extrabold text-white text-sm">Zen Meditation: Napas Tenang</h5>
-                    <p className="text-[10px] text-brand-primary font-bold">2 Menit Sesi Latihan</p>
-                  </div>
-                </div>
-
-                {/* Video controls mockup bar */}
-                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-slate-950 to-transparent flex justify-between items-center text-slate-450 z-10 text-[10px]">
-                  <div className="flex items-center space-x-2">
-                    <Play className="h-3 w-3 fill-slate-300 text-slate-300" />
-                    <span>0:42 / 2:00</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <div className="w-12 h-1 bg-slate-700 rounded-full">
-                      <div className="bg-brand-secondary h-full w-1/2" />
+                    <div className="relative z-10 flex flex-col items-center space-y-4 text-center p-6">
+                      {/* Animated Breath Circle inside player */}
+                      <button
+                        onClick={() => setIsPlayingVideo(true)}
+                        aria-label="Play video"
+                        className="w-20 h-20 rounded-full bg-brand-secondary/25 flex items-center justify-center relative cursor-pointer hover:scale-110 hover:bg-brand-secondary/35 transition-all duration-300 border-0 focus:outline-none"
+                      >
+                        <div className="absolute inset-0 bg-brand-secondary/20 rounded-full animate-ping" />
+                        <Play className="h-7 w-7 text-white fill-white relative z-10 translate-x-0.5" />
+                      </button>
+                      <div>
+                        <h5 className="font-extrabold text-white text-sm">Zen Meditation: Napas Tenang</h5>
+                        <p className="text-[10px] text-brand-primary font-bold">Sesi Latihan Peregangan & Relaksasi</p>
+                      </div>
                     </div>
-                    <Volume2 className="h-3.5 w-3.5 text-slate-300" />
-                  </div>
-                </div>
+
+                    {/* Video controls mockup bar */}
+                    <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-slate-950 to-transparent flex justify-between items-center text-slate-450 z-10 text-[10px]">
+                      <div className="flex items-center space-x-2">
+                        <Play className="h-3 w-3 fill-slate-300 text-slate-300" />
+                        <span>0:00 / 3:00</span>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <div className="w-12 h-1 bg-slate-700 rounded-full">
+                          <div className="bg-brand-secondary h-full w-0" />
+                        </div>
+                        <Volume2 className="h-3.5 w-3.5 text-slate-300" />
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </div>
@@ -760,19 +781,18 @@ const LandingPage = () => {
           />
 
           {/* Modal Container */}
-          <div className="bg-white border border-brand-secondary/15 w-full max-w-3xl rounded-[32px] shadow-2xl relative z-10 flex overflow-hidden animate-in fade-in zoom-in-95 duration-200 group/modal">
+          <div className="bg-white border border-brand-secondary/15 w-full max-w-3xl rounded-[32px] shadow-2xl relative z-10 flex overflow-hidden animate-in fade-in zoom-in-95 duration-200">
 
             {/* Left Pane - Cover Image (Hidden on mobile) */}
             <div className="hidden md:block md:w-1/2 relative bg-brand-secondary/5 border-r border-brand-secondary/10 overflow-hidden">
               <img
                 src={loginImg}
                 alt="Login Visual"
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-[10000ms] ease-out group-hover/modal:scale-110"
+                className="absolute inset-0 w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent z-10" />
-              <div className="absolute bottom-5 left-5 right-5 bg-slate-950/50 backdrop-blur-md rounded-2xl p-5 border border-white/10 z-10 space-y-1.5 shadow-xl">
-                <h3 className="font-extrabold text-white text-sm">Mulai Hidup Sehat Saat Bekerja</h3>
-                <p className="text-[10px] text-slate-200 font-medium leading-relaxed">
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent flex flex-col justify-end p-8 text-center md:text-left space-y-2 z-10">
+                <h3 className="font-extrabold text-white text-base">Mulai Hidup Sehat Saat Bekerja</h3>
+                <p className="text-[10px] text-brand-primary font-bold leading-relaxed">
                   Pantau durasi layar, asupan air minum harian, peregangan fisik, dan pantau tingkat stres psikologis Anda secara berkala.
                 </p>
               </div>
@@ -888,19 +908,18 @@ const LandingPage = () => {
           />
 
           {/* Modal Container */}
-          <div className="bg-white border border-brand-secondary/15 w-full max-w-3xl rounded-[32px] shadow-2xl relative z-10 flex overflow-hidden animate-in fade-in zoom-in-95 duration-200 group/modal">
+          <div className="bg-white border border-brand-secondary/15 w-full max-w-3xl rounded-[32px] shadow-2xl relative z-10 flex overflow-hidden animate-in fade-in zoom-in-95 duration-200">
 
             {/* Left Pane - Cover Image (Hidden on mobile) */}
             <div className="hidden md:block md:w-1/2 relative bg-brand-secondary/5 border-r border-brand-secondary/10 overflow-hidden">
               <img
                 src={registerImg}
                 alt="Register Visual"
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-[10000ms] ease-out group-hover/modal:scale-110"
+                className="absolute inset-0 w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent z-10" />
-              <div className="absolute bottom-5 left-5 right-5 bg-slate-950/50 backdrop-blur-md rounded-2xl p-5 border border-white/10 z-10 space-y-1.5 shadow-xl">
-                <h3 className="font-extrabold text-white text-sm">Gabung Bersama WorkWell</h3>
-                <p className="text-[10px] text-slate-200 font-medium leading-relaxed">
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent flex flex-col justify-end p-8 text-center md:text-left space-y-2 z-10">
+                <h3 className="font-extrabold text-white text-base">Gabung Bersama WorkWell</h3>
+                <p className="text-[10px] text-brand-primary font-bold leading-relaxed">
                   Bergabunglah bersama ribuan pekerja & mahasiswa untuk hidup lebih sehat, produktif, dan seimbang di depan layar komputer.
                 </p>
               </div>
