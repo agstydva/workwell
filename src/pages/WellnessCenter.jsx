@@ -19,6 +19,7 @@ const WellnessCenter = () => {
   const [activeExercise, setActiveExercise] = useState(null);
   
   // Quiz states
+  const [selectedPackageId, setSelectedPackageId] = useState(null);
   const [quizStarted, setQuizStarted] = useState(false);
   const [currentQuestionIdx, setCurrentQuestionIdx] = useState(0);
   const [selectedOptionIdx, setSelectedOptionIdx] = useState(null);
@@ -26,68 +27,257 @@ const WellnessCenter = () => {
   const [score, setScore] = useState(0);
   const [quizFinished, setQuizFinished] = useState(false);
 
-  const quizQuestions = [
+  const quizPackages = [
     {
-      id: 1,
-      question: "Berapa jarak ideal antara mata Anda dengan layar laptop/komputer?",
-      options: [
-        "20 - 30 cm",
-        "50 - 70 cm (sekitar satu lengan)",
-        "90 - 110 cm",
-        "Sedekat mungkin agar lebih jelas"
-      ],
-      correctAnswerIdx: 1,
-      explanation: "Jarak ideal adalah 50 - 70 cm (sekitar panjang satu lengan) untuk mencegah mata cepat lelah dan tegang akibat radiasi atau pencahayaan dekat."
+      id: 'ergonomics',
+      title: 'Ergonomi & Postur Kerja',
+      desc: 'Pelajari cara mengatur meja, kursi, posisi monitor, dan posisi mengetik yang benar untuk menghindari cedera fisik.',
+      icon: Shield,
+      iconColor: 'text-emerald-600 bg-emerald-500/10 dark:text-emerald-400 dark:bg-emerald-500/20',
+      difficulty: 'Pemula',
+      duration: '3 Menit',
+      color: 'emerald',
+      questions: [
+        {
+          id: 1,
+          question: "Berapa sudut siku yang disarankan saat mengetik di depan keyboard?",
+          options: ["45 derajat", "90 derajat (sejajar meja)", "135 derajat", "Bebas asal tidak kaku"],
+          correctAnswerIdx: 1,
+          explanation: "Siku sebaiknya membentuk sudut 90 derajat agar otot lengan bawah, pergelangan tangan, dan pundak tidak terbebani secara berlebih saat mengetik."
+        },
+        {
+          id: 2,
+          question: "Di manakah letak ujung atas layar monitor yang ideal dibanding posisi mata?",
+          options: ["Jauh di atas mata", "Sejajar atau sedikit di bawah tingkat mata", "Sangat rendah agar leher menekuk", "Di samping kiri atau kanan"],
+          correctAnswerIdx: 1,
+          explanation: "Bagian atas monitor sebaiknya sejajar atau sedikit di bawah mata Anda agar kepala tegak dan otot leher rileks tanpa perlu mendongak atau menunduk."
+        },
+        {
+          id: 3,
+          question: "Bagaimana posisi telapak kaki yang benar saat duduk di kursi kerja?",
+          options: ["Berjinjit", "Menempel rata di lantai atau sandaran kaki", "Menggantung di udara", "Dilipat di atas kursi"],
+          correctAnswerIdx: 1,
+          explanation: "Telapak kaki harus menapak rata di lantai untuk menopang berat badan bagian bawah dan mencegah ketegangan pada otot paha belakang serta punggung."
+        },
+        {
+          id: 4,
+          question: "Apa bahaya utama menggunakan laptop di atas kasur/sofa tanpa meja secara terus-menerus?",
+          options: ["Mengakibatkan cedera leher dan punggung akibat menunduk berlebih", "Membuat laptop cepat dingin", "Mengurangi kekuatan baterai laptop secara drastis", "Merusak warna layar monitor"],
+          correctAnswerIdx: 0,
+          explanation: "Menggunakan laptop di kasur memaksa tubuh membungkuk dan menunduk dalam waktu lama, yang dapat memicu cedera otot leher, punggung, serta sindrom postur buruk."
+        },
+        {
+          id: 5,
+          question: "Setiap berapa menit kita disarankan untuk berdiri dan mengubah posisi tubuh?",
+          options: ["Setiap 3-4 jam sekali", "Setiap 30-50 menit sekali", "Cukup saat makan siang saja", "Tidak perlu jika kursi sudah empuk"],
+          correctAnswerIdx: 1,
+          explanation: "Duduk statis terlalu lama hambat aliran darah. Dianjurkan melakukan gerakan peregangan atau berdiri setiap 30-50 menit sekali untuk menyegarkan otot."
+        },
+        {
+          id: 6,
+          question: "Apa fungsi utama dari bantal lumbar (lumbar support) pada kursi kerja?",
+          options: ["Sebagai hiasan kursi saja", "Menjaga kelengkungan alami tulang belakang bagian bawah", "Membuat posisi tidur di kursi lebih nyaman", "Meningkatkan tinggi posisi duduk"],
+          correctAnswerIdx: 1,
+          explanation: "Lumbar support membantu menopang tulang punggung bawah agar tetap melengkung alami (lordosis), mencegah nyeri punggung bawah (LBP)."
+        },
+        {
+          id: 7,
+          question: "Bagaimana cara mencegah Carpal Tunnel Syndrome (CTS) saat menggunakan mouse?",
+          options: ["Mengetuk mouse sekeras mungkin", "Menggunakan wrist rest (bantalan pergelangan tangan) dan posisi pergelangan lurus", "Menekuk pergelangan tangan ke atas", "Menggunakan jari kelingking untuk klik kiri"],
+          correctAnswerIdx: 1,
+          explanation: "Menjaga pergelangan tangan tetap lurus dan tidak tertekuk saat menggunakan mouse (atau menggunakan mouse ergonomis vertikal) mengurangi tekanan pada saraf medianus di pergelangan."
+        },
+        {
+          id: 8,
+          question: "Berapa jarak ideal mata ke layar monitor komputer?",
+          options: ["20 - 30 cm", "50 - 70 cm (sekitar satu panjang lengan)", "100 - 120 cm", "Sedekat mungkin"],
+          correctAnswerIdx: 1,
+          explanation: "Jarak 50-70 cm adalah jarak optimal bagi mata untuk fokus tanpa memicu ketegangan berlebih pada otot siliaris mata."
+        },
+        {
+          id: 9,
+          question: "Saat duduk, posisi paha dan lutut sebaiknya membentuk sudut berapa?",
+          options: ["Sekitar 45 derajat", "Sekitar 90 derajat", "Sekitar 150 derajat", "Lutut harus lebih tinggi dari paha"],
+          correctAnswerIdx: 1,
+          explanation: "Duduk dengan paha sejajar lantai dan lutut membentuk sudut 90 derajat membantu mendistribusikan berat badan secara seimbang pada panggul."
+        },
+        {
+          id: 10,
+          question: "Apa yang dimaksud dengan Repetitive Strain Injury (RSI)?",
+          options: ["Cedera akibat benturan keras tiba-tiba", "Nyeri otot akibat gerakan berulang tanpa jeda istirahat", "Penurunan daya ingat jangka pendek", "Penyakit kulit akibat radiasi komputer"],
+          correctAnswerIdx: 1,
+          explanation: "RSI adalah cedera pada otot, tendon, atau saraf akibat gerakan berulang-ulang secara terus-menerus (seperti mengetik tanpa istirahat), menyebabkan peradangan kronis."
+        }
+      ]
     },
     {
-      id: 2,
-      question: "Apa yang dimaksud dengan aturan \"20-20-20\" dalam kesehatan mata?",
-      options: [
-        "Berdiri setiap 20 menit, jalan 20 meter, selama 20 detik",
-        "Setiap 20 menit, tatap objek berjarak 20 kaki (6 meter) selama 20 detik",
-        "Minum 20 ml air, setiap 20 menit, selama 20 jam",
-        "Berkedip 20 kali dalam 20 detik setiap 20 menit bekerja"
-      ],
-      correctAnswerIdx: 1,
-      explanation: "Aturan 20-20-20 adalah jeda mikro terbaik untuk meredakan ketegangan mata dengan cara memfokuskan pandangan pada objek berjarak 20 kaki (6 meter) selama 20 detik setiap 20 menit."
+      id: 'eyes',
+      title: 'Kesehatan Mata & Batas Layar',
+      desc: 'Pahami metode menjaga kesehatan mata Anda, efek radiasi monitor, aturan 20-20-20, serta cara mencegah mata lelah.',
+      icon: Eye,
+      iconColor: 'text-sky-600 bg-sky-500/10 dark:text-sky-400 dark:bg-sky-500/20',
+      difficulty: 'Pemula',
+      duration: '3 Menit',
+      color: 'sky',
+      questions: [
+        {
+          id: 1,
+          question: "Berapa durasi waktu minimal yang disarankan untuk mengistirahatkan mata menurut aturan 20-20-20?",
+          options: ["5 detik", "20 detik", "60 detik", "5 menit"],
+          correctAnswerIdx: 1,
+          explanation: "Aturan 20-20-20 menyarankan untuk menatap objek berjarak 20 kaki (6 meter) selama minimal 20 detik guna memberi kesempatan otot siliaris mata berelaksasi."
+        },
+        {
+          id: 2,
+          question: "Apa gejala utama dari Computer Vision Syndrome (CVS)?",
+          options: ["Gangguan pendengaran sesaat", "Mata kering, tegang, perih, dan sakit kepala", "Kulit telapak tangan bersisik", "Nyeri hebat pada sendi lutut kaki"],
+          correctAnswerIdx: 1,
+          explanation: "CVS adalah sekumpulan gejala mata tegang, lelah, kering, merah, pandangan kabur, hingga sakit kepala akibat menatap layar digital terlalu lama."
+        },
+        {
+          id: 3,
+          question: "Mengapa frekuensi berkedip kita berkurang drastis saat menatap layar komputer?",
+          options: ["Karena mata kita secara otomatis terkunci akibat konsentrasi visual yang tinggi", "Karena radiasi layar menghalangi kelopak mata bergerak", "Karena udara ruangan AC membuat kelopak mata kaku", "Berkedip hanya terjadi saat kita mengantuk"],
+          correctAnswerIdx: 0,
+          explanation: "Saat fokus menatap layar, konsentrasi visual mengurangi frekuensi berkedip hingga 60%, yang menyebabkan air mata menguap lebih cepat dan memicu mata kering."
+        },
+        {
+          id: 4,
+          question: "Apa warna pencahayaan ruangan yang paling disarankan saat bekerja dengan monitor di malam hari?",
+          options: ["Gelap gulita tanpa lampu sama sekali", "Penerangan yang cukup dan merata, tidak silau (biasanya warm white)", "Lampu sorot warna-warni yang berkedip", "Lampu ultraviolet khusus"],
+          correctAnswerIdx: 1,
+          explanation: "Kamar yang gelap gulita saat menatap monitor membuat kontras terlalu ekstrem, memicu mata lelah dengan sangat cepat. Pastikan ruangan cukup terang."
+        },
+        {
+          id: 5,
+          question: "Apa efek negatif paparan Blue Light (cahaya biru) monitor di malam hari terhadap tidur?",
+          options: ["Membuat tidur menjadi lebih nyenyak dan mimpi indah", "Menekan hormon melatonin sehingga mengganggu siklus tidur (insomnia)", "Menurunkan suhu tubuh dengan drastis saat tidur", "Meningkatkan nafsu makan di pagi hari"],
+          correctAnswerIdx: 1,
+          explanation: "Cahaya biru dari layar menekan produksi hormon melatonin (hormon tidur), membuat otak mengira hari masih siang sehingga mengacaukan ritme sirkadian tubuh."
+        },
+        {
+          id: 6,
+          question: "Berapa tingkat kecerahan layar monitor yang ideal?",
+          options: ["Maksimal (100%) agar warna tajam", "Minimal (0%) agar baterai hemat", "Setara dengan tingkat pencahayaan ruangan sekitar (tidak terlalu redup/terang)", "Selalu berubah-ubah setiap detik"],
+          correctAnswerIdx: 2,
+          explanation: "Kecerahan monitor harus disesuaikan dengan lingkungan sekitar. Jika monitor terasa seperti lampu senter di tempat gelap atau terlalu redup di ruangan terang, berarti setelannya salah."
+        },
+        {
+          id: 7,
+          question: "Bagaimana cara termudah meredakan mata kering saat bekerja di ruangan ber-AC?",
+          options: ["Menatap layar lebih tajam lagi", "Meneteskan obat tetes mata buatan (artificial tears) dan sering berkedip", "Membasuh mata dengan air hangat berulang kali", "Menutup mata dengan tangan kotor"],
+          correctAnswerIdx: 1,
+          explanation: "Sering berkedip secara sadar dan menggunakan air mata buatan membantu melumasi kembali permukaan kornea mata yang kering akibat embusan AC."
+        },
+        {
+          id: 8,
+          question: "Mengapa filter anti-glare (anti-pantulan) pada layar monitor sangat direkomendasikan?",
+          options: ["Untuk mempercepat kinerja prosesor komputer", "Mengurangi pantulan cahaya lampu/jendela yang memicu ketegangan mata", "Agar layar tidak bisa tergores oleh kuku", "Menambah resolusi gambar menjadi 4K"],
+          correctAnswerIdx: 1,
+          explanation: "Pantulan cahaya pada layar memaksa mata bekerja ekstra keras untuk fokus pada tulisan di monitor, sehingga filter anti-glare sangat membantu mencegah mata lelah."
+        },
+        {
+          id: 9,
+          question: "Apa itu presbiopi (mata tua) yang bisa diperparah oleh kelelahan mata digital?",
+          options: ["Ketidakmampuan melihat objek dekat dengan jelas", "Gangguan melihat warna merah dan hijau", "Buta total saat malam hari", "Peningkatan tekanan di dalam bola mata"],
+          correctAnswerIdx: 0,
+          explanation: "Presbiopi adalah penurunan kemampuan fokus mata pada objek dekat secara alami, dan mata lelah akibat paparan layar berlebihan dapat mempercepat kelelahan visual."
+        },
+        {
+          id: 10,
+          question: "Berapa jam batas maksimal screen time non-kerja yang disarankan per hari untuk menjaga kesehatan?",
+          options: ["Cukup 1-2 jam per hari", "Bebas, asal tidur cukup 8 jam", "Maksimal 10 jam per hari", "Tidak ada batas untuk orang dewasa"],
+          correctAnswerIdx: 0,
+          explanation: "Di luar waktu kerja wajib, membatasi screen time tambahan hingga 1-2 jam sehari membantu mencegah gaya hidup pasif dan gangguan tidur."
+        }
+      ]
     },
     {
-      id: 3,
-      question: "Bagaimana posisi siku yang benar saat mengetik di keyboard komputer?",
-      options: [
-        "Membentuk sudut sekitar 90 derajat sejajar meja",
-        "Menggantung tinggi di atas meja",
-        "Tertekuk rapat di depan dada",
-        "Lurus sejajar ke depan tanpa topangan"
-      ],
-      correctAnswerIdx: 0,
-      explanation: "Siku harus diletakkan sejajar membentuk sudut sekitar 90 derajat dan bersandar pada lengan kursi atau meja untuk mengurangi ketegangan pada otot pundak, leher, dan bahu."
-    },
-    {
-      id: 4,
-      question: "Berapa gelas air mineral yang disarankan untuk dikonsumsi setiap hari saat bekerja aktif?",
-      options: [
-        "Cukup 2-3 gelas saja",
-        "Minimal 8 gelas (sekitar 2 liter)",
-        "Hanya saat tenggorokan terasa kering saja",
-        "1 botol kecil saja"
-      ],
-      correctAnswerIdx: 1,
-      explanation: "Minum minimal 8 gelas air mineral sehari membantu menjaga konsentrasi, melancarkan sirkulasi oksigen, dan menghindari nyeri otot akibat dehidrasi ringan selama bekerja."
-    },
-    {
-      id: 5,
-      question: "Apa efek buruk utama dari kebiasaan menundukkan kepala terlalu dalam saat bermain HP/laptop?",
-      options: [
-        "Meningkatkan tekanan pada tulang leher (Spinal Pressure)",
-        "Membuat pendengaran telinga menjadi lebih peka",
-        "Menurunkan daya dengar mata secara drastis",
-        "Tidak memiliki dampak sama sekali terhadap tubuh"
-      ],
-      correctAnswerIdx: 0,
-      explanation: "Menunduk terlalu dalam meningkatkan beban gravitasi kepala pada otot & tulang leher (sampai dengan 27 kg pada sudut kemiringan 60°), yang dapat memicu nyeri leher kronis (sindrom Text Neck)."
+      id: 'habits',
+      title: 'Hidrasi & Kebiasaan Sehat',
+      desc: 'Ketahui pentingnya pemenuhan air putih harian, jenis gerakan microbreaks aktif, serta pengaruh dehidrasi bagi fokus kognitif.',
+      icon: Droplet,
+      iconColor: 'text-amber-600 bg-amber-500/10 dark:text-amber-400 dark:bg-amber-500/20',
+      difficulty: 'Sedang',
+      duration: '3 Menit',
+      color: 'amber',
+      questions: [
+        {
+          id: 1,
+          question: "Mengapa dehidrasi ringan dapat menurunkan produktivitas kerja Anda?",
+          options: ["Membuat tangan kita gemetar saat mengetik", "Mengurangi konsentrasi, memicu sakit kepala, dan rasa lelah", "Menurunkan kecepatan internet komputer", "Membuat warna kulit menjadi berubah biru"],
+          correctAnswerIdx: 1,
+          explanation: "Kekurangan cairan tubuh sebesar 1-2% saja sudah dapat mengganggu fokus otak, memicu kantuk, menurunkan memori jangka pendek, dan menimbulkan pusing kepala."
+        },
+        {
+          id: 2,
+          question: "Apa warna urin yang menandakan tubuh Anda terhidrasi dengan sangat baik?",
+          options: ["Kuning pekat atau oranye", "Bening transparan atau kuning muda jernih", "Merah muda kemerahan", "Putih susu keruh"],
+          correctAnswerIdx: 1,
+          explanation: "Warna urin bening transparan atau kuning muda pucat menandakan kadar air di dalam tubuh Anda sudah cukup dan terhidrasi dengan baik."
+        },
+        {
+          id: 3,
+          question: "Berapa gelas air mineral yang disarankan untuk diminum setiap jam saat bekerja pasif?",
+          options: ["1-2 gelas per jam (sekitar 200-250 ml)", "1 liter sekaligus setiap 4 jam", "Cukup minum jika merasa haus saja", "Setengah gelas saja untuk seharian"],
+          correctAnswerIdx: 0,
+          explanation: "Minum air secara bertahap (misal 1 gelas tiap 1-2 jam) lebih efektif diserap oleh tubuh dibanding langsung meminum air dalam jumlah sangat besar sekaligus."
+        },
+        {
+          id: 4,
+          question: "Apa yang dimaksud dengan peregangan dinamis saat melakukan rehat kerja?",
+          options: ["Menahan satu posisi otot selama 1 jam penuh", "Peregangan dengan gerakan aktif berulang untuk melenturkan sendi", "Berlari secepat mungkin di dalam ruangan", "Latihan beban berat di meja kerja"],
+          correctAnswerIdx: 1,
+          explanation: "Peregangan dinamis melibatkan gerakan aktif (seperti memutar bahu atau kepala secara perlahan) guna melancarkan sirkulasi darah dan melenturkan otot yang kaku."
+        },
+        {
+          id: 5,
+          question: "Mengapa konsumsi kopi berlebih saat bekerja justru dapat memicu dehidrasi?",
+          options: ["Karena kafein bersifat diuretik (merangsang pembuangan urin)", "Karena rasa kopi yang pahit menyerap air tubuh", "Karena kopi meningkatkan suhu tubuh sehingga berkeringat deras", "Kopi tidak memiliki efek apa pun pada hidrasi"],
+          correctAnswerIdx: 0,
+          explanation: "Kafein dalam kopi memiliki efek diuretik ringan, yang mendorong ginjal mengeluarkan air lebih cepat melalui urin, sehingga wajib diimbangi dengan air putih."
+        },
+        {
+          id: 6,
+          question: "Aktivitas fisik ringan apa yang paling disarankan saat Anda mendapatkan break 5 menit?",
+          options: ["Melakukan peregangan leher, bahu, dan berjalan kaki santai", "Melakukan angkat beban berat atau push-up 50 kali", "Bermain game online di HP dengan posisi duduk yang sama", "Tidur telungkup di atas meja kerja"],
+          correctAnswerIdx: 0,
+          explanation: "Berdiri, memutar bahu/leher, dan melangkah beberapa meter membantu memulihkan aliran darah yang tersumbat di area panggul dan tungkai akibat duduk tegak."
+        },
+        {
+          id: 7,
+          question: "Bagaimana asupan air mineral membantu mencegah nyeri sendi saat bekerja?",
+          options: ["Air mineral melumasi sendi karena merupakan komponen cairan sinovial", "Air mineral membuat tulang menjadi lentur seperti karet", "Air mineral membilas garam beracun di permukaan kulit sendi", "Air mineral tidak berhubungan dengan persendian"],
+          correctAnswerIdx: 0,
+          explanation: "Air adalah bahan utama pembentuk cairan sinovial (pelumas sendi). Menjaga hidrasi membantu persendian tetap licin dan terhindar dari gesekan yang memicu nyeri."
+        },
+        {
+          id: 8,
+          question: "Apa bahaya jangka panjang dari gaya hidup kurang gerak (sedentary lifestyle) bagi pekerja kantoran?",
+          options: ["Meningkatkan risiko penyakit kardiovaskular, diabetes, dan obesitas", "Menyebabkan kerontokan rambut secara instan", "Menurunkan tinggi badan hingga 10 cm", "Tidak ada bahaya selama makan dengan teratur"],
+          correctAnswerIdx: 0,
+          explanation: "Duduk tanpa jeda gerak harian dalam jangka panjang memperlambat metabolisme tubuh, menumpuk lemak jenuh, dan melipatgandakan risiko penyakit jantung."
+        },
+        {
+          id: 9,
+          question: "Apa tips terbaik untuk mengingat minum air mineral saat sibuk bekerja di depan laptop?",
+          options: ["Meletakkan botol air besar di meja kerja dan menyetel reminder hidrasi", "Menunggu hingga bibir pecah-pecah baru berjalan ke dapur", "Meminum air hanya saat makan berat saja", "Meminta tolong rekan kerja menyuapi air mineral"],
+          correctAnswerIdx: 0,
+          explanation: "Menyimpan botol air minum dalam jangkauan mata (visual cue) serta menggunakan aplikasi pengingat (seperti WorkWell) terbukti efektif meningkatkan kebiasaan minum air."
+        },
+        {
+          id: 10,
+          question: "Aktivitas rehat manakah yang paling membantu merilekskan sistem saraf dan menurunkan stres kerja?",
+          options: ["Melakukan pernapasan dalam diafragma selama 1-2 menit", "Membaca berita politik terbaru di media sosial", "Meminum minuman berenergi tinggi gula", "Berdebat dengan rekan kerja di grup chat"],
+          correctAnswerIdx: 0,
+          explanation: "Bernapas dalam (inhale-hold-exhale secara teratur) merangsang saraf parasimpatis, lowering heart rate, dan menurunkan hormon stres kortisol dengan cepat."
+        }
+      ]
     }
   ];
+
+  const activePackage = quizPackages.find(pkg => pkg.id === selectedPackageId);
+  const quizQuestions = activePackage ? activePackage.questions : [];
   
   // Exercise Countdown state
   const [exerciseTimeLeft, setExerciseTimeLeft] = useState(0);
@@ -326,7 +516,8 @@ const WellnessCenter = () => {
   };
 
   // Quiz Handlers
-  const handleStartQuiz = () => {
+  const handleStartQuiz = (pkgId) => {
+    if (pkgId && typeof pkgId === 'string') setSelectedPackageId(pkgId);
     setQuizStarted(true);
     setCurrentQuestionIdx(0);
     setSelectedOptionIdx(null);
@@ -362,6 +553,7 @@ const WellnessCenter = () => {
   };
 
   const handleResetQuiz = () => {
+    setSelectedPackageId(null);
     setQuizStarted(false);
     setCurrentQuestionIdx(0);
     setSelectedOptionIdx(null);
@@ -742,34 +934,75 @@ const WellnessCenter = () => {
               <HelpCircle className="h-5 w-5 text-brand-secondary" />
               <h2 className="text-base font-black text-brand-dark uppercase tracking-wider">Interactive Wellness Quiz</h2>
             </div>
-
             <div className="glass-panel p-6 sm:p-8 rounded-[32px] border border-brand-secondary/15 space-y-6">
-              {!quizStarted ? (
-                // 1. Welcome / Start Screen
-                <div className="flex flex-col items-center text-center space-y-4 py-4 animate-in fade-in duration-300">
-                  <div className="w-14 h-14 rounded-2xl bg-brand-secondary/10 text-brand-secondary flex items-center justify-center shadow-inner">
-                    <HelpCircle className="h-7 w-7" />
+              {!selectedPackageId ? (
+                // 1. Welcome / Start Screen with 3 packages selection
+                <div className="space-y-6 animate-in fade-in duration-300">
+                  <div className="flex flex-col items-center text-center space-y-3">
+                    <div className="w-14 h-14 rounded-2xl bg-brand-secondary/10 text-brand-secondary flex items-center justify-center shadow-inner">
+                      <HelpCircle className="h-7 w-7" />
+                    </div>
+                    <div className="space-y-2 max-w-lg">
+                      <h3 className="text-lg font-black text-brand-dark">Pilih Paket Kuis Kesehatan</h3>
+                      <p className="text-xs text-brand-secondary font-medium leading-relaxed">
+                        Uji pemahaman Anda tentang kesehatan digital melalui kuis 10 pertanyaan per paket kuis. Dapatkan wawasan ilmiah setelah menjawab!
+                      </p>
+                    </div>
                   </div>
-                  <div className="space-y-2 max-w-lg">
-                    <h3 className="text-lg font-black text-brand-dark">Uji Pemahaman Kesehatan Kerja Anda</h3>
-                    <p className="text-xs text-brand-secondary font-medium leading-relaxed">
-                      Uji seberapa jauh Anda memahami aturan ergonomi, batas waktu layar, hidrasi, dan kebiasaan sehat saat bekerja aktif di depan komputer. Kuis ini terdiri dari 5 pertanyaan pilihan ganda.
-                    </p>
+
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+                    {quizPackages.map((pkg) => {
+                      const PkgIcon = pkg.icon;
+                      return (
+                        <div 
+                          key={pkg.id} 
+                          className="glass-card-light p-6 rounded-[28px] border border-brand-secondary/12 hover:border-brand-primary/30 flex flex-col justify-between hover:shadow-xl transition-all duration-300 text-left group"
+                        >
+                          <div className="space-y-4">
+                            <div className={`p-3 w-fit rounded-2xl ${pkg.iconColor} transition-transform duration-300 group-hover:scale-110`}>
+                              <PkgIcon className="h-6 w-6" />
+                            </div>
+                            <div className="space-y-1.5">
+                              <h4 className="text-sm font-black text-brand-dark">{pkg.title}</h4>
+                              <p className="text-[11px] text-brand-secondary leading-relaxed font-semibold">
+                                {pkg.desc}
+                              </p>
+                            </div>
+                          </div>
+
+                          <div className="mt-6 space-y-4">
+                            <div className="flex items-center gap-2 text-[10px] font-bold text-brand-secondary">
+                              <span className="px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800">{pkg.difficulty}</span>
+                              <span className="px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800">{pkg.duration}</span>
+                              <span className="px-2 py-0.5 rounded-full bg-brand-secondary/10 text-brand-secondary">10 Soal</span>
+                            </div>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setSelectedPackageId(pkg.id);
+                                setQuizStarted(true);
+                                setCurrentQuestionIdx(0);
+                                setSelectedOptionIdx(null);
+                                setShowFeedback(false);
+                                setScore(0);
+                                setQuizFinished(false);
+                              }}
+                              className="w-full py-3 bg-brand-primary hover:bg-brand-primary/95 text-brand-dark font-extrabold rounded-2xl text-xs transition-all shadow-md shadow-brand-primary/10 cursor-pointer text-center"
+                            >
+                              Mulai Kuis
+                            </button>
+                          </div>
+                        </div>
+                      );
+                    })}
                   </div>
-                  <button
-                    type="button"
-                    onClick={handleStartQuiz}
-                    className="py-3 px-8 bg-brand-primary hover:bg-brand-primary/95 text-brand-dark font-extrabold rounded-2xl text-xs transition-all shadow-md shadow-brand-primary/10 cursor-pointer active:scale-98"
-                  >
-                    Mulai Kuis
-                  </button>
                 </div>
               ) : quizFinished ? (
                 // 2. Quiz Finished / Results Screen
                 <div className="flex flex-col items-center text-center space-y-6 py-4 animate-in zoom-in-95 duration-300">
                   {/* Score circle */}
                   <div className="relative w-28 h-28 rounded-full bg-brand-primary/10 border-4 border-brand-primary flex flex-col items-center justify-center shadow-lg">
-                    <span className="text-3xl font-black text-brand-dark">{(score / quizQuestions.length) * 100}%</span>
+                    <span className="text-3xl font-black text-brand-dark">{Math.round((score / quizQuestions.length) * 100)}%</span>
                     <span className="text-[10px] text-brand-secondary font-bold uppercase tracking-wider mt-0.5">{score} / {quizQuestions.length} Benar</span>
                   </div>
 
@@ -777,30 +1010,37 @@ const WellnessCenter = () => {
                     <h3 className="text-lg font-black text-brand-dark">
                       {score === quizQuestions.length 
                         ? 'Luar Biasa! Kuis Selesai' 
-                        : score >= 3 
+                        : score >= 7 
                         ? 'Kerja Bagus! Kuis Selesai' 
                         : 'Kuis Selesai! Tetap Semangat'}
                     </h3>
                     <p className="text-xs text-brand-secondary font-semibold leading-relaxed">
                       {score === quizQuestions.length
-                        ? 'Anda memahami dengan sangat baik bagaimana cara menjaga kesehatan fisik dan mental saat bekerja aktif di depan komputer!'
-                        : score >= 3
-                        ? 'Anda memiliki pemahaman dasar yang kuat tentang kesehatan kerja digital. Pertahankan kebiasaan sehat ini!'
-                        : 'Mari tingkatkan lagi pemahaman Anda dengan membaca ulang artikel edukasi di atas demi kesehatan tulang, otot, dan mata Anda.'}
+                        ? `Anda memahami dengan sempurna seluruh materi kuis "${activePackage?.title}" ini! Pertahankan pengetahuan Anda.`
+                        : score >= 7
+                        ? `Pemahaman Anda mengenai kuis "${activePackage?.title}" sangat bagus. Anda sudah siap mempraktikkannya sehari-hari.`
+                        : `Kuis selesai! Mari tingkatkan lagi pemahaman Anda tentang "${activePackage?.title}" dengan membaca ulang penjelasan detail kuis.`}
                     </p>
                   </div>
 
                   <div className="flex space-x-3 pt-2">
                     <button
                       type="button"
-                      onClick={handleResetQuiz}
+                      onClick={() => setSelectedPackageId(null)}
                       className="py-3 px-6 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-extrabold rounded-2xl text-xs transition-all cursor-pointer"
                     >
-                      Kembali ke Menu
+                      Pilih Paket Lain
                     </button>
                     <button
                       type="button"
-                      onClick={handleStartQuiz}
+                      onClick={() => {
+                        setQuizStarted(true);
+                        setCurrentQuestionIdx(0);
+                        setSelectedOptionIdx(null);
+                        setShowFeedback(false);
+                        setScore(0);
+                        setQuizFinished(false);
+                      }}
                       className="py-3 px-6 bg-brand-primary hover:bg-brand-primary/95 text-brand-dark font-extrabold rounded-2xl text-xs transition-all shadow-md shadow-brand-primary/10 cursor-pointer"
                     >
                       Coba Lagi
@@ -810,8 +1050,21 @@ const WellnessCenter = () => {
               ) : (
                 // 3. Active Quiz Question Screen
                 <div className="space-y-6 animate-in fade-in duration-200 text-left">
+                  {/* Exit button and Package Info */}
+                  <div className="flex items-center justify-between pb-2 border-b border-brand-secondary/10">
+                    <button 
+                      onClick={() => setSelectedPackageId(null)}
+                      className="text-xs font-bold text-slate-500 hover:text-brand-secondary flex items-center gap-1 transition-colors cursor-pointer"
+                    >
+                      <span>← Kembali ke Menu Paket</span>
+                    </button>
+                    <span className="text-[10px] font-extrabold text-brand-secondary bg-brand-secondary/10 px-2 py-0.5 rounded-full uppercase tracking-wider">
+                      {activePackage?.title}
+                    </span>
+                  </div>
+
                   {/* Progress Bar & Header */}
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pb-4 border-b border-brand-secondary/10">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
                     <span className="text-[10px] font-bold text-brand-secondary uppercase tracking-widest">
                       Pertanyaan {currentQuestionIdx + 1} dari {quizQuestions.length}
                     </span>
