@@ -419,12 +419,21 @@ const LandingPage = () => {
         __html: `
         .scroll-reveal {
           opacity: 0;
-          transform: translateY(45px);
-          transition: opacity 1.3s cubic-bezier(0.16, 1, 0.3, 1), transform 1.3s cubic-bezier(0.16, 1, 0.3, 1);
+          transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+          will-change: transform, opacity;
+        }
+        .reveal-up {
+          transform: translateY(40px);
+        }
+        .reveal-left {
+          transform: translateX(-40px);
+        }
+        .reveal-right {
+          transform: translateX(40px);
         }
         .reveal-active {
-          opacity: 1;
-          transform: translateY(0);
+          opacity: 1 !important;
+          transform: translate(0) !important;
         }
       `}} />
       {/* SaaS Navbar */}
@@ -450,7 +459,7 @@ const LandingPage = () => {
           <div className="lg:grid lg:grid-cols-12 lg:gap-16 items-center">
 
             {/* Left Content */}
-            <div className="text-center lg:text-left lg:col-span-6 space-y-6">
+            <div className="text-center lg:text-left lg:col-span-6 space-y-6 scroll-reveal reveal-left">
               <div className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-brand-secondary/10 border border-brand-secondary/25 text-brand-dark dark:text-brand-primary text-xs font-bold animate-pulse">
                 <Sparkles className="h-4.5 w-4.5 text-brand-secondary" />
                 <span>Modern Digital Wellbeing Platform</span>
@@ -505,7 +514,7 @@ const LandingPage = () => {
 
 
       {/* Feature section */}
-      <section id="fitur" className="py-24 bg-white border-y border-brand-secondary/10 relative overflow-hidden scroll-reveal">
+      <section id="fitur" className="py-24 bg-white border-y border-brand-secondary/10 relative overflow-hidden">
         {/* Animated Background Blobs */}
         <div className="absolute top-10 left-10 w-72 h-72 rounded-full bg-brand-primary/10 blur-3xl pointer-events-none"
           style={{
@@ -532,7 +541,7 @@ const LandingPage = () => {
         `}} />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4 scroll-reveal reveal-up">
             <h2 className="text-xs font-bold text-brand-secondary uppercase tracking-widest">Fitur Utama</h2>
             <p className="text-3xl sm:text-4xl font-extrabold text-brand-dark">Dirancang untuk Menjaga Kesehatan Anda</p>
             <p className="text-brand-secondary text-sm font-medium">Berbagai modul pintar yang bersinergi membantu menjaga kebugaran mata, otot, hidrasi, dan pikiran Anda secara berkala.</p>
@@ -540,7 +549,7 @@ const LandingPage = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Feature 1 */}
-            <div className="glass-card-light overflow-hidden rounded-3xl border border-brand-secondary/10 flex flex-col justify-between hover:shadow-2xl hover:shadow-brand-secondary/5 hover:-translate-y-2 hover:border-brand-primary/30 transition-all duration-500 group">
+            <div className="glass-card-light overflow-hidden rounded-3xl border border-brand-secondary/10 flex flex-col justify-between hover:shadow-2xl hover:shadow-brand-secondary/5 hover:-translate-y-2 hover:border-brand-primary/30 transition-all duration-500 group scroll-reveal reveal-up">
               <div>
                 <div className="w-full h-44 bg-slate-50 dark:bg-slate-900/20 flex items-center justify-center p-4 border-b border-brand-secondary/5 overflow-hidden">
                   <img src={screenTimeIcon} alt="Screen Time" className="h-full w-full object-contain max-h-36 transition-transform duration-500 group-hover:scale-110" />
@@ -553,7 +562,7 @@ const LandingPage = () => {
             </div>
 
             {/* Feature 2 */}
-            <div className="glass-card-light overflow-hidden rounded-3xl border border-brand-secondary/10 flex flex-col justify-between hover:shadow-2xl hover:shadow-brand-secondary/5 hover:-translate-y-2 hover:border-brand-primary/30 transition-all duration-500 group">
+            <div className="glass-card-light overflow-hidden rounded-3xl border border-brand-secondary/10 flex flex-col justify-between hover:shadow-2xl hover:shadow-brand-secondary/5 hover:-translate-y-2 hover:border-brand-primary/30 transition-all duration-500 group scroll-reveal reveal-up" style={{ transitionDelay: '100ms' }}>
               <div>
                 <div className="w-full h-44 bg-slate-50 dark:bg-slate-900/20 flex items-center justify-center p-4 border-b border-brand-secondary/5 overflow-hidden">
                   <img src={waterIntakeIcon} alt="Water Intake" className="h-full w-full object-contain max-h-36 transition-transform duration-500 group-hover:scale-110" />
@@ -566,7 +575,7 @@ const LandingPage = () => {
             </div>
 
             {/* Feature 3 */}
-            <div className="glass-card-light overflow-hidden rounded-3xl border border-brand-secondary/10 flex flex-col justify-between hover:shadow-2xl hover:shadow-brand-secondary/5 hover:-translate-y-2 hover:border-brand-primary/30 transition-all duration-500 group">
+            <div className="glass-card-light overflow-hidden rounded-3xl border border-brand-secondary/10 flex flex-col justify-between hover:shadow-2xl hover:shadow-brand-secondary/5 hover:-translate-y-2 hover:border-brand-primary/30 transition-all duration-500 group scroll-reveal reveal-up" style={{ transitionDelay: '200ms' }}>
               <div>
                 <div className="w-full h-44 bg-slate-50 dark:bg-slate-900/20 flex items-center justify-center p-4 border-b border-brand-secondary/5 overflow-hidden">
                   <img src={movementTrackerIcon} alt="Movement Tracker" className="h-full w-full object-contain max-h-36 transition-transform duration-500 group-hover:scale-110" />
@@ -579,7 +588,7 @@ const LandingPage = () => {
             </div>
 
             {/* Feature 4 */}
-            <div className="glass-card-light overflow-hidden rounded-3xl border border-brand-secondary/10 flex flex-col justify-between hover:shadow-2xl hover:shadow-brand-secondary/5 hover:-translate-y-2 hover:border-brand-primary/30 transition-all duration-500 group">
+            <div className="glass-card-light overflow-hidden rounded-3xl border border-brand-secondary/10 flex flex-col justify-between hover:shadow-2xl hover:shadow-brand-secondary/5 hover:-translate-y-2 hover:border-brand-primary/30 transition-all duration-500 group scroll-reveal reveal-up" style={{ transitionDelay: '300ms' }}>
               <div>
                 <div className="w-full h-44 bg-slate-50 dark:bg-slate-900/20 flex items-center justify-center p-4 border-b border-brand-secondary/5 overflow-hidden">
                   <img src={stressAnalyticsIcon} alt="Stress & Analytics" className="h-full w-full object-contain max-h-36 transition-transform duration-500 group-hover:scale-110" />
@@ -592,14 +601,12 @@ const LandingPage = () => {
             </div>
           </div>
         </div>
-      </section>
-
-      {/* Cara kerja aplikasi */}
-      <section id="carakerja" className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-reveal">
+      </section>      {/* Cara kerja aplikasi */}
+      <section id="carakerja" className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="lg:grid lg:grid-cols-12 lg:gap-16 items-center">
 
           {/* Left info column */}
-          <div className="lg:col-span-5 space-y-6 text-center lg:text-left">
+          <div className="lg:col-span-5 space-y-6 text-center lg:text-left scroll-reveal reveal-left">
             <h2 className="text-xs font-bold text-brand-secondary uppercase tracking-widest">Alur Penggunaan</h2>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-brand-dark leading-tight">Cara Kerja WorkWell</h2>
             <p className="text-brand-secondary font-medium text-sm leading-relaxed">
@@ -619,7 +626,7 @@ const LandingPage = () => {
           {/* Right step list */}
           <div className="lg:col-span-7 mt-16 lg:mt-0 space-y-6">
             {/* Step 1 */}
-            <div className="flex space-x-4 p-5 bg-white border border-brand-secondary/10 hover:border-brand-primary/30 hover:shadow-md hover:-translate-y-0.5 rounded-3xl transition-all duration-300 shadow-sm">
+            <div className="flex space-x-4 p-5 bg-white border border-brand-secondary/10 hover:border-brand-primary/30 hover:shadow-md hover:-translate-y-0.5 rounded-3xl transition-all duration-300 shadow-sm scroll-reveal reveal-right">
               <div className="w-12 h-12 rounded-2xl bg-brand-secondary/10 text-brand-secondary flex items-center justify-center font-black text-lg flex-shrink-0">
                 1
               </div>
@@ -630,7 +637,7 @@ const LandingPage = () => {
             </div>
 
             {/* Step 2 */}
-            <div className="flex space-x-4 p-5 bg-white border border-brand-secondary/10 hover:border-brand-primary/30 hover:shadow-md hover:-translate-y-0.5 rounded-3xl transition-all duration-300 shadow-sm">
+            <div className="flex space-x-4 p-5 bg-white border border-brand-secondary/10 hover:border-brand-primary/30 hover:shadow-md hover:-translate-y-0.5 rounded-3xl transition-all duration-300 shadow-sm scroll-reveal reveal-right" style={{ transitionDelay: '150ms' }}>
               <div className="w-12 h-12 rounded-2xl bg-brand-secondary/10 text-brand-secondary flex items-center justify-center font-black text-lg flex-shrink-0">
                 2
               </div>
@@ -641,7 +648,7 @@ const LandingPage = () => {
             </div>
 
             {/* Step 3 */}
-            <div className="flex space-x-4 p-5 bg-white border border-brand-secondary/10 hover:border-brand-primary/30 hover:shadow-md hover:-translate-y-0.5 rounded-3xl transition-all duration-300 shadow-sm">
+            <div className="flex space-x-4 p-5 bg-white border border-brand-secondary/10 hover:border-brand-primary/30 hover:shadow-md hover:-translate-y-0.5 rounded-3xl transition-all duration-300 shadow-sm scroll-reveal reveal-right" style={{ transitionDelay: '300ms' }}>
               <div className="w-12 h-12 rounded-2xl bg-brand-secondary/10 text-brand-secondary flex items-center justify-center font-black text-lg flex-shrink-0">
                 3
               </div>
@@ -655,16 +662,16 @@ const LandingPage = () => {
       </section>
 
       {/* Benefit section */}
-      <section id="tentang" className="py-24 bg-white border-t border-brand-secondary/10 relative scroll-reveal">
+      <section id="tentang" className="py-24 bg-white border-t border-brand-secondary/10 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-12">
-          <div className="max-w-2xl mx-auto space-y-4">
+          <div className="max-w-2xl mx-auto space-y-4 scroll-reveal reveal-up">
             <h2 className="text-xs font-bold text-brand-secondary uppercase tracking-widest">Manfaat</h2>
             <h2 className="text-3xl font-extrabold text-brand-dark">Mengapa Menjaga Waktu Kerja Itu Penting?</h2>
             <p className="text-brand-secondary text-sm font-medium">Kebiasaan buruk di depan laptop dapat menyebabkan kelelahan kronis. WorkWell dirancang untuk mencegah efek samping tersebut.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="p-6 space-y-3 text-center rounded-3xl border border-transparent hover:border-brand-secondary/10 hover:bg-slate-50/50 dark:hover:bg-slate-900/10 hover:shadow-md transition-all duration-300">
+            <div className="p-6 space-y-3 text-center rounded-3xl border border-transparent hover:border-brand-secondary/10 hover:bg-slate-50/50 dark:hover:bg-slate-900/10 hover:shadow-md transition-all duration-300 scroll-reveal reveal-up">
               <div className="w-12 h-12 bg-brand-secondary/10 text-brand-secondary rounded-2xl flex items-center justify-center mx-auto transition-transform duration-300 hover:scale-110">
                 <Shield className="h-6 w-6" />
               </div>
@@ -672,7 +679,7 @@ const LandingPage = () => {
               <p className="text-xs text-brand-secondary font-medium leading-relaxed">Peregangan otot berkala membantu mencegah carpal tunnel syndrome, ketegangan tendon leher, dan nyeri tulang belakang bagian bawah.</p>
             </div>
 
-            <div className="p-6 space-y-3 text-center rounded-3xl border border-transparent hover:border-brand-secondary/10 hover:bg-slate-50/50 dark:hover:bg-slate-900/10 hover:shadow-md transition-all duration-300">
+            <div className="p-6 space-y-3 text-center rounded-3xl border border-transparent hover:border-brand-secondary/10 hover:bg-slate-50/50 dark:hover:bg-slate-900/10 hover:shadow-md transition-all duration-300 scroll-reveal reveal-up" style={{ transitionDelay: '150ms' }}>
               <div className="w-12 h-12 bg-brand-secondary/10 text-brand-secondary rounded-2xl flex items-center justify-center mx-auto transition-transform duration-300 hover:scale-110">
                 <Zap className="h-6 w-6" />
               </div>
@@ -680,7 +687,7 @@ const LandingPage = () => {
               <p className="text-xs text-brand-secondary font-medium leading-relaxed">Studi menunjukkan istirahat kecil (microbreaks) yang terjadwal dapat memulihkan konsentrasi dan meningkatkan produktivitas hingga 20%.</p>
             </div>
 
-            <div className="p-6 space-y-3 text-center rounded-3xl border border-transparent hover:border-brand-secondary/10 hover:bg-slate-50/50 dark:hover:bg-slate-900/10 hover:shadow-md transition-all duration-300">
+            <div className="p-6 space-y-3 text-center rounded-3xl border border-transparent hover:border-brand-secondary/10 hover:bg-slate-50/50 dark:hover:bg-slate-900/10 hover:shadow-md transition-all duration-300 scroll-reveal reveal-up" style={{ transitionDelay: '300ms' }}>
               <div className="w-12 h-12 bg-brand-secondary/10 text-brand-secondary rounded-2xl flex items-center justify-center mx-auto transition-transform duration-300 hover:scale-110">
                 <ShieldAlert className="h-6 w-6" />
               </div>
@@ -692,12 +699,12 @@ const LandingPage = () => {
       </section>
 
       {/* Wellness Center Preview Section */}
-      <section className="py-24 bg-white dark:bg-slate-950 border-t border-brand-secondary/10 scroll-reveal">
+      <section className="py-24 bg-white dark:bg-slate-950 border-t border-brand-secondary/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="lg:grid lg:grid-cols-12 lg:gap-16 items-center">
 
             {/* Left Description */}
-            <div className="lg:col-span-5 space-y-6 text-center lg:text-left">
+            <div className="lg:col-span-5 space-y-6 text-center lg:text-left scroll-reveal reveal-left">
               <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-brand-primary/10 border border-brand-primary/20 text-brand-dark dark:text-brand-primary text-xs font-bold w-fit">
                 <Sparkles className="h-4 w-4 text-brand-secondary" />
                 <span>Wellness Center</span>
@@ -719,7 +726,7 @@ const LandingPage = () => {
             </div>
 
             {/* Right Video Player Mockup */}
-            <div className="lg:col-span-7 mt-16 lg:mt-0 flex justify-center w-full">
+            <div className="lg:col-span-7 mt-16 lg:mt-0 flex justify-center w-full scroll-reveal reveal-right">
               <div className="w-full max-w-xl bg-slate-950 rounded-[32px] overflow-hidden border border-slate-800 shadow-2xl relative aspect-video flex items-center justify-center group">
                 {isPlayingVideo ? (
                   <iframe
@@ -777,9 +784,9 @@ const LandingPage = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-24 bg-slate-50 dark:bg-slate-900/30 border-t border-brand-secondary/10 scroll-reveal">
+      <section className="py-24 bg-slate-50 dark:bg-slate-900/30 border-t border-brand-secondary/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-12 space-y-4">
+          <div className="text-center max-w-3xl mx-auto mb-12 space-y-4 scroll-reveal reveal-up">
             <h2 className="text-xs font-bold text-brand-secondary uppercase tracking-widest">Testimoni Pengguna</h2>
             <h3 className="text-3xl sm:text-4xl font-black text-brand-dark dark:text-white">Kata Mereka Tentang WorkWell</h3>
             <p className="text-brand-secondary dark:text-slate-400 text-sm font-medium">Umpan balik nyata dari mahasiswa dan praktisi profesional yang telah mentransformasi kebiasaan harian mereka secara berkala.</p>
@@ -813,11 +820,13 @@ const LandingPage = () => {
 
                 // Hide second card on mobile, third card on tablet/mobile
                 const visibilityClass = offset === 1 ? 'hidden md:flex' : offset === 2 ? 'hidden lg:flex' : 'flex';
+                const transitionDelay = offset === 1 ? '150ms' : offset === 2 ? '300ms' : '0ms';
 
                 return (
                   <div
                     key={index}
-                    className={`${visibilityClass} glass-card-light p-6 rounded-3xl border border-brand-secondary/10 hover:border-brand-primary/30 flex flex-col justify-between hover:shadow-2xl hover:shadow-brand-secondary/5 hover:-translate-y-1.5 transition-all duration-500 h-64 animate-in fade-in duration-300`}
+                    className={`${visibilityClass} glass-card-light p-6 rounded-3xl border border-brand-secondary/10 hover:border-brand-primary/30 flex flex-col justify-between hover:shadow-2xl hover:shadow-brand-secondary/5 hover:-translate-y-1.5 transition-all duration-500 h-64 scroll-reveal reveal-up`}
+                    style={{ transitionDelay }}
                   >
                     <div>
                       {/* Profile details at the TOP */}
