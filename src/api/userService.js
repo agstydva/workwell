@@ -18,6 +18,8 @@ export const userService = {
       name,
       email: trimmedEmail,
       password, // In production, this would be hashed on server side
+      profilePicture: '',
+      status: '',
       createdAt: new Date().toISOString()
     });
 
@@ -46,7 +48,7 @@ export const userService = {
     return profile;
   },
 
-  updateProfile: async (userId, name, email) => {
+  updateProfile: async (userId, name, email, profilePicture, status) => {
     await delay(200);
     const trimmedEmail = email.trim().toLowerCase();
 
@@ -66,7 +68,9 @@ export const userService = {
     const updated = storageService.save(storageService.KEYS.USERS, {
       ...user,
       name,
-      email: trimmedEmail
+      email: trimmedEmail,
+      profilePicture: profilePicture !== undefined ? profilePicture : user.profilePicture || '',
+      status: status !== undefined ? status : user.status || ''
     });
 
     const { password: _, ...profile } = updated;

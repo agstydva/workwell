@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import Sidebar from '../components/Sidebar';
 import WorkWellLogo from '../components/WorkWellLogo';
-import { User, Settings, Save, CheckCircle, AlertCircle, RefreshCw, Menu, Activity } from 'lucide-react';
+import { User, Settings, Save, CheckCircle, AlertCircle, RefreshCw, Menu, Activity, Camera } from 'lucide-react';
 import { useTracker } from '../hooks/useTracker';
 
 const Profile = () => {
@@ -16,6 +16,8 @@ const Profile = () => {
   const [email, setEmail] = useState('');
   const [screenLimit, setScreenLimit] = useState(60);
   const [breakDuration, setBreakDuration] = useState(5);
+  const [profilePicture, setProfilePicture] = useState('');
+  const [status, setStatus] = useState('');
   
   const [success, setSuccess] = useState('');
   const [error, setError] = useState('');
@@ -26,6 +28,8 @@ const Profile = () => {
     if (currentUser) {
       setName(currentUser.name);
       setEmail(currentUser.email);
+      setProfilePicture(currentUser.profilePicture || '');
+      setStatus(currentUser.status || '');
     }
     if (userSettings) {
       setScreenLimit(userSettings.screenLimit || 60);
@@ -41,6 +45,22 @@ const Profile = () => {
     }
   }, [success]);
 
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      if (file.size > 1.5 * 1024 * 1024) {
+        setError('Ukuran file maksimal adalah 1.5MB!');
+        return;
+      }
+      setError('');
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setProfilePicture(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
@@ -53,10 +73,16 @@ const Profile = () => {
 
     try {
       setLoading(true);
-      await updateProfileAndSettings(name, email, {
-        screenLimit: Number(screenLimit),
-        breakDuration: Number(breakDuration)
-      });
+      await updateProfileAndSettings(
+        name,
+        email,
+        {
+          screenLimit: Number(screenLimit),
+          breakDuration: Number(breakDuration)
+        },
+        profilePicture,
+        status
+      );
       setSuccess('Profil dan pengaturan berhasil diperbarui!');
     } catch (err) {
       setError(err.message || 'Gagal menyimpan perubahan.');
@@ -116,6 +142,44 @@ const Profile = () => {
                 <h3 className="font-extrabold text-brand-dark text-sm">Detail Informasi Pengguna</h3>
               </div>
 
+              {/* Avatar Upload Section */}
+              <div className="flex flex-col sm:flex-row items-center gap-6 pb-4 border-b border-brand-secondary/5">
+                <div className="relative group w-24 h-24 rounded-full border-2 border-brand-primary overflow-hidden flex items-center justify-center bg-brand-bg shadow-sm">
+                  {profilePicture ? (
+                    <img src={profilePicture} alt="Avatar Preview" className="w-full h-full object-cover" />
+                  ) : (
+                    <span className="text-2xl font-black text-brand-secondary">
+                      {name?.charAt(0).toUpperCase() || 'U'}
+                    </span>
+                  )}
+                  <label className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white text-[10px] font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-200 cursor-pointer">
+                    <Camera className="h-5 w-5 mb-1" />
+                    Ganti Foto
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handleFileChange}
+                      className="hidden"
+                    />
+                  </label>
+                </div>
+                <div className="text-center sm:text-left space-y-1">
+                  <h4 className="font-bold text-brand-dark text-sm">Foto Profil Anda</h4>
+                  <p className="text-[10px] text-brand-secondary font-medium leading-relaxed max-w-md">
+                    Pilih file gambar (.jpg, .png, max 1.5MB) dari PC/laptop Anda. Foto ini akan otomatis terpasang pada sidebar utama.
+                  </p>
+                  {profilePicture && (
+                    <button
+                      type="button"
+                      onClick={() => setProfilePicture('')}
+                      className="text-[10px] font-extrabold text-rose-500 hover:text-rose-600 transition-colors cursor-pointer"
+                    >
+                      Hapus Foto
+                    </button>
+                  )}
+                </div>
+              </div>
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
                   <label className="text-[10px] font-bold text-brand-secondary uppercase tracking-widest pl-1">Nama Lengkap</label>
@@ -138,6 +202,18 @@ const Profile = () => {
                     disabled={loading}
                   />
                 </div>
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="text-[10px] font-bold text-brand-secondary uppercase tracking-widest pl-1">Status / Pekerjaan</label>
+                <input
+                  type="text"
+                  value={status}
+                  onChange={(e) => setStatus(e.target.value)}
+                  placeholder="Contoh: Mahasiswa, Software Engineer di PT Telkom, dll."
+                  className="w-full py-3.5 px-4 bg-brand-bg/50 border border-slate-200 focus:border-brand-secondary text-sm rounded-2xl text-slate-800 placeholder-slate-400 outline-none transition-all focus:ring-1 focus:ring-brand-secondary font-semibold"
+                  disabled={loading}
+                />
               </div>
             </div>
 

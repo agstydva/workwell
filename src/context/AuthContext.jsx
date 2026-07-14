@@ -78,11 +78,11 @@ export const AuthProvider = ({ children }) => {
     setUserSettings(null);
   };
 
-  const updateProfileAndSettings = async (name, email, settingsData) => {
+  const updateProfileAndSettings = async (name, email, settingsData, profilePicture, status) => {
     if (!currentUser) return;
     setLoading(true);
     try {
-      const updatedProfile = await userService.updateProfile(currentUser.id, name, email);
+      const updatedProfile = await userService.updateProfile(currentUser.id, name, email, profilePicture, status);
       const updatedSettings = await userService.updateSettings(currentUser.id, settingsData);
       
       authStorage.setUser(updatedProfile);

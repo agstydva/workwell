@@ -120,12 +120,18 @@ const Sidebar = () => {
 
       {/* Profile Details mini card */}
       <div className="p-4 mx-4 mt-6 bg-brand-dark/15 border border-brand-dark/10 rounded-2xl flex items-center space-x-3">
-        <div className="w-10 h-10 rounded-xl bg-brand-primary text-brand-dark flex items-center justify-center font-extrabold text-sm shadow-md">
-          {currentUser?.name?.charAt(0).toUpperCase() || 'U'}
+        <div className="w-10 h-10 rounded-xl bg-brand-primary text-brand-dark flex items-center justify-center font-extrabold text-sm shadow-md overflow-hidden flex-shrink-0">
+          {currentUser?.profilePicture ? (
+            <img src={currentUser.profilePicture} alt="Avatar" className="w-full h-full object-cover" />
+          ) : (
+            currentUser?.name?.charAt(0).toUpperCase() || 'U'
+          )}
         </div>
         <div className="flex-1 min-w-0 text-left">
           <p className="text-xs font-bold truncate text-white">{currentUser?.name}</p>
-          <p className="text-[10px] text-brand-primary/95 font-bold uppercase tracking-wider">SaaS Active</p>
+          <p className="text-[10px] text-brand-primary/95 font-bold uppercase tracking-wider truncate" title={currentUser?.status || 'SaaS Active'}>
+            {currentUser?.status || 'SaaS Active'}
+          </p>
         </div>
       </div>
 
