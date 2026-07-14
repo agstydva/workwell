@@ -6,7 +6,7 @@ import { useAuth } from '../hooks/useAuth';
 import { 
   Menu, Play, BookOpen, Clock, Droplet, Dumbbell, Award, ExternalLink, 
   Activity, Heart, X, Sparkles, CheckCircle2, AlertTriangle, HelpCircle,
-  Eye, Smile, ShieldAlert
+  Eye, Smile, ShieldAlert, ArrowRight
 } from 'lucide-react';
 
 const WellnessCenter = () => {
@@ -17,6 +17,77 @@ const WellnessCenter = () => {
   const [activeVideo, setActiveVideo] = useState(null);
   const [activeArticle, setActiveArticle] = useState(null);
   const [activeExercise, setActiveExercise] = useState(null);
+  
+  // Quiz states
+  const [quizStarted, setQuizStarted] = useState(false);
+  const [currentQuestionIdx, setCurrentQuestionIdx] = useState(0);
+  const [selectedOptionIdx, setSelectedOptionIdx] = useState(null);
+  const [showFeedback, setShowFeedback] = useState(false);
+  const [score, setScore] = useState(0);
+  const [quizFinished, setQuizFinished] = useState(false);
+
+  const quizQuestions = [
+    {
+      id: 1,
+      question: "Berapa jarak ideal antara mata Anda dengan layar laptop/komputer?",
+      options: [
+        "20 - 30 cm",
+        "50 - 70 cm (sekitar satu lengan)",
+        "90 - 110 cm",
+        "Sedekat mungkin agar lebih jelas"
+      ],
+      correctAnswerIdx: 1,
+      explanation: "Jarak ideal adalah 50 - 70 cm (sekitar panjang satu lengan) untuk mencegah mata cepat lelah dan tegang akibat radiasi atau pencahayaan dekat."
+    },
+    {
+      id: 2,
+      question: "Apa yang dimaksud dengan aturan \"20-20-20\" dalam kesehatan mata?",
+      options: [
+        "Berdiri setiap 20 menit, jalan 20 meter, selama 20 detik",
+        "Setiap 20 menit, tatap objek berjarak 20 kaki (6 meter) selama 20 detik",
+        "Minum 20 ml air, setiap 20 menit, selama 20 jam",
+        "Berkedip 20 kali dalam 20 detik setiap 20 menit bekerja"
+      ],
+      correctAnswerIdx: 1,
+      explanation: "Aturan 20-20-20 adalah jeda mikro terbaik untuk meredakan ketegangan mata dengan cara memfokuskan pandangan pada objek berjarak 20 kaki (6 meter) selama 20 detik setiap 20 menit."
+    },
+    {
+      id: 3,
+      question: "Bagaimana posisi siku yang benar saat mengetik di keyboard komputer?",
+      options: [
+        "Membentuk sudut sekitar 90 derajat sejajar meja",
+        "Menggantung tinggi di atas meja",
+        "Tertekuk rapat di depan dada",
+        "Lurus sejajar ke depan tanpa topangan"
+      ],
+      correctAnswerIdx: 0,
+      explanation: "Siku harus diletakkan sejajar membentuk sudut sekitar 90 derajat dan bersandar pada lengan kursi atau meja untuk mengurangi ketegangan pada otot pundak, leher, dan bahu."
+    },
+    {
+      id: 4,
+      question: "Berapa gelas air mineral yang disarankan untuk dikonsumsi setiap hari saat bekerja aktif?",
+      options: [
+        "Cukup 2-3 gelas saja",
+        "Minimal 8 gelas (sekitar 2 liter)",
+        "Hanya saat tenggorokan terasa kering saja",
+        "1 botol kecil saja"
+      ],
+      correctAnswerIdx: 1,
+      explanation: "Minum minimal 8 gelas air mineral sehari membantu menjaga konsentrasi, melancarkan sirkulasi oksigen, dan menghindari nyeri otot akibat dehidrasi ringan selama bekerja."
+    },
+    {
+      id: 5,
+      question: "Apa efek buruk utama dari kebiasaan menundukkan kepala terlalu dalam saat bermain HP/laptop?",
+      options: [
+        "Meningkatkan tekanan pada tulang leher (Spinal Pressure)",
+        "Membuat pendengaran telinga menjadi lebih peka",
+        "Menurunkan daya dengar mata secara drastis",
+        "Tidak memiliki dampak sama sekali terhadap tubuh"
+      ],
+      correctAnswerIdx: 0,
+      explanation: "Menunduk terlalu dalam meningkatkan beban gravitasi kepala pada otot & tulang leher (sampai dengan 27 kg pada sudut kemiringan 60°), yang dapat memicu nyeri leher kronis (sindrom Text Neck)."
+    }
+  ];
   
   // Exercise Countdown state
   const [exerciseTimeLeft, setExerciseTimeLeft] = useState(0);
@@ -252,6 +323,51 @@ const WellnessCenter = () => {
     }
     setActiveExercise(null);
     setExerciseTimeLeft(0);
+  };
+
+  // Quiz Handlers
+  const handleStartQuiz = () => {
+    setQuizStarted(true);
+    setCurrentQuestionIdx(0);
+    setSelectedOptionIdx(null);
+    setShowFeedback(false);
+    setScore(0);
+    setQuizFinished(false);
+  };
+
+  const handleSelectOption = (idx) => {
+    if (showFeedback) return;
+    setSelectedOptionIdx(idx);
+  };
+
+  const handleSubmitAnswer = () => {
+    if (selectedOptionIdx === null || showFeedback) return;
+    
+    const currentQuestion = quizQuestions[currentQuestionIdx];
+    if (selectedOptionIdx === currentQuestion.correctAnswerIdx) {
+      setScore(prev => prev + 1);
+    }
+    setShowFeedback(true);
+  };
+
+  const handleNextQuestion = () => {
+    setSelectedOptionIdx(null);
+    setShowFeedback(false);
+    
+    if (currentQuestionIdx + 1 < quizQuestions.length) {
+      setCurrentQuestionIdx(prev => prev + 1);
+    } else {
+      setQuizFinished(true);
+    }
+  };
+
+  const handleResetQuiz = () => {
+    setQuizStarted(false);
+    setCurrentQuestionIdx(0);
+    setSelectedOptionIdx(null);
+    setShowFeedback(false);
+    setScore(0);
+    setQuizFinished(false);
   };
 
   useEffect(() => {
@@ -615,6 +731,182 @@ const WellnessCenter = () => {
                   </div>
                 );
               })}
+            </div>
+          </section>
+
+          {/* ========================================================
+              SECTION 7: INTERACTIVE WELLNESS QUIZ
+              ======================================================== */}
+          <section className="space-y-4 text-left">
+            <div className="flex items-center space-x-2">
+              <HelpCircle className="h-5 w-5 text-brand-secondary" />
+              <h2 className="text-base font-black text-brand-dark uppercase tracking-wider">Interactive Wellness Quiz</h2>
+            </div>
+
+            <div className="glass-panel p-6 sm:p-8 rounded-[32px] border border-brand-secondary/15 space-y-6">
+              {!quizStarted ? (
+                // 1. Welcome / Start Screen
+                <div className="flex flex-col items-center text-center space-y-4 py-4 animate-in fade-in duration-300">
+                  <div className="w-14 h-14 rounded-2xl bg-brand-secondary/10 text-brand-secondary flex items-center justify-center shadow-inner">
+                    <HelpCircle className="h-7 w-7" />
+                  </div>
+                  <div className="space-y-2 max-w-lg">
+                    <h3 className="text-lg font-black text-brand-dark">Uji Pemahaman Kesehatan Kerja Anda</h3>
+                    <p className="text-xs text-brand-secondary font-medium leading-relaxed">
+                      Uji seberapa jauh Anda memahami aturan ergonomi, batas waktu layar, hidrasi, dan kebiasaan sehat saat bekerja aktif di depan komputer. Kuis ini terdiri dari 5 pertanyaan pilihan ganda.
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={handleStartQuiz}
+                    className="py-3 px-8 bg-brand-primary hover:bg-brand-primary/95 text-brand-dark font-extrabold rounded-2xl text-xs transition-all shadow-md shadow-brand-primary/10 cursor-pointer active:scale-98"
+                  >
+                    Mulai Kuis
+                  </button>
+                </div>
+              ) : quizFinished ? (
+                // 2. Quiz Finished / Results Screen
+                <div className="flex flex-col items-center text-center space-y-6 py-4 animate-in zoom-in-95 duration-300">
+                  {/* Score circle */}
+                  <div className="relative w-28 h-28 rounded-full bg-brand-primary/10 border-4 border-brand-primary flex flex-col items-center justify-center shadow-lg">
+                    <span className="text-3xl font-black text-brand-dark">{(score / quizQuestions.length) * 100}%</span>
+                    <span className="text-[10px] text-brand-secondary font-bold uppercase tracking-wider mt-0.5">{score} / {quizQuestions.length} Benar</span>
+                  </div>
+
+                  <div className="space-y-2 max-w-md">
+                    <h3 className="text-lg font-black text-brand-dark">
+                      {score === quizQuestions.length 
+                        ? 'Luar Biasa! Kuis Selesai' 
+                        : score >= 3 
+                        ? 'Kerja Bagus! Kuis Selesai' 
+                        : 'Kuis Selesai! Tetap Semangat'}
+                    </h3>
+                    <p className="text-xs text-brand-secondary font-semibold leading-relaxed">
+                      {score === quizQuestions.length
+                        ? 'Anda memahami dengan sangat baik bagaimana cara menjaga kesehatan fisik dan mental saat bekerja aktif di depan komputer!'
+                        : score >= 3
+                        ? 'Anda memiliki pemahaman dasar yang kuat tentang kesehatan kerja digital. Pertahankan kebiasaan sehat ini!'
+                        : 'Mari tingkatkan lagi pemahaman Anda dengan membaca ulang artikel edukasi di atas demi kesehatan tulang, otot, dan mata Anda.'}
+                    </p>
+                  </div>
+
+                  <div className="flex space-x-3 pt-2">
+                    <button
+                      type="button"
+                      onClick={handleResetQuiz}
+                      className="py-3 px-6 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-extrabold rounded-2xl text-xs transition-all cursor-pointer"
+                    >
+                      Kembali ke Menu
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleStartQuiz}
+                      className="py-3 px-6 bg-brand-primary hover:bg-brand-primary/95 text-brand-dark font-extrabold rounded-2xl text-xs transition-all shadow-md shadow-brand-primary/10 cursor-pointer"
+                    >
+                      Coba Lagi
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                // 3. Active Quiz Question Screen
+                <div className="space-y-6 animate-in fade-in duration-200 text-left">
+                  {/* Progress Bar & Header */}
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pb-4 border-b border-brand-secondary/10">
+                    <span className="text-[10px] font-bold text-brand-secondary uppercase tracking-widest">
+                      Pertanyaan {currentQuestionIdx + 1} dari {quizQuestions.length}
+                    </span>
+                    <div className="w-full sm:w-48 h-2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                      <div 
+                        className="h-full bg-brand-primary transition-all duration-300"
+                        style={{ width: `${((currentQuestionIdx + 1) / quizQuestions.length) * 100}%` }}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Question */}
+                  <h3 className="text-sm font-black text-brand-dark leading-snug">
+                    {quizQuestions[currentQuestionIdx].question}
+                  </h3>
+
+                  {/* Options */}
+                  <div className="grid grid-cols-1 gap-3">
+                    {quizQuestions[currentQuestionIdx].options.map((opt, idx) => {
+                      const isSelected = selectedOptionIdx === idx;
+                      const isCorrectAnswer = idx === quizQuestions[currentQuestionIdx].correctAnswerIdx;
+                      
+                      let optionStyle = "border-slate-200 bg-slate-50/30 hover:bg-slate-55/60 dark:border-slate-800 dark:bg-slate-900/30 dark:hover:bg-slate-900/60";
+                      
+                      if (showFeedback) {
+                        if (isCorrectAnswer) {
+                          optionStyle = "border-emerald-500 bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 font-extrabold";
+                        } else if (isSelected) {
+                          optionStyle = "border-rose-500 bg-rose-500/10 text-rose-700 dark:text-rose-400 font-extrabold";
+                        } else {
+                          optionStyle = "border-slate-200/50 bg-slate-50/10 opacity-60 dark:border-slate-800/50 dark:bg-slate-900/10";
+                        }
+                      } else if (isSelected) {
+                        optionStyle = "border-brand-secondary bg-brand-secondary/10 text-brand-secondary font-extrabold";
+                      }
+
+                      return (
+                        <button
+                          key={idx}
+                          type="button"
+                          onClick={() => handleSelectOption(idx)}
+                          className={`w-full py-3.5 px-5 border text-left text-xs font-semibold rounded-2xl transition-all flex items-center justify-between cursor-pointer ${optionStyle}`}
+                          disabled={showFeedback}
+                        >
+                          <span>{opt}</span>
+                          {showFeedback && isCorrectAnswer && (
+                            <CheckCircle2 className="h-4.5 w-4.5 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
+                          )}
+                          {showFeedback && isSelected && !isCorrectAnswer && (
+                            <X className="h-4.5 w-4.5 text-rose-600 dark:text-rose-400 flex-shrink-0" />
+                          )}
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  {/* Feedback Explanation Card */}
+                  {showFeedback && (
+                    <div className="p-4 bg-brand-secondary/5 border border-brand-secondary/10 rounded-2xl text-left space-y-1.5 animate-in slide-in-from-top-2 duration-300">
+                      <div className="flex items-center space-x-1.5 text-brand-secondary font-bold text-[10px] uppercase tracking-wider">
+                        <Sparkles className="h-3.5 w-3.5" />
+                        <span>Penjelasan Edukatif</span>
+                      </div>
+                      <p className="text-[11px] text-brand-secondary font-medium leading-relaxed">
+                        {quizQuestions[currentQuestionIdx].explanation}
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Actions (Kirim Jawaban / Lanjut) */}
+                  <div className="flex justify-end pt-2">
+                    {!showFeedback ? (
+                      <button
+                        type="button"
+                        onClick={handleSubmitAnswer}
+                        disabled={selectedOptionIdx === null}
+                        className="py-3 px-8 bg-brand-primary hover:bg-brand-primary/95 disabled:bg-slate-100 dark:disabled:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600 disabled:border-transparent text-brand-dark font-extrabold rounded-2xl text-xs transition-all shadow-md shadow-brand-primary/10 cursor-pointer"
+                      >
+                        Kirim Jawaban
+                      </button>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={handleNextQuestion}
+                        className="py-3 px-8 bg-brand-secondary hover:bg-brand-secondary/95 text-white font-extrabold rounded-2xl text-xs transition-all shadow-md shadow-brand-secondary/15 cursor-pointer flex items-center space-x-1.5"
+                      >
+                        <span>
+                          {currentQuestionIdx + 1 === quizQuestions.length ? 'Lihat Hasil' : 'Pertanyaan Selanjutnya'}
+                        </span>
+                        <ArrowRight className="h-3.5 w-3.5" />
+                      </button>
+                    )}
+                  </div>
+                </div>
+              )}
             </div>
           </section>
 
