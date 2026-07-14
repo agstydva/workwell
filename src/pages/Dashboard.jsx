@@ -59,14 +59,16 @@ const Dashboard = () => {
       };
     }
     
-    // Cap at 1.2x intensity
-    const ratio = Math.min(totalMovement / movementTarget, 1.2); 
-    // Transition HSL: Hue goes from 35 (orange) down to 0 (red), Lightness goes from 65% down to 45% (darker/pekat)
-    const hue = 35 - (ratio * 35); 
-    const lightness = 65 - (ratio * 20); 
-    const glowOpacity = 0.2 + (ratio * 0.75);
-    const glowRadius = ratio * 15;
-    const scale = 0.9 + (ratio * 0.35); 
+    // Allow progression to scale up to 10 clicks (2.0x of target 5)
+    const ratio = Math.min(totalMovement / movementTarget, 2.0); 
+    
+    // Hue starts at 45 (bright orange-yellow) and goes down to -20 (deep fiery crimson)
+    const hue = 45 - (ratio * 65); 
+    // Lightness starts at 65% (bright) and goes down to 35% (very deep crimson red)
+    const lightness = 65 - (ratio * 30); 
+    const glowOpacity = 0.3 + (ratio * 0.7);
+    const glowRadius = ratio * 20;
+    const scale = 0.9 + (ratio * 0.3); 
     
     return {
       color: `hsl(${hue}, 100%, ${lightness}%)`,
