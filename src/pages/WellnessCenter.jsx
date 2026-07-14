@@ -6,7 +6,7 @@ import { useAuth } from '../hooks/useAuth';
 import { 
   Menu, Play, BookOpen, Clock, Droplet, Dumbbell, Award, ExternalLink, 
   Activity, Heart, X, Sparkles, CheckCircle2, AlertTriangle, HelpCircle,
-  Eye, Smile, ShieldAlert, ArrowRight
+  Eye, Smile, ShieldAlert, ArrowRight, Shield
 } from 'lucide-react';
 
 const WellnessCenter = () => {
