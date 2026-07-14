@@ -28,6 +28,13 @@ const Timer = ({ onOpenReminder }) => {
 
   const limitMinutes = userSettings?.screenLimit || 60;
   const limitSeconds = limitMinutes * 60;
+
+  // Request browser notification permission on mount
+  useEffect(() => {
+    if ('Notification' in window && Notification.permission === 'default') {
+      Notification.requestPermission();
+    }
+  }, []);
   
   // Resolve today's saved screen time from analytics and add currently running duration
   const todayStr = new Date().toLocaleDateString('sv-SE');
@@ -59,7 +66,7 @@ const Timer = ({ onOpenReminder }) => {
         if (!notificationTriggeredRef.current) {
           if ('Notification' in window && Notification.permission === 'granted') {
             new Notification('WorkWell', {
-              body: 'Time for a wellness break!',
+              body: 'Waktunya Istirahat! Ambil jeda rehat sejenak untuk peregangan.',
               icon: '/favicon.ico'
             });
           }
