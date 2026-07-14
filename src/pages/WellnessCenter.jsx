@@ -1078,14 +1078,14 @@ const WellnessCenter = () => {
 
                   {/* Question */}
                   <h3 className="text-sm font-black text-brand-dark leading-snug">
-                    {quizQuestions[currentQuestionIdx].question}
+                    {quizQuestions[currentQuestionIdx]?.question || ''}
                   </h3>
 
                   {/* Options */}
                   <div className="grid grid-cols-1 gap-3">
-                    {quizQuestions[currentQuestionIdx].options.map((opt, idx) => {
+                    {(quizQuestions[currentQuestionIdx]?.options || []).map((opt, idx) => {
                       const isSelected = selectedOptionIdx === idx;
-                      const isCorrectAnswer = idx === quizQuestions[currentQuestionIdx].correctAnswerIdx;
+                      const isCorrectAnswer = idx === quizQuestions[currentQuestionIdx]?.correctAnswerIdx;
                       
                       let optionStyle = "border-slate-200 bg-slate-50/30 hover:bg-slate-55/60 dark:border-slate-800 dark:bg-slate-900/30 dark:hover:bg-slate-900/60";
                       
@@ -1129,7 +1129,7 @@ const WellnessCenter = () => {
                         <span>Penjelasan Edukatif</span>
                       </div>
                       <p className="text-[11px] text-brand-secondary font-medium leading-relaxed">
-                        {quizQuestions[currentQuestionIdx].explanation}
+                        {quizQuestions[currentQuestionIdx]?.explanation || ''}
                       </p>
                     </div>
                   )}
