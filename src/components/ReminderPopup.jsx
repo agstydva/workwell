@@ -136,18 +136,11 @@ const ReminderPopup = ({ isOpen, onClose }) => {
         </div>
 
         {/* Footer Actions */}
-        <div className="flex space-x-3 p-6 border-t border-brand-secondary/10 dark:border-slate-800/80 bg-brand-bg/25 dark:bg-slate-950/20">
-          <button
-            type="button"
-            onClick={onClose}
-            className="flex-1 py-3 px-4 bg-slate-100 hover:bg-slate-200/80 dark:bg-slate-800 dark:hover:bg-slate-700/80 border border-slate-200/50 dark:border-slate-700/60 text-slate-600 dark:text-slate-300 font-bold rounded-2xl text-sm transition-all cursor-pointer"
-          >
-            Nanti Saja
-          </button>
+        <div className="p-6 border-t border-brand-secondary/10 dark:border-slate-800/80 bg-brand-bg/25 dark:bg-slate-950/20">
           <button
             type="button"
             onClick={handleStartBreak}
-            className="flex-1 py-3 px-4 bg-brand-secondary hover:bg-brand-secondary/95 text-white font-bold rounded-2xl text-sm shadow-lg shadow-brand-secondary/25 hover:shadow-brand-secondary/35 transition-all cursor-pointer"
+            className="w-full py-3.5 px-4 bg-brand-secondary hover:bg-brand-secondary/95 text-white font-bold rounded-2xl text-sm shadow-lg shadow-brand-secondary/25 hover:shadow-brand-secondary/35 transition-all cursor-pointer"
           >
             Mulai Istirahat
           </button>
