@@ -49,22 +49,22 @@ const ReminderPopup = ({ isOpen, onClose }) => {
       />
 
       {/* Modal Container */}
-      <div className="relative w-full max-w-lg glass-panel bg-slate-900 border border-slate-800/80 rounded-3xl overflow-hidden shadow-2xl shadow-brand-secondary/10 max-h-[90vh] flex flex-col animate-in zoom-in-95 duration-200">
+      <div className="relative w-full max-w-lg glass-panel bg-white dark:bg-slate-900 border border-brand-secondary/15 dark:border-slate-800 rounded-3xl overflow-hidden shadow-2xl shadow-brand-secondary/10 max-h-[90vh] flex flex-col animate-in zoom-in-95 duration-200">
         
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-slate-800/80">
+        <div className="flex items-center justify-between p-6 border-b border-brand-secondary/10 dark:border-slate-800/80">
           <div className="flex items-center space-x-3 text-brand-secondary">
             <div className="p-2.5 bg-brand-secondary/10 rounded-2xl border border-brand-secondary/20">
               <Coffee className="h-6 w-6" />
             </div>
             <div>
-              <h2 className="text-lg font-bold text-white leading-tight">Waktunya Istirahat!</h2>
-              <p className="text-xs text-slate-400 mt-0.5">Time for a wellness break!</p>
+              <h2 className="text-lg font-black text-brand-dark dark:text-white leading-tight">Waktunya Istirahat!</h2>
+              <p className="text-xs text-brand-secondary/80 dark:text-slate-400 mt-0.5">Time for a wellness break!</p>
             </div>
           </div>
           <button 
             onClick={onClose}
-            className="p-2 hover:bg-slate-800 text-slate-400 hover:text-white rounded-xl transition-all cursor-pointer"
+            className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-400 hover:text-slate-700 dark:hover:text-white rounded-xl transition-all cursor-pointer"
           >
             <X className="h-5 w-5" />
           </button>
@@ -75,7 +75,7 @@ const ReminderPopup = ({ isOpen, onClose }) => {
           
           {/* Section 1: Break Activity Selection */}
           <div>
-            <p className="text-xs font-semibold text-slate-400 mb-3 uppercase tracking-wider">1. Pilih Aktivitas Istirahat</p>
+            <p className="text-xs font-bold text-brand-secondary/80 dark:text-slate-400 mb-3 uppercase tracking-wider">1. Pilih Aktivitas Istirahat</p>
             <div className="grid grid-cols-1 gap-2.5">
               {breakActivities.map((act) => {
                 const Icon = act.icon;
@@ -88,17 +88,17 @@ const ReminderPopup = ({ isOpen, onClose }) => {
                     className={`flex items-start text-left p-3.5 rounded-2xl border transition-all duration-200 cursor-pointer ${
                       isSelected
                         ? 'border-brand-secondary bg-brand-secondary/10 shadow-md shadow-brand-secondary/5'
-                        : 'border-slate-800 bg-slate-900/50 hover:bg-slate-800/60'
+                        : 'border-slate-100 dark:border-slate-800 bg-slate-50/30 hover:bg-slate-50/60 dark:bg-slate-900/30 dark:hover:bg-slate-900/60'
                     }`}
                   >
                     <div className={`p-2.5 rounded-xl mr-3.5 ${
-                      isSelected ? 'bg-brand-secondary/20 text-brand-secondary' : 'bg-slate-800 text-slate-400'
+                      isSelected ? 'bg-brand-secondary/20 text-brand-secondary' : 'bg-slate-100 dark:bg-slate-800 text-slate-400'
                     }`}>
                       <Icon className="h-5 w-5" />
                     </div>
                     <div>
-                      <p className={`text-sm font-bold ${isSelected ? 'text-brand-primary' : 'text-slate-200'}`}>{act.label}</p>
-                      <p className="text-xs text-slate-400 mt-0.5 leading-relaxed">{act.desc}</p>
+                      <p className={`text-sm font-bold ${isSelected ? 'text-brand-dark dark:text-brand-primary' : 'text-slate-700 dark:text-slate-200'}`}>{act.label}</p>
+                      <p className="text-xs text-brand-secondary/80 dark:text-slate-400 mt-0.5 leading-relaxed">{act.desc}</p>
                     </div>
                   </button>
                 );
@@ -109,8 +109,8 @@ const ReminderPopup = ({ isOpen, onClose }) => {
           {/* Section 2: Break Duration Selection */}
           <div>
             <div className="flex justify-between items-center mb-3">
-              <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">2. Atur Durasi Istirahat</p>
-              <span className="flex items-center text-xs font-semibold text-brand-secondary bg-brand-secondary/10 px-2 py-0.5 rounded-lg border border-brand-secondary/20">
+              <p className="text-xs font-bold text-brand-secondary/80 dark:text-slate-400 uppercase tracking-wider">2. Atur Durasi Istirahat</p>
+              <span className="flex items-center text-xs font-bold text-brand-secondary bg-brand-secondary/10 px-2 py-0.5 rounded-lg border border-brand-secondary/20">
                 <Clock className="h-3 w-3 mr-1" />
                 <span>{selectedDuration} Menit</span>
               </span>
@@ -121,10 +121,10 @@ const ReminderPopup = ({ isOpen, onClose }) => {
                   key={dur}
                   type="button"
                   onClick={() => setSelectedDuration(dur)}
-                  className={`py-3 px-1.5 rounded-xl border text-center text-sm font-semibold transition-all duration-150 cursor-pointer ${
+                  className={`py-3 px-1.5 rounded-xl border text-center text-sm font-bold transition-all duration-150 cursor-pointer ${
                     selectedDuration === dur
-                      ? 'border-brand-secondary bg-brand-secondary/20 text-white'
-                      : 'border-slate-800 text-slate-400 hover:border-slate-700 hover:text-slate-200'
+                      ? 'border-brand-secondary bg-brand-secondary/20 text-brand-dark dark:text-white font-extrabold'
+                      : 'border-slate-150 dark:border-slate-800 bg-slate-50/20 text-slate-500 hover:border-slate-200 dark:hover:border-slate-700 hover:text-slate-750 dark:hover:text-slate-200'
                   }`}
                 >
                   {dur} Menit
@@ -136,11 +136,11 @@ const ReminderPopup = ({ isOpen, onClose }) => {
         </div>
 
         {/* Footer Actions */}
-        <div className="flex space-x-3 p-6 border-t border-slate-800/80 bg-slate-950/20">
+        <div className="flex space-x-3 p-6 border-t border-brand-secondary/10 dark:border-slate-800/80 bg-brand-bg/25 dark:bg-slate-950/20">
           <button
             type="button"
             onClick={onClose}
-            className="flex-1 py-3 px-4 bg-slate-800 hover:bg-slate-750 border border-slate-700/60 text-slate-300 font-semibold rounded-2xl text-sm transition-all cursor-pointer"
+            className="flex-1 py-3 px-4 bg-slate-100 hover:bg-slate-200/80 dark:bg-slate-800 dark:hover:bg-slate-700/80 border border-slate-200/50 dark:border-slate-700/60 text-slate-600 dark:text-slate-300 font-bold rounded-2xl text-sm transition-all cursor-pointer"
           >
             Nanti Saja
           </button>
