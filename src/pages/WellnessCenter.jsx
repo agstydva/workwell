@@ -568,6 +568,32 @@ const WellnessCenter = () => {
     };
   }, [exerciseIntervalId]);
 
+  // Scroll Reveal Observer
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const handleIntersect = (entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal-active');
+          observer.unobserve(entry.target);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(handleIntersect, observerOptions);
+    const elements = document.querySelectorAll('.scroll-reveal');
+    elements.forEach(el => observer.observe(el));
+
+    return () => {
+      elements.forEach(el => observer.unobserve(el));
+    };
+  }, []);
+
   // Breathing Visual State calculation
   const getBreathingState = () => {
     if (!activeExercise || activeExercise.id !== 'breathing') return null;
@@ -689,6 +715,27 @@ const WellnessCenter = () => {
 
   return (
     <div className="min-h-screen bg-brand-bg text-brand-dark flex flex-col transition-colors duration-200">
+      <style dangerouslySetInnerHTML={{
+        __html: `
+        .scroll-reveal {
+          opacity: 0;
+          transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+          will-change: transform, opacity;
+        }
+        .reveal-up {
+          transform: translateY(30px);
+        }
+        .reveal-left {
+          transform: translateX(-30px);
+        }
+        .reveal-right {
+          transform: translateX(30px);
+        }
+        .reveal-active {
+          opacity: 1 !important;
+          transform: translate(0) !important;
+        }
+      `}} />
       
       {/* Mobile Header (Hamburger drawer trigger) */}
       <div className="flex md:hidden items-center justify-between px-6 py-4 bg-white border-b border-brand-secondary/15 dark:bg-slate-950">
@@ -709,7 +756,7 @@ const WellnessCenter = () => {
         <main className="flex-1 p-6 md:p-8 overflow-y-auto max-w-7xl mx-auto w-full space-y-12">
           
           {/* Header Dashboard Title */}
-          <div className="pb-4 border-b border-brand-secondary/15 text-left flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="pb-4 border-b border-brand-secondary/15 text-left flex flex-col md:flex-row md:items-center justify-between gap-4 scroll-reveal reveal-up">
             <div>
               <h1 className="text-2xl font-black text-brand-dark leading-tight flex items-center space-x-2">
                 <span>Wellness Center</span>
@@ -728,7 +775,7 @@ const WellnessCenter = () => {
           {/* ========================================================
               SECTION 5: DAILY RECOMMENDATION (PERSONAL REPORT CARD)
               ======================================================== */}
-          <section className="space-y-4 text-left">
+          <section className="space-y-4 text-left scroll-reveal reveal-up">
             <div className="flex items-center space-x-2">
               <Award className="h-5 w-5 text-brand-secondary" />
               <h2 className="text-base font-black text-brand-dark uppercase tracking-wider">Daily Recommendation</h2>
@@ -758,7 +805,7 @@ const WellnessCenter = () => {
           {/* ========================================================
               SECTION 4: QUICK WELLNESS EXERCISES (INTERACTIVE TIMERS)
               ======================================================== */}
-          <section className="space-y-4 text-left">
+          <section className="space-y-4 text-left scroll-reveal reveal-up">
             <div className="flex items-center space-x-2">
               <Activity className="h-5 w-5 text-brand-secondary" />
               <h2 className="text-base font-black text-brand-dark uppercase tracking-wider">Quick Wellness Exercises</h2>
@@ -791,7 +838,7 @@ const WellnessCenter = () => {
           {/* ========================================================
               SECTION 1: FEATURED STRETCHING VIDEOS
               ======================================================== */}
-          <section className="space-y-4 text-left">
+          <section className="space-y-4 text-left scroll-reveal reveal-up">
             <div className="flex items-center space-x-2">
               <Play className="h-5 w-5 text-brand-secondary" />
               <h2 className="text-base font-black text-brand-dark uppercase tracking-wider">Featured Stretching Videos</h2>
@@ -842,7 +889,7 @@ const WellnessCenter = () => {
           {/* ========================================================
               SECTION 3: EDUCATIONAL ARTICLES (HEALTH LESSONS)
               ======================================================== */}
-          <section className="space-y-4 text-left">
+          <section className="space-y-4 text-left scroll-reveal reveal-up">
             <div className="flex items-center space-x-2">
               <BookOpen className="h-5 w-5 text-brand-secondary" />
               <h2 className="text-base font-black text-brand-dark uppercase tracking-wider">Educational Articles</h2>
@@ -902,7 +949,7 @@ const WellnessCenter = () => {
           {/* ========================================================
               SECTION 2: HEALTHY TIPS (TIP CARDS GRID)
               ======================================================== */}
-          <section className="space-y-4 text-left">
+          <section className="space-y-4 text-left scroll-reveal reveal-up">
             <div className="flex items-center space-x-2">
               <Heart className="h-5 w-5 text-brand-secondary" />
               <h2 className="text-base font-black text-brand-dark uppercase tracking-wider">Healthy Tips</h2>
@@ -929,7 +976,7 @@ const WellnessCenter = () => {
           {/* ========================================================
               SECTION 7: INTERACTIVE WELLNESS QUIZ
               ======================================================== */}
-          <section className="space-y-4 text-left">
+          <section className="space-y-4 text-left scroll-reveal reveal-up">
             <div className="flex items-center space-x-2">
               <HelpCircle className="h-5 w-5 text-brand-secondary" />
               <h2 className="text-base font-black text-brand-dark uppercase tracking-wider">Interactive Wellness Quiz</h2>
@@ -1166,7 +1213,7 @@ const WellnessCenter = () => {
           {/* ========================================================
               SECTION 6: HEALTH RESOURCES (USEFUL LINKS)
               ======================================================== */}
-          <section className="space-y-4 text-left">
+          <section className="space-y-4 text-left scroll-reveal reveal-up">
             <div className="flex items-center space-x-2">
               <ExternalLink className="h-5 w-5 text-brand-secondary" />
               <h2 className="text-base font-black text-brand-dark uppercase tracking-wider">Health Resources</h2>
