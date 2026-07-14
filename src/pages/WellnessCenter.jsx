@@ -943,9 +943,9 @@ const WellnessCenter = () => {
                       <HelpCircle className="h-7 w-7" />
                     </div>
                     <div className="space-y-2 max-w-lg">
-                      <h3 className="text-lg font-black text-brand-dark">Pilih Paket Kuis Kesehatan</h3>
+                      <h3 className="text-lg font-black text-brand-dark">Asah Wawasan Kebugaran Digital Anda</h3>
                       <p className="text-xs text-brand-secondary font-medium leading-relaxed">
-                        Uji pemahaman Anda tentang kesehatan digital melalui kuis 10 pertanyaan per paket kuis. Dapatkan wawasan ilmiah setelah menjawab!
+                        Pilih salah satu topik tantangan di bawah ini untuk menguji pemahaman praktis Anda. Mari bangun kebiasaan bekerja yang lebih sehat, nyaman, dan bebas pegal!
                       </p>
                     </div>
                   </div>
