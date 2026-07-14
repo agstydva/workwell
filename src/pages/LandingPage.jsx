@@ -793,7 +793,7 @@ const LandingPage = () => {
           </div>
 
           {/* Testimonial Slider Container */}
-          <div className="relative max-w-6xl mx-auto px-2 sm:px-12">
+          <div className="relative max-w-6xl mx-auto px-2 sm:px-12 scroll-reveal reveal-up">
 
             {/* Left/Right Arrow Buttons (Desktop/Tablet) */}
             <button
@@ -820,13 +820,11 @@ const LandingPage = () => {
 
                 // Hide second card on mobile, third card on tablet/mobile
                 const visibilityClass = offset === 1 ? 'hidden md:flex' : offset === 2 ? 'hidden lg:flex' : 'flex';
-                const transitionDelay = offset === 1 ? '150ms' : offset === 2 ? '300ms' : '0ms';
 
                 return (
                   <div
                     key={index}
-                    className={`${visibilityClass} glass-card-light p-6 rounded-3xl border border-brand-secondary/10 hover:border-brand-primary/30 flex flex-col justify-between hover:shadow-2xl hover:shadow-brand-secondary/5 hover:-translate-y-1.5 transition-all duration-500 h-64 scroll-reveal reveal-up`}
-                    style={{ transitionDelay }}
+                    className={`${visibilityClass} glass-card-light p-6 rounded-3xl border border-brand-secondary/10 hover:border-brand-primary/30 flex flex-col justify-between hover:shadow-2xl hover:shadow-brand-secondary/5 hover:-translate-y-1.5 transition-all duration-500 h-64 animate-in fade-in duration-300`}
                   >
                     <div>
                       {/* Profile details at the TOP */}
