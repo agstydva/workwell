@@ -11,7 +11,7 @@ import StressCard from '../components/StressCard';
 import ChartComponent from '../components/ChartComponent';
 import ProgressBar from '../components/ProgressBar';
 import WellnessScore from '../components/WellnessScore';
-import { Droplet, Dumbbell, Calendar, HeartPulse, RefreshCw, FileDown, Clock, Activity, Menu } from 'lucide-react';
+import { Droplet, Dumbbell, Calendar, HeartPulse, RefreshCw, FileDown, Clock, Activity, Menu, Flame } from 'lucide-react';
 
 const Dashboard = () => {
   const { currentUser, userSettings } = useAuth();
@@ -594,9 +594,13 @@ const Dashboard = () => {
                     </div>
 
                     {/* Right side: Animated Glass */}
-                    <div className="relative w-16 h-24 flex items-end justify-center flex-shrink-0">
+                    <div 
+                      onClick={addWater}
+                      className="relative w-16 h-24 flex items-end justify-center flex-shrink-0 cursor-pointer hover:scale-110 active:scale-95 transition-all duration-300 group/glass"
+                      title="Klik gelas untuk minum air (+1 Gelas)"
+                    >
                       {/* Glass Body */}
-                      <div className="w-12 h-20 border-3 border-slate-300 dark:border-slate-700 border-t-0 rounded-b-2xl relative overflow-hidden bg-slate-100/40 dark:bg-slate-800/30 flex items-end shadow-inner z-10">
+                      <div className="w-12 h-20 border-3 border-slate-300 dark:border-slate-700 border-t-0 rounded-b-2xl relative overflow-hidden bg-slate-100/40 dark:bg-slate-800/30 flex items-end shadow-inner z-10 group-hover/glass:border-brand-primary/80 transition-colors">
                         {/* Water level */}
                         <div 
                           className="w-full bg-gradient-to-t from-blue-600 to-blue-450 dark:from-blue-500 dark:to-cyan-400 transition-all duration-700 ease-out relative"
@@ -613,7 +617,7 @@ const Dashboard = () => {
                         </div>
                       </div>
                       {/* Glass Rim */}
-                      <div className="absolute top-3 w-12 h-2.5 border-3 border-slate-300 dark:border-slate-700 rounded-full z-0" />
+                      <div className="absolute top-3 w-12 h-2.5 border-3 border-slate-300 dark:border-slate-700 rounded-full z-0 group-hover/glass:border-brand-primary/80 transition-colors" />
                     </div>
                   </div>
 
@@ -656,9 +660,13 @@ const Dashboard = () => {
                     </div>
 
                     {/* Right side: Animated Fitness Ring */}
-                    <div className="relative w-16 h-20 flex items-center justify-center flex-shrink-0">
+                    <div 
+                      onClick={addStretch}
+                      className="relative w-16 h-20 flex items-center justify-center flex-shrink-0 cursor-pointer hover:scale-110 active:scale-95 transition-all duration-300 group/ring"
+                      title="Klik ring untuk menambah sesi regangan (+1 Sesi)"
+                    >
                       {/* Outer Ring */}
-                      <div className="w-14 h-14 rounded-full border-3 border-slate-200 dark:border-slate-800 flex items-center justify-center relative">
+                      <div className="w-14 h-14 rounded-full border-3 border-slate-200 dark:border-slate-800 flex items-center justify-center relative group-hover/ring:border-brand-primary/80 transition-colors">
                         {/* Dynamic Progress Ring Arc */}
                         <div 
                           className="absolute inset-[-3px] rounded-full border-3 border-brand-primary/60 dark:border-brand-primary/40 animate-pulse"
@@ -666,7 +674,7 @@ const Dashboard = () => {
                         />
                         {/* Center Icon */}
                         <div className={`p-2 bg-brand-primary/15 rounded-full text-brand-secondary ${totalMovement > 0 ? 'animate-bounce' : ''}`} style={{ animationDuration: '2.5s' }}>
-                          <Dumbbell className="h-5 w-5" />
+                          <Flame className="h-5 w-5" />
                         </div>
                       </div>
                     </div>
