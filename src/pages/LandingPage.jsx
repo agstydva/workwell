@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
+import { userService } from '../api/userService';
 import Navbar from '../components/Navbar';
 import WorkWellLogo from '../components/WorkWellLogo';
 import loginImg from '../assets/login_illustration.png';
@@ -58,6 +59,7 @@ const LandingPage = () => {
   // Status states
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [registerSuccess, setRegisterSuccess] = useState(false);
   const [isPlayingVideo, setIsPlayingVideo] = useState(false);
 
   // Sync url search parameters with modals
@@ -265,6 +267,7 @@ const LandingPage = () => {
     setName('');
     setConfirmPassword('');
     setError('');
+    setRegisterSuccess(false);
   };
 
   const handleLoginSubmit = async (e) => {
@@ -309,9 +312,18 @@ const LandingPage = () => {
 
     try {
       setLoading(true);
-      await register(name, email, password);
-      closeModal();
-      navigate('/dashboard');
+      await userService.register(name, email, password);
+      setRegisterSuccess(true);
+      setError('');
+      setName('');
+      setEmail('');
+      setPassword('');
+      setConfirmPassword('');
+      
+      setTimeout(() => {
+        setRegisterSuccess(false);
+        setSearchParams({ auth: 'login' });
+      }, 4000);
     } catch (err) {
       setError(err.message || 'Gagal mendaftar. Silakan coba kembali.');
     } finally {
@@ -1066,7 +1078,7 @@ const LandingPage = () => {
               </div>
             </div>
 
-            {/* Right Pane - Form */}
+            {/* Right Pane - Form / Success State */}
             <div className="w-full md:w-1/2 p-8 md:p-10 relative space-y-5 flex flex-col justify-center">
               {/* Close Button */}
               <button
@@ -1076,119 +1088,144 @@ const LandingPage = () => {
                 <X className="h-5 w-5" />
               </button>
 
-              {/* Header */}
-              <div className="flex flex-col items-center text-center space-y-3">
-                <div className="p-1 px-3 bg-brand-secondary rounded-2xl shadow-md">
-                  <WorkWellLogo iconOnly={true} className="h-10 w-10 text-white" logoColorClass="text-white" />
+              {registerSuccess ? (
+                <div className="flex flex-col items-center text-center space-y-4 py-8 animate-in fade-in zoom-in-95 duration-200">
+                  <div className="w-16 h-16 rounded-full bg-emerald-500/10 text-emerald-650 flex items-center justify-center">
+                    <CheckCircle2 className="h-10 w-10 text-emerald-650 animate-bounce" />
+                  </div>
+                  <div className="space-y-2">
+                    <h3 className="text-xl font-black text-brand-dark">Pendaftaran Berhasil!</h3>
+                    <p className="text-xs text-brand-secondary font-semibold leading-relaxed max-w-xs mx-auto">
+                      Akun Anda berhasil dibuat. Silakan masuk menggunakan email dan kata sandi Anda. Anda akan dialihkan ke halaman login secara otomatis dalam beberapa detik...
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => {
+                      setRegisterSuccess(false);
+                      setSearchParams({ auth: 'login' });
+                    }}
+                    className="py-3 px-6 bg-brand-primary hover:bg-brand-primary/95 text-brand-dark font-bold rounded-2xl text-xs transition-all shadow-md shadow-brand-primary/10 cursor-pointer"
+                  >
+                    Masuk Sekarang
+                  </button>
                 </div>
-                <div>
-                  <h2 className="text-2xl font-black text-brand-dark">Create Account</h2>
-                  <p className="text-xs text-brand-secondary mt-1 font-semibold">Langkah awal untuk hidup sehat di depan layar</p>
-                </div>
-              </div>
+              ) : (
+                <>
+                  {/* Header */}
+                  <div className="flex flex-col items-center text-center space-y-3">
+                    <div className="p-1 px-3 bg-brand-secondary rounded-2xl shadow-md">
+                      <WorkWellLogo iconOnly={true} className="h-10 w-10 text-white" logoColorClass="text-white" />
+                    </div>
+                    <div>
+                      <h2 className="text-2xl font-black text-brand-dark">Create Account</h2>
+                      <p className="text-xs text-brand-secondary mt-1 font-semibold">Langkah awal untuk hidup sehat di depan layar</p>
+                    </div>
+                  </div>
 
-              {/* Error Message */}
-              {error && (
-                <div className="flex items-start space-x-2.5 p-4 bg-rose-500/10 border border-rose-500/20 text-rose-600 rounded-2xl text-xs font-bold animate-in fade-in duration-150 text-left">
-                  <AlertCircle className="h-4.5 w-4.5 mt-0.5 flex-shrink-0" />
-                  <span className="leading-normal">{error}</span>
-                </div>
+                  {/* Error Message */}
+                  {error && (
+                    <div className="flex items-start space-x-2.5 p-4 bg-rose-500/10 border border-rose-500/20 text-rose-600 rounded-2xl text-xs font-bold animate-in fade-in duration-150 text-left">
+                      <AlertCircle className="h-4.5 w-4.5 mt-0.5 flex-shrink-0" />
+                      <span className="leading-normal">{error}</span>
+                    </div>
+                  )}
+
+                  {/* Form */}
+                  <form onSubmit={handleRegisterSubmit} className="space-y-3.5">
+
+                    {/* Name */}
+                    <div className="space-y-1 text-left">
+                      <label className="text-[10px] font-bold text-brand-dark uppercase tracking-wider pl-1">Nama Lengkap</label>
+                      <div className="relative">
+                        <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400">
+                          <User className="h-4.5 w-4.5" />
+                        </span>
+                        <input
+                          type="text"
+                          value={name}
+                          onChange={(e) => setName(e.target.value)}
+                          placeholder="Nama Lengkap"
+                          className="w-full py-3 pl-11 pr-4 bg-brand-bg/50 border border-slate-200 focus:border-brand-secondary text-sm rounded-2xl text-slate-800 placeholder-slate-400 outline-none transition-all focus:ring-1 focus:ring-brand-secondary font-semibold"
+                          disabled={loading}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Email */}
+                    <div className="space-y-1 text-left">
+                      <label className="text-[10px] font-bold text-brand-dark uppercase tracking-wider pl-1">Email</label>
+                      <div className="relative">
+                        <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400">
+                          <Mail className="h-4.5 w-4.5" />
+                        </span>
+                        <input
+                          type="email"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          placeholder="nama@email.com"
+                          className="w-full py-3 pl-11 pr-4 bg-brand-bg/50 border border-slate-200 focus:border-brand-secondary text-sm rounded-2xl text-slate-800 placeholder-slate-400 outline-none transition-all focus:ring-1 focus:ring-brand-secondary font-semibold"
+                          disabled={loading}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Password */}
+                    <div className="space-y-1 text-left">
+                      <label className="text-[10px] font-bold text-brand-dark uppercase tracking-wider pl-1">Kata Sandi</label>
+                      <div className="relative">
+                        <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400">
+                          <Lock className="h-4.5 w-4.5" />
+                        </span>
+                        <input
+                          type="password"
+                          value={password}
+                          onChange={(e) => setPassword(e.target.value)}
+                          placeholder="Minimal 6 karakter"
+                          className="w-full py-3 pl-11 pr-4 bg-brand-bg/50 border border-slate-200 focus:border-brand-secondary text-sm rounded-2xl text-slate-800 placeholder-slate-400 outline-none transition-all focus:ring-1 focus:ring-brand-secondary font-semibold"
+                          disabled={loading}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Confirm Password */}
+                    <div className="space-y-1 text-left">
+                      <label className="text-[10px] font-bold text-brand-dark uppercase tracking-wider pl-1">Konfirmasi Kata Sandi</label>
+                      <div className="relative">
+                        <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400">
+                          <Lock className="h-4.5 w-4.5" />
+                        </span>
+                        <input
+                          type="password"
+                          value={confirmPassword}
+                          onChange={(e) => setConfirmPassword(e.target.value)}
+                          placeholder="Ketik ulang kata sandi"
+                          className="w-full py-3 pl-11 pr-4 bg-brand-bg/50 border border-slate-200 focus:border-brand-secondary text-sm rounded-2xl text-slate-800 placeholder-slate-400 outline-none transition-all focus:ring-1 focus:ring-brand-secondary font-semibold"
+                          disabled={loading}
+                        />
+                      </div>
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="w-full py-4 px-4 bg-brand-primary hover:bg-brand-primary/95 text-brand-dark font-bold rounded-2xl text-sm shadow-md shadow-brand-primary/10 transition-all cursor-pointer flex items-center justify-center space-x-2 mt-4 active:scale-98 disabled:opacity-55"
+                      disabled={loading}
+                    >
+                      <span>{loading ? 'Mendaftar...' : 'Register'}</span>
+                    </button>
+                  </form>
+
+                  {/* Footer */}
+                  <div className="text-center text-xs text-brand-secondary font-semibold pt-1">
+                    <span>Already have an account? </span>
+                    <button
+                      onClick={openLoginModal}
+                      className="text-brand-secondary font-bold hover:underline cursor-pointer"
+                    >
+                      Login
+                    </button>
+                  </div>
+                </>
               )}
-
-              {/* Form */}
-              <form onSubmit={handleRegisterSubmit} className="space-y-3.5">
-
-                {/* Name */}
-                <div className="space-y-1 text-left">
-                  <label className="text-[10px] font-bold text-brand-dark uppercase tracking-wider pl-1">Nama Lengkap</label>
-                  <div className="relative">
-                    <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400">
-                      <User className="h-4.5 w-4.5" />
-                    </span>
-                    <input
-                      type="text"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      placeholder="Nama Lengkap"
-                      className="w-full py-3 pl-11 pr-4 bg-brand-bg/50 border border-slate-200 focus:border-brand-secondary text-sm rounded-2xl text-slate-800 placeholder-slate-400 outline-none transition-all focus:ring-1 focus:ring-brand-secondary font-semibold"
-                      disabled={loading}
-                    />
-                  </div>
-                </div>
-
-                {/* Email */}
-                <div className="space-y-1 text-left">
-                  <label className="text-[10px] font-bold text-brand-dark uppercase tracking-wider pl-1">Email</label>
-                  <div className="relative">
-                    <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400">
-                      <Mail className="h-4.5 w-4.5" />
-                    </span>
-                    <input
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="nama@email.com"
-                      className="w-full py-3 pl-11 pr-4 bg-brand-bg/50 border border-slate-200 focus:border-brand-secondary text-sm rounded-2xl text-slate-800 placeholder-slate-400 outline-none transition-all focus:ring-1 focus:ring-brand-secondary font-semibold"
-                      disabled={loading}
-                    />
-                  </div>
-                </div>
-
-                {/* Password */}
-                <div className="space-y-1 text-left">
-                  <label className="text-[10px] font-bold text-brand-dark uppercase tracking-wider pl-1">Kata Sandi</label>
-                  <div className="relative">
-                    <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400">
-                      <Lock className="h-4.5 w-4.5" />
-                    </span>
-                    <input
-                      type="password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      placeholder="Minimal 6 karakter"
-                      className="w-full py-3 pl-11 pr-4 bg-brand-bg/50 border border-slate-200 focus:border-brand-secondary text-sm rounded-2xl text-slate-800 placeholder-slate-400 outline-none transition-all focus:ring-1 focus:ring-brand-secondary font-semibold"
-                      disabled={loading}
-                    />
-                  </div>
-                </div>
-
-                {/* Confirm Password */}
-                <div className="space-y-1 text-left">
-                  <label className="text-[10px] font-bold text-brand-dark uppercase tracking-wider pl-1">Konfirmasi Kata Sandi</label>
-                  <div className="relative">
-                    <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400">
-                      <Lock className="h-4.5 w-4.5" />
-                    </span>
-                    <input
-                      type="password"
-                      value={confirmPassword}
-                      onChange={(e) => setConfirmPassword(e.target.value)}
-                      placeholder="Ketik ulang kata sandi"
-                      className="w-full py-3 pl-11 pr-4 bg-brand-bg/50 border border-slate-200 focus:border-brand-secondary text-sm rounded-2xl text-slate-800 placeholder-slate-400 outline-none transition-all focus:ring-1 focus:ring-brand-secondary font-semibold"
-                      disabled={loading}
-                    />
-                  </div>
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full py-4 px-4 bg-brand-primary hover:bg-brand-primary/95 text-brand-dark font-bold rounded-2xl text-sm shadow-md shadow-brand-primary/10 transition-all cursor-pointer flex items-center justify-center space-x-2 mt-4 active:scale-98 disabled:opacity-55"
-                  disabled={loading}
-                >
-                  <span>{loading ? 'Mendaftar...' : 'Register'}</span>
-                </button>
-              </form>
-
-              {/* Footer */}
-              <div className="text-center text-xs text-brand-secondary font-semibold pt-1">
-                <span>Already have an account? </span>
-                <button
-                  onClick={openLoginModal}
-                  className="text-brand-secondary font-bold hover:underline cursor-pointer"
-                >
-                  Login
-                </button>
-              </div>
             </div>
 
           </div>
