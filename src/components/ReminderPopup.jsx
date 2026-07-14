@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, Coffee, Dumbbell, Droplet, Users, Footprints, Clock } from 'lucide-react';
+import { X, Coffee, Dumbbell, Droplet, Users, Footprints, Clock, Minus, Maximize2 } from 'lucide-react';
 import { useTracker } from '../hooks/useTracker';
 import { useAuth } from '../hooks/useAuth';
 
@@ -16,6 +16,14 @@ const ReminderPopup = ({ isOpen, onClose }) => {
   
   const [selectedActivity, setSelectedActivity] = useState('Stretching');
   const [selectedDuration, setSelectedDuration] = useState(userSettings?.breakDuration || 5);
+  const [isMinimized, setIsMinimized] = useState(false);
+
+  // Reset minimized state when popup opens
+  useEffect(() => {
+    if (isOpen) {
+      setIsMinimized(false);
+    }
+  }, [isOpen]);
 
   // Sync settings when they load
   useEffect(() => {
@@ -40,6 +48,41 @@ const ReminderPopup = ({ isOpen, onClose }) => {
     onClose();
   };
 
+  if (isMinimized) {
+    return (
+      <div className="fixed bottom-6 right-6 z-50 p-4 w-72 glass-panel bg-white/95 dark:bg-slate-900/95 border-2 border-brand-secondary/40 shadow-2xl rounded-2xl flex items-center justify-between animate-in slide-in-from-bottom-5 duration-300">
+        <div className="flex items-center space-x-3 text-left">
+          <div className="p-2 bg-brand-secondary/10 rounded-xl text-brand-secondary">
+            <Coffee className="h-5 w-5 animate-pulse" />
+          </div>
+          <div>
+            <h4 className="text-xs font-black text-brand-dark dark:text-white leading-tight">Waktunya Istirahat!</h4>
+            <p className="text-[10px] text-slate-500 mt-0.5">Buka untuk atur istirahat</p>
+          </div>
+        </div>
+        
+        <div className="flex items-center space-x-1">
+          <button 
+            type="button"
+            onClick={() => setIsMinimized(false)}
+            className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 text-brand-secondary rounded-xl transition-all cursor-pointer border-0"
+            title="Maximize"
+          >
+            <Maximize2 className="h-4.5 w-4.5" />
+          </button>
+          <button 
+            type="button"
+            onClick={onClose}
+            className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-400 hover:text-slate-700 dark:hover:text-white rounded-xl transition-all cursor-pointer border-0"
+            title="Tutup"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       {/* Overlay Backdrop */}
@@ -62,12 +105,24 @@ const ReminderPopup = ({ isOpen, onClose }) => {
               <p className="text-xs text-brand-secondary/80 dark:text-slate-400 mt-0.5">Time for a wellness break!</p>
             </div>
           </div>
-          <button 
-            onClick={onClose}
-            className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-400 hover:text-slate-700 dark:hover:text-white rounded-xl transition-all cursor-pointer"
-          >
-            <X className="h-5 w-5" />
-          </button>
+          <div className="flex items-center space-x-1.5">
+            <button 
+              type="button"
+              onClick={() => setIsMinimized(true)}
+              className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-400 hover:text-slate-750 dark:hover:text-white rounded-xl transition-all cursor-pointer border-0"
+              title="Minimize"
+            >
+              <Minus className="h-5 w-5" />
+            </button>
+            <button 
+              type="button"
+              onClick={onClose}
+              className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-400 hover:text-slate-700 dark:hover:text-white rounded-xl transition-all cursor-pointer border-0"
+              title="Tutup"
+            >
+              <X className="h-5 w-5" />
+            </button>
+          </div>
         </div>
 
         {/* Content Body */}
