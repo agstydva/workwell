@@ -49,6 +49,33 @@ const Dashboard = () => {
   const totalScreenMinutes = (todaySession.screenTime || 0) + activeMinutes;
   const totalWater = todayHabit?.waterIntake || 0;
 
+  // Calculate dynamic Flame style based on totalMovement
+  const getFlameStyle = () => {
+    if (totalMovement === 0) {
+      return {
+        color: 'rgba(203, 213, 225, 0.4)', // Faint gray
+        filter: 'drop-shadow(0 0 0px transparent)',
+        transform: 'scale(0.85)',
+      };
+    }
+    
+    // Cap at 1.2x intensity
+    const ratio = Math.min(totalMovement / movementTarget, 1.2); 
+    // Transition HSL: Hue goes from 35 (orange) down to 0 (red), Lightness goes from 65% down to 45% (darker/pekat)
+    const hue = 35 - (ratio * 35); 
+    const lightness = 65 - (ratio * 20); 
+    const glowOpacity = 0.2 + (ratio * 0.75);
+    const glowRadius = ratio * 15;
+    const scale = 0.9 + (ratio * 0.35); 
+    
+    return {
+      color: `hsl(${hue}, 100%, ${lightness}%)`,
+      filter: `drop-shadow(0 0 ${glowRadius}px rgba(239, 68, 68, ${glowOpacity}))`,
+      transform: `scale(${scale})`,
+      transition: 'all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+    };
+  };
+
   // Calculations for Today's Wellness Score (displayed in top stats)
   const getTodayWellnessScore = () => {
     let sScore = 25;
@@ -659,23 +686,17 @@ const Dashboard = () => {
                       </div>
                     </div>
 
-                    {/* Right side: Animated Fitness Ring */}
+                    {/* Right side: Animated Flame */}
                     <div 
                       onClick={addStretch}
-                      className="relative w-16 h-20 flex items-center justify-center flex-shrink-0 cursor-pointer hover:scale-110 active:scale-95 transition-all duration-300 group/ring"
-                      title="Klik ring untuk menambah sesi regangan (+1 Sesi)"
+                      className="relative w-16 h-20 flex items-center justify-center flex-shrink-0 cursor-pointer"
+                      title="Klik untuk menambah sesi regangan (+1 Sesi)"
                     >
-                      {/* Outer Ring */}
-                      <div className="w-14 h-14 rounded-full border-3 border-slate-200 dark:border-slate-800 flex items-center justify-center relative group-hover/ring:border-brand-primary/80 transition-colors">
-                        {/* Dynamic Progress Ring Arc */}
-                        <div 
-                          className="absolute inset-[-3px] rounded-full border-3 border-brand-primary/60 dark:border-brand-primary/40 animate-pulse"
-                          style={{ clipPath: `inset(0px ${100 - Math.min((totalMovement / movementTarget) * 100, 100)}% 0px 0px)` }}
+                      <div className={totalMovement > 0 ? 'animate-pulse' : ''} style={{ animationDuration: '2s' }}>
+                        <Flame 
+                          className="h-10 w-10 transition-all duration-500 ease-out" 
+                          style={getFlameStyle()}
                         />
-                        {/* Center Icon */}
-                        <div className={`p-2 bg-brand-primary/15 rounded-full text-brand-secondary ${totalMovement > 0 ? 'animate-bounce' : ''}`} style={{ animationDuration: '2.5s' }}>
-                          <Flame className="h-5 w-5" />
-                        </div>
                       </div>
                     </div>
                   </div>
