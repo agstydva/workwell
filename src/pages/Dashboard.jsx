@@ -620,12 +620,12 @@ const Dashboard = () => {
                   <ProgressBar
                     value={todayHabit?.waterIntake || 0}
                     max={waterTarget}
-                    color="bg-blue-550"
+                    color="bg-brand-primary"
                   />
 
                   <button
                     onClick={addWater}
-                    className="w-full py-3.5 px-4 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-2xl flex items-center justify-center space-x-1.5 shadow-md shadow-blue-500/10 active:scale-98 transition-all cursor-pointer border-0"
+                    className="w-full py-3.5 px-4 bg-brand-primary hover:bg-brand-primary/95 text-brand-dark text-xs font-bold rounded-2xl flex items-center justify-center space-x-1.5 shadow-md shadow-brand-primary/10 active:scale-98 transition-all cursor-pointer border-0"
                   >
                     <Droplet className="h-4 w-4" />
                     <span>Tambah 1 Gelas (250ml)</span>
@@ -640,16 +640,35 @@ const Dashboard = () => {
                 icon={Dumbbell}
                 color="brand"
               >
-                <div className="space-y-5">
-                  <div className="flex justify-between items-end mb-2">
-                    <div className="text-left">
-                      <span className="text-3xl font-black text-brand-dark">{totalMovement}</span>
-                      <span className="text-sm text-brand-secondary font-bold"> / {movementTarget} Sesi</span>
+                <div className="space-y-6">
+                  <div className="flex items-center justify-between gap-4">
+                    {/* Left side: Stats */}
+                    <div className="text-left space-y-2">
+                      <div className="flex items-end space-x-1">
+                        <span className="text-3xl font-black text-brand-dark">{totalMovement}</span>
+                        <span className="text-sm text-brand-secondary font-bold"> / {movementTarget} Sesi</span>
+                      </div>
+                      
+                      <div className="flex flex-wrap gap-1.5">
+                        <span className="inline-block text-[9px] font-bold text-brand-dark bg-brand-primary/10 px-2 py-0.5 rounded-lg border border-brand-primary/20">Regangan: {stretches}</span>
+                        <span className="inline-block text-[9px] font-bold text-brand-dark bg-brand-primary/10 px-2 py-0.5 rounded-lg border border-brand-primary/20">Olahraga: {exercises}</span>
+                      </div>
                     </div>
-                    
-                    <div className="flex space-x-2 text-[10px] text-brand-dark font-bold">
-                      <span className="bg-brand-bg border border-brand-secondary/15 px-2 py-0.5 rounded-lg">Regangan: {stretches}</span>
-                      <span className="bg-brand-bg border border-brand-secondary/15 px-2 py-0.5 rounded-lg">Olahraga: {exercises}</span>
+
+                    {/* Right side: Animated Fitness Ring */}
+                    <div className="relative w-16 h-20 flex items-center justify-center flex-shrink-0">
+                      {/* Outer Ring */}
+                      <div className="w-14 h-14 rounded-full border-3 border-slate-200 dark:border-slate-800 flex items-center justify-center relative">
+                        {/* Dynamic Progress Ring Arc */}
+                        <div 
+                          className="absolute inset-[-3px] rounded-full border-3 border-brand-primary/60 dark:border-brand-primary/40 animate-pulse"
+                          style={{ clipPath: `inset(0px ${100 - Math.min((totalMovement / movementTarget) * 100, 100)}% 0px 0px)` }}
+                        />
+                        {/* Center Icon */}
+                        <div className={`p-2 bg-brand-primary/15 rounded-full text-brand-secondary ${totalMovement > 0 ? 'animate-bounce' : ''}`} style={{ animationDuration: '2.5s' }}>
+                          <Dumbbell className="h-5 w-5" />
+                        </div>
+                      </div>
                     </div>
                   </div>
 
@@ -659,17 +678,17 @@ const Dashboard = () => {
                     color="bg-brand-primary"
                   />
 
-                  <div className="grid grid-cols-2 gap-2 pt-1">
+                  <div className="grid grid-cols-2 gap-2">
                     <button
                       onClick={addStretch}
-                      className="py-3 px-3 bg-brand-primary hover:bg-brand-primary/95 text-brand-dark text-[11px] font-bold rounded-2xl flex items-center justify-center space-x-1 shadow-sm active:scale-98 transition-all cursor-pointer"
+                      className="py-3 px-3 bg-brand-primary hover:bg-brand-primary/95 text-brand-dark text-[11px] font-bold rounded-2xl flex items-center justify-center space-x-1 shadow-sm active:scale-98 transition-all cursor-pointer border-0"
                     >
                       <Dumbbell className="h-3.5 w-3.5" />
                       <span>Regangan (+1)</span>
                     </button>
                     <button
                       onClick={addExercise}
-                      className="py-3 px-3 bg-brand-primary hover:bg-brand-primary/95 text-brand-dark text-[11px] font-bold rounded-2xl flex items-center justify-center space-x-1 shadow-sm active:scale-98 transition-all cursor-pointer"
+                      className="py-3 px-3 bg-brand-primary hover:bg-brand-primary/95 text-brand-dark text-[11px] font-bold rounded-2xl flex items-center justify-center space-x-1 shadow-sm active:scale-98 transition-all cursor-pointer border-0"
                     >
                       <HeartPulse className="h-3.5 w-3.5" />
                       <span>Olahraga (+1)</span>
