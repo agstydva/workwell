@@ -581,25 +581,51 @@ const Dashboard = () => {
                 color="brand"
               >
                 <div className="space-y-6">
-                  <div className="flex justify-between items-end">
-                    <div className="text-left">
-                      <span className="text-3xl font-black text-brand-dark">{todayHabit?.waterIntake || 0}</span>
-                      <span className="text-sm text-brand-secondary font-bold"> / {waterTarget} Gelas</span>
+                  <div className="flex items-center justify-between gap-4">
+                    {/* Left side: Stats */}
+                    <div className="text-left space-y-2">
+                      <div className="flex items-end space-x-1">
+                        <span className="text-3xl font-black text-brand-dark">{todayHabit?.waterIntake || 0}</span>
+                        <span className="text-sm text-brand-secondary font-bold"> / {waterTarget} Gelas</span>
+                      </div>
+                      <span className="inline-block text-[10px] font-bold text-blue-600 dark:text-blue-400 bg-blue-500/10 px-2.5 py-1 rounded-xl border border-blue-500/20">
+                        {Math.round((todayHabit?.waterIntake || 0) * 250)} ml
+                      </span>
                     </div>
-                    <span className="text-xs font-bold text-brand-dark bg-brand-primary/20 px-2.5 py-1 rounded-xl border border-brand-primary/30">
-                      {Math.round((todayHabit?.waterIntake || 0) * 250)} ml
-                    </span>
+
+                    {/* Right side: Animated Glass */}
+                    <div className="relative w-16 h-24 flex items-end justify-center flex-shrink-0">
+                      {/* Glass Body */}
+                      <div className="w-12 h-20 border-3 border-slate-300 dark:border-slate-700 border-t-0 rounded-b-2xl relative overflow-hidden bg-slate-100/40 dark:bg-slate-800/30 flex items-end shadow-inner z-10">
+                        {/* Water level */}
+                        <div 
+                          className="w-full bg-gradient-to-t from-blue-600 to-blue-450 dark:from-blue-500 dark:to-cyan-400 transition-all duration-700 ease-out relative"
+                          style={{ height: `${Math.min(((todayHabit?.waterIntake || 0) / waterTarget) * 100, 100)}%` }}
+                        >
+                          {/* Animated Wave Top & Bubbles */}
+                          {(todayHabit?.waterIntake || 0) > 0 && (
+                            <>
+                              <div className="absolute top-0 left-0 right-0 h-1 bg-white/40 animate-pulse" />
+                              <div className="absolute bottom-1 left-2 w-1.5 h-1.5 bg-white/50 rounded-full animate-bounce" style={{ animationDuration: '2s' }} />
+                              <div className="absolute bottom-3 right-3 w-1 h-1 bg-white/60 rounded-full animate-bounce" style={{ animationDuration: '1.5s' }} />
+                            </>
+                          )}
+                        </div>
+                      </div>
+                      {/* Glass Rim */}
+                      <div className="absolute top-3 w-12 h-2.5 border-3 border-slate-300 dark:border-slate-700 rounded-full z-0" />
+                    </div>
                   </div>
 
                   <ProgressBar
                     value={todayHabit?.waterIntake || 0}
                     max={waterTarget}
-                    color="bg-brand-primary"
+                    color="bg-blue-550"
                   />
 
                   <button
                     onClick={addWater}
-                    className="w-full py-3.5 px-4 bg-brand-primary hover:bg-brand-primary/95 text-brand-dark text-xs font-bold rounded-2xl flex items-center justify-center space-x-1.5 shadow-md shadow-brand-primary/10 active:scale-98 transition-all cursor-pointer"
+                    className="w-full py-3.5 px-4 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-2xl flex items-center justify-center space-x-1.5 shadow-md shadow-blue-500/10 active:scale-98 transition-all cursor-pointer border-0"
                   >
                     <Droplet className="h-4 w-4" />
                     <span>Tambah 1 Gelas (250ml)</span>
