@@ -258,7 +258,11 @@ const LandingPage = () => {
   }, [testimonials.length]);
 
   // Hero carousel setup
-  const heroImages = [heroWorkspaceBg, heroCarousel2, heroCarousel3];
+  const heroImages = [
+    { src: heroWorkspaceBg, position: 'center top' },
+    { src: heroCarousel2, position: 'center' },
+    { src: heroCarousel3, position: 'center' }
+  ];
   const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
 
   useEffect(() => {
@@ -464,14 +468,14 @@ const LandingPage = () => {
             className="flex h-full w-full transition-transform duration-700 ease-in-out"
             style={{ transform: `translateX(-${currentHeroIndex * 100}%)` }}
           >
-            {heroImages.map((img, index) => (
+            {heroImages.map((imgObj, index) => (
               <div
                 key={index}
                 className="w-full h-full flex-shrink-0"
                 style={{
-                  backgroundImage: `url(${img})`,
+                  backgroundImage: `url(${imgObj.src})`,
                   backgroundSize: 'cover',
-                  backgroundPosition: 'center top',
+                  backgroundPosition: imgObj.position,
                   backgroundRepeat: 'no-repeat',
                 }}
               />
