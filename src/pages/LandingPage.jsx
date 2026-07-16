@@ -471,7 +471,7 @@ const LandingPage = () => {
                 style={{
                   backgroundImage: `url(${img})`,
                   backgroundSize: 'cover',
-                  backgroundPosition: index === 1 ? 'center' : 'center top',
+                  backgroundPosition: 'center top',
                   backgroundRepeat: 'no-repeat',
                 }}
               />
@@ -527,7 +527,7 @@ const LandingPage = () => {
                 {typedText1}
                 <br />
                 {typedText2}
-                <span className="ml-1 text-brand-secondary animate-pulse">|</span>
+                <span className="inline-block w-1.5 h-8 md:h-12 bg-brand-secondary ml-1 animate-pulse" />
               </h1>
 
               <p className="text-base sm:text-lg text-brand-secondary dark:text-emerald-400/90 max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium">
