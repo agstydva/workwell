@@ -35,6 +35,7 @@ import nadiyahImg from '../assets/testimonials/nadiyah.jpg';
 import taufiqImg from '../assets/testimonials/taufiq.jpg';
 import mulkyaImg from '../assets/testimonials/mulkya.jpg';
 import tiaraImg from '../assets/testimonials/tiara.jpg';
+import dewiLestariImg from '../assets/testimonials/dewi_lestari.png';
 
 import visionImg from '../assets/vision.png';
 import sittingImg from '../assets/sitting.png';
@@ -98,7 +99,7 @@ const LandingPage = () => {
       name: "Dewi Lestari",
       role: "IT Developer BKI (Persero)",
       initials: "DL",
-      image: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=150&auto=format&fit=crop&q=80",
+      image: dewiLestariImg,
       bgClass: "from-indigo-500 to-cyan-500",
       rating: 5,
       comment: "Notifikasi pengingat layar dan rehatnya sangat adaptif. Sangat menunjang kesehatan mata saya saat harus fokus mengoding sistem klasifikasi sepanjang hari kerja."
