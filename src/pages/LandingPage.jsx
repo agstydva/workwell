@@ -203,7 +203,7 @@ const LandingPage = () => {
     },
     {
       name: "Jore Kirana",
-      role: "ICT Intern at Pertamina",
+      role: "ICT Intern at Pertamina Persero",
       initials: "JK",
       image: joreImg,
       bgClass: "from-indigo-500 to-cyan-500",
