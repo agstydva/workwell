@@ -7,13 +7,14 @@ import {
   Menu, Play, BookOpen, Clock, Droplet, Dumbbell, Award, ExternalLink, 
   Activity, Heart, X, Sparkles, CheckCircle2, AlertTriangle, HelpCircle,
   Eye, Smile, ShieldAlert, ArrowRight, Shield, Volume2, VolumeX, RotateCcw,
-  Music, Pause
+  Music, Pause, User
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const WellnessCenter = () => {
   const { isMobileSidebarOpen, setIsMobileSidebarOpen, todayHabit, todayMood, sessionDuration, weeklySessions } = useTracker();
   const navigate = useNavigate();
+  const { userSettings } = useAuth();
 
   // Focus & Relaxation Sounds Data (streaming from Moodist open-source project — no local files needed)
   const ambientSounds = [
