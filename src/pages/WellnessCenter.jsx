@@ -9,10 +9,11 @@ import {
   Eye, Smile, ShieldAlert, ArrowRight, Shield, Volume2, VolumeX, RotateCcw,
   Music, Pause
 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const WellnessCenter = () => {
   const { isMobileSidebarOpen, setIsMobileSidebarOpen, todayHabit, todayMood, sessionDuration, weeklySessions } = useTracker();
-  const { userSettings } = useAuth();
+  const navigate = useNavigate();
 
   // Focus & Relaxation Sounds Data (streaming from Moodist open-source project — no local files needed)
   const ambientSounds = [
@@ -1014,11 +1015,16 @@ const WellnessCenter = () => {
                       </div>
                     ) : '🎵'}
                   </div>
-                  <div>
-                    <span className="text-[10px] font-bold text-brand-secondary uppercase tracking-widest block">Now Playing</span>
-                    <h4 className="text-sm font-black text-brand-dark leading-tight mt-0.5">
-                      {playingSoundId ? ambientSounds.find(s => s.id === playingSoundId)?.name : 'No Sound Playing'}
-                    </h4>
+                  <div className="flex items-center space-x-4">
+                    <div className="cursor-pointer" onClick={() => navigate('/dashboard')}>
+                      <span className="text-[10px] font-bold text-brand-secondary uppercase tracking-widest block">Now Playing</span>
+                      <h4 className="text-sm font-black text-brand-dark leading-tight mt-0.5">
+                        {playingSoundId ? ambientSounds.find(s => s.id === playingSoundId)?.name : 'No Sound Playing'}
+                      </h4>
+                    </div>
+                    <button onClick={() => navigate('/profile')} className="p-2 rounded-full bg-brand-secondary hover:bg-brand-secondary/90 text-white">
+                      <User className="h-4 w-4" />
+                    </button>
                   </div>
                 </div>
 
