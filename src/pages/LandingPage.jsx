@@ -7,6 +7,8 @@ import WorkWellLogo from '../components/WorkWellLogo';
 import loginImg from '../assets/login_illustration.png';
 import registerImg from '../assets/register_illustration.png';
 import heroWorkspaceBg from '../assets/hero_workspace_bg.png';
+import heroCarousel2 from '../assets/hero_carousel_2.jpg';
+import heroCarousel3 from '../assets/hero_carousel_3.jpg';
 import screenTimeIcon from '../assets/screen_time.png';
 import waterIntakeIcon from '../assets/water_intake.png';
 import movementTrackerIcon from '../assets/movement_tracker.png';
@@ -40,7 +42,7 @@ import {
   Activity, Clock, Droplet, Dumbbell, ShieldAlert,
   ArrowRight, Shield, Zap, Sparkles, TrendingUp,
   X, Mail, Lock, User, AlertCircle, CheckCircle2,
-  Play, Volume2, Star
+  Play, Volume2, Star, ChevronLeft, ChevronRight
 } from 'lucide-react';
 
 const LandingPage = () => {
@@ -255,6 +257,17 @@ const LandingPage = () => {
     return () => clearInterval(timer);
   }, [testimonials.length]);
 
+  // Hero carousel setup
+  const heroImages = [heroWorkspaceBg, heroCarousel2, heroCarousel3];
+  const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentHeroIndex((prev) => (prev + 1) % heroImages.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [currentHeroIndex, heroImages.length]);
+
   const openLoginModal = () => {
     setSearchParams({ auth: 'login' });
   };
@@ -445,16 +458,59 @@ const LandingPage = () => {
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-24 pb-32 lg:pt-32 lg:pb-40">
 
-        {/* Background: office meeting photo from Unsplash */}
-        <div
-          className="absolute inset-0 z-0"
-          style={{
-            backgroundImage: `url(${heroWorkspaceBg})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center top',
-            backgroundRepeat: 'no-repeat',
-          }}
-        />
+        {/* Background Carousel */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <div
+            className="flex h-full w-full transition-transform duration-700 ease-in-out"
+            style={{ transform: `translateX(-${currentHeroIndex * 100}%)` }}
+          >
+            {heroImages.map((img, index) => (
+              <div
+                key={index}
+                className="w-full h-full flex-shrink-0"
+                style={{
+                  backgroundImage: `url(${img})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center top',
+                  backgroundRepeat: 'no-repeat',
+                }}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Navigation Arrows */}
+        <button
+          onClick={() => setCurrentHeroIndex((prev) => (prev - 1 + heroImages.length) % heroImages.length)}
+          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-2.5 sm:p-3 bg-white/70 dark:bg-slate-900/70 backdrop-blur-sm border border-slate-200/30 dark:border-slate-800/30 rounded-full hover:bg-brand-secondary hover:text-white hover:border-brand-secondary transition-all duration-300 shadow-md text-brand-secondary cursor-pointer"
+          title="Sebelumnya"
+        >
+          <ChevronLeft className="h-5 w-5" />
+        </button>
+
+        <button
+          onClick={() => setCurrentHeroIndex((prev) => (prev + 1) % heroImages.length)}
+          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-2.5 sm:p-3 bg-white/70 dark:bg-slate-900/70 backdrop-blur-sm border border-slate-200/30 dark:border-slate-800/30 rounded-full hover:bg-brand-secondary hover:text-white hover:border-brand-secondary transition-all duration-300 shadow-md text-brand-secondary cursor-pointer"
+          title="Selanjutnya"
+        >
+          <ChevronRight className="h-5 w-5" />
+        </button>
+
+        {/* Pagination Dots */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex space-x-2">
+          {heroImages.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrentHeroIndex(idx)}
+              className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+                currentHeroIndex === idx
+                  ? 'bg-brand-secondary w-6'
+                  : 'bg-white/40 hover:bg-white/70 dark:bg-slate-700/40 dark:hover:bg-slate-700/75'
+              }`}
+              title={`Ke slide ${idx + 1}`}
+            />
+          ))}
+        </div>
         {/* Overlay — strong fade on left (text area) → transparent on right (photo visible) */}
         <div className="absolute inset-0 z-[1] hero-overlay" />
 
