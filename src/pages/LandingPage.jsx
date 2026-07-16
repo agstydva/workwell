@@ -37,6 +37,7 @@ import mulkyaImg from '../assets/testimonials/mulkya.jpg';
 import tiaraImg from '../assets/testimonials/tiara.jpg';
 import dewiLestariImg from '../assets/testimonials/dewi_lestari.png';
 import aydanRabbaniImg from '../assets/testimonials/aydan_rabbani.jpg';
+import hilmanNurjamanImg from '../assets/testimonials/hilman_nurjaman.jpg';
 
 import visionImg from '../assets/vision.png';
 import sittingImg from '../assets/sitting.png';
@@ -257,6 +258,15 @@ const LandingPage = () => {
       bgClass: "from-amber-500 to-rose-500",
       rating: 5,
       comment: "Sebagai mahasiswa fisika yang sering menganalisis data eksperimen di depan laptop, WorkWell sangat membantu saya untuk menjadwalkan istirahat dan meregangkan otot agar tidak cepat lelah."
+    },
+    {
+      name: "Hilman Nurjaman",
+      role: "Mahasiswa Psikologi UPH 2024",
+      initials: "HN",
+      image: hilmanNurjamanImg,
+      bgClass: "from-blue-500 to-teal-500",
+      rating: 5,
+      comment: "Sebagai mahasiswa psikologi, saya sangat memahami pentingnya menjaga kesehatan mental saat belajar. Fitur rehat dan pernapasan dari WorkWell ini benar-benar membantu saya meredakan stres dan tetap fokus."
     }
   ];
 
