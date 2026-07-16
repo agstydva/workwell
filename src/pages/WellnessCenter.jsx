@@ -14,13 +14,13 @@ const WellnessCenter = () => {
   const { isMobileSidebarOpen, setIsMobileSidebarOpen, todayHabit, todayMood, sessionDuration, weeklySessions } = useTracker();
   const { userSettings } = useAuth();
 
-  // Focus & Relaxation Sounds Data
+  // Focus & Relaxation Sounds Data (streaming from Moodist open-source project — no local files needed)
   const ambientSounds = [
-    { id: 'rain', name: 'Rain', icon: '🌧', file: 'rain.mp3', desc: 'Perfect for reducing stress and improving concentration while working.' },
-    { id: 'ocean', name: 'Ocean Waves', icon: '🌊', file: 'ocean.mp3', desc: 'Create a calm atmosphere and help reduce anxiety.' },
-    { id: 'forest', name: 'Forest', icon: '🌲', file: 'forest.mp3', desc: 'Natural forest sounds for relaxation and mental refreshment.' },
-    { id: 'coffee', name: 'Coffee Shop', icon: '☕', file: 'coffee.mp3', desc: 'Cafe ambience for productive study and work sessions.' },
-    { id: 'white-noise', name: 'White Noise', icon: '🤍', file: 'white-noise.mp3', desc: 'Mask distracting background noise and improve focus.' }
+    { id: 'rain', name: 'Rain', icon: '🌧', url: 'https://raw.githubusercontent.com/remvze/moodist/main/public/sounds/rain/light-rain.mp3', desc: 'Perfect for reducing stress and improving concentration while working.' },
+    { id: 'ocean', name: 'Ocean Waves', icon: '🌊', url: 'https://raw.githubusercontent.com/remvze/moodist/main/public/sounds/nature/waves.mp3', desc: 'Create a calm atmosphere and help reduce anxiety.' },
+    { id: 'forest', name: 'Forest', icon: '🌲', url: 'https://raw.githubusercontent.com/remvze/moodist/main/public/sounds/nature/jungle.mp3', desc: 'Natural forest sounds for relaxation and mental refreshment.' },
+    { id: 'coffee', name: 'Coffee Shop', icon: '☕', url: 'https://raw.githubusercontent.com/remvze/moodist/main/public/sounds/places/cafe.mp3', desc: 'Cafe ambience for productive study and work sessions.' },
+    { id: 'white-noise', name: 'White Noise', icon: '🤍', url: 'https://raw.githubusercontent.com/remvze/moodist/main/public/sounds/noise/white-noise.wav', desc: 'Mask distracting background noise and improve focus.' }
   ];
 
   // Sound state variables
@@ -35,6 +35,7 @@ const WellnessCenter = () => {
   // Initialize and handle Audio API
   useEffect(() => {
     audioRef.current = new Audio();
+    audioRef.current.crossOrigin = 'anonymous';
     const audio = audioRef.current;
 
     const handleTimeUpdate = () => {
@@ -52,7 +53,7 @@ const WellnessCenter = () => {
     };
 
     const handleError = () => {
-      setAudioError('Audio file not found or failed to load');
+      setAudioError('Gagal memuat audio. Periksa koneksi internet Anda.');
       setPlayingSoundId(null);
     };
 
@@ -81,13 +82,13 @@ const WellnessCenter = () => {
         setAudioError(null);
         audio.volume = volume;
         audio.loop = loop;
-        audio.src = `/audio/${sound.file}`;
+        audio.src = sound.url;
         
         const playPromise = audio.play();
         if (playPromise !== undefined) {
           playPromise.catch((err) => {
             console.warn("Audio playback failed:", err);
-            setAudioError('Audio file not found or failed to load');
+            setAudioError('Gagal memutar audio. Periksa koneksi internet Anda.');
             setPlayingSoundId(null);
           });
         }
