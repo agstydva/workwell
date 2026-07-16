@@ -115,7 +115,7 @@ const LandingPage = () => {
     },
     {
       name: "Nadia Lubis",
-      role: "Alumni Ilmu Komputer UNJ 2022",
+      role: "IOS Developer at Apple Developer Academy",
       initials: "NL",
       image: nadiaLubisImg,
       bgClass: "from-emerald-500 to-teal-500",
