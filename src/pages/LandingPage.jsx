@@ -34,6 +34,7 @@ import athayaImg from '../assets/testimonials/athaya.jpg';
 import nadiyahImg from '../assets/testimonials/nadiyah.jpg';
 import taufiqImg from '../assets/testimonials/taufiq.jpg';
 import mulkyaImg from '../assets/testimonials/mulkya.jpg';
+import tiaraImg from '../assets/testimonials/tiara.jpg';
 
 import visionImg from '../assets/vision.png';
 import sittingImg from '../assets/sitting.png';
@@ -151,7 +152,7 @@ const LandingPage = () => {
       name: "Tiara",
       role: "System Analyst BKI (Persero)",
       initials: "T",
-      image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+      image: tiaraImg,
       bgClass: "from-teal-500 to-cyan-500",
       rating: 5,
       comment: "Membantu melacak kebiasaan kesehatan kerja tim developer kami di kantor. Tingkat kebugaran dan kebahagiaan karyawan meningkat signifikan."
