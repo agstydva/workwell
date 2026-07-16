@@ -831,6 +831,64 @@ const WellnessCenter = () => {
           opacity: 1 !important;
           transform: translate(0) !important;
         }
+
+        /* ── Sound Wave Bars Animation ── */
+        @keyframes soundBar1 {
+          0%, 100% { height: 4px; }
+          50% { height: 16px; }
+        }
+        @keyframes soundBar2 {
+          0%, 100% { height: 8px; }
+          50% { height: 20px; }
+        }
+        @keyframes soundBar3 {
+          0%, 100% { height: 12px; }
+          50% { height: 6px; }
+        }
+        @keyframes soundBar4 {
+          0%, 100% { height: 6px; }
+          50% { height: 14px; }
+        }
+        .sound-wave-bar {
+          width: 3px;
+          border-radius: 9999px;
+          background: currentColor;
+          display: inline-block;
+        }
+
+        /* ── Progress Bar Shimmer ── */
+        @keyframes progressShimmer {
+          0% { background-position: -200% 0; }
+          100% { background-position: 200% 0; }
+        }
+        .progress-bar-animated {
+          background: linear-gradient(
+            90deg,
+            var(--tw-gradient-from, #6366f1) 0%,
+            var(--tw-gradient-via, #818cf8) 50%,
+            var(--tw-gradient-from, #6366f1) 100%
+          );
+          background-size: 200% 100%;
+          animation: progressShimmer 2s ease-in-out infinite;
+        }
+
+        /* ── Sound Card Stagger Fade-in ── */
+        @keyframes cardFadeUp {
+          from { opacity: 0; transform: translateY(16px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .sound-card-enter {
+          animation: cardFadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        /* ── Subtle Card Glow on Active ── */
+        @keyframes subtleGlow {
+          0%, 100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+          50% { box-shadow: 0 0 16px 2px rgba(99, 102, 241, 0.08); }
+        }
+        .sound-card-active-glow {
+          animation: subtleGlow 3s ease-in-out infinite;
+        }
       `}} />
       
       {/* Mobile Header (Hamburger drawer trigger) */}
@@ -941,11 +999,19 @@ const WellnessCenter = () => {
             </div>
 
             {/* Now Playing Banner */}
-            <div className="glass-panel p-5 rounded-3xl border border-brand-secondary/15 space-y-4">
+            <div className={`glass-panel p-5 rounded-3xl border space-y-4 transition-all duration-500 ${playingSoundId ? 'border-brand-secondary/25 shadow-lg shadow-brand-secondary/5' : 'border-brand-secondary/15'}`}>
               <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div className="flex items-center space-x-3.5 w-full sm:w-auto">
-                  <div className="w-10 h-10 rounded-xl bg-brand-secondary/10 text-brand-secondary flex items-center justify-center font-bold text-lg flex-shrink-0 animate-pulse">
-                    {playingSoundId ? ambientSounds.find(s => s.id === playingSoundId)?.icon : '🎵'}
+                  <div className={`w-10 h-10 rounded-xl bg-brand-secondary/10 text-brand-secondary flex items-center justify-center font-bold text-lg flex-shrink-0 transition-transform duration-300 ${playingSoundId ? 'scale-110' : ''}`}>
+                    {playingSoundId ? (
+                      /* Animated Sound Wave Bars */
+                      <div className="flex items-end justify-center gap-[3px] h-5">
+                        <span className="sound-wave-bar text-brand-secondary" style={{ animation: 'soundBar1 0.8s ease-in-out infinite' }} />
+                        <span className="sound-wave-bar text-brand-secondary" style={{ animation: 'soundBar2 0.6s ease-in-out infinite 0.1s' }} />
+                        <span className="sound-wave-bar text-brand-secondary" style={{ animation: 'soundBar3 0.7s ease-in-out infinite 0.2s' }} />
+                        <span className="sound-wave-bar text-brand-secondary" style={{ animation: 'soundBar4 0.9s ease-in-out infinite 0.15s' }} />
+                      </div>
+                    ) : '🎵'}
                   </div>
                   <div>
                     <span className="text-[10px] font-bold text-brand-secondary uppercase tracking-widest block">Now Playing</span>
@@ -966,7 +1032,7 @@ const WellnessCenter = () => {
                         setPlayingSoundId(null);
                       }
                     }}
-                    className="p-3 bg-brand-secondary hover:bg-brand-secondary/95 text-white rounded-full transition-all shadow-md shadow-brand-secondary/10 flex items-center justify-center cursor-pointer"
+                    className="p-3 bg-brand-secondary hover:bg-brand-secondary/90 active:scale-90 text-white rounded-full transition-all duration-200 shadow-md shadow-brand-secondary/10 hover:shadow-lg hover:shadow-brand-secondary/15 flex items-center justify-center cursor-pointer"
                   >
                     {playingSoundId ? <Pause className="h-4 w-4 fill-current" /> : <Play className="h-4 w-4 fill-current ml-0.5" />}
                   </button>
@@ -978,9 +1044,11 @@ const WellnessCenter = () => {
                     </span>
                     <div className="relative flex-1 h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
                       <div
-                        className="h-full bg-brand-secondary transition-all duration-100"
+                        className={`h-full rounded-full transition-all duration-150 ${playingSoundId ? 'progress-bar-animated' : 'bg-brand-secondary'}`}
                         style={{
-                          width: `${duration ? (currentTime / duration) * 100 : 0}%`
+                          width: `${duration ? (currentTime / duration) * 100 : 0}%`,
+                          '--tw-gradient-from': 'var(--color-brand-secondary, #6366f1)',
+                          '--tw-gradient-via': 'var(--color-brand-primary, #818cf8)'
                         }}
                       />
                     </div>
@@ -1021,20 +1089,21 @@ const WellnessCenter = () => {
 
             {/* Sound Cards Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {ambientSounds.map((sound) => {
+              {ambientSounds.map((sound, idx) => {
                 const isCurrent = playingSoundId === sound.id;
                 return (
                   <div
                     key={sound.id}
-                    className={`glass-panel p-5 rounded-3xl border transition-all duration-300 flex flex-col justify-between hover:shadow-md ${
+                    className={`glass-panel p-5 rounded-3xl border transition-all duration-300 ease-out flex flex-col justify-between sound-card-enter hover:scale-[1.025] hover:shadow-lg hover:shadow-brand-secondary/8 hover:-translate-y-0.5 ${
                       isCurrent
-                        ? 'border-brand-secondary bg-brand-secondary/5 shadow-md shadow-brand-secondary/5'
+                        ? 'border-brand-secondary bg-brand-secondary/5 shadow-md shadow-brand-secondary/5 sound-card-active-glow'
                         : 'border-brand-secondary/12'
                     }`}
+                    style={{ animationDelay: `${idx * 80}ms` }}
                   >
                     <div className="space-y-3 text-left">
                       <div className="flex justify-between items-start">
-                        <div className="w-10 h-10 rounded-xl bg-brand-secondary/10 text-brand-secondary flex items-center justify-center font-bold text-lg">
+                        <div className={`w-10 h-10 rounded-xl bg-brand-secondary/10 text-brand-secondary flex items-center justify-center font-bold text-lg transition-transform duration-300 ${isCurrent ? 'scale-110' : 'group-hover:scale-105'}`}>
                           {sound.icon}
                         </div>
                         
@@ -1047,10 +1116,10 @@ const WellnessCenter = () => {
                               setLoop(!loop);
                             }
                           }}
-                          className={`p-1.5 rounded-lg border transition-all cursor-pointer ${
+                          className={`p-1.5 rounded-lg border transition-all duration-200 cursor-pointer active:scale-90 ${
                             isCurrent && loop
                               ? 'bg-brand-secondary/10 border-brand-secondary text-brand-secondary'
-                              : 'border-slate-200 text-slate-400 hover:text-slate-650'
+                              : 'border-slate-200 text-slate-400 hover:text-brand-secondary/60 hover:border-brand-secondary/30'
                           }`}
                           title="Loop Playback"
                         >
@@ -1062,7 +1131,12 @@ const WellnessCenter = () => {
                         <div className="flex items-center space-x-1.5">
                           <h3 className="text-sm font-black text-brand-dark">{sound.name}</h3>
                           {isCurrent && (
-                            <span className="px-2 py-0.5 bg-brand-secondary/10 text-brand-secondary rounded-full text-[8px] font-black uppercase tracking-wider animate-pulse">
+                            <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-brand-secondary/10 text-brand-secondary rounded-full text-[8px] font-black uppercase tracking-wider">
+                              <span className="flex items-end gap-[2px] h-2.5">
+                                <span className="sound-wave-bar" style={{ animation: 'soundBar1 0.8s ease-in-out infinite', width: '2px' }} />
+                                <span className="sound-wave-bar" style={{ animation: 'soundBar2 0.6s ease-in-out infinite 0.1s', width: '2px' }} />
+                                <span className="sound-wave-bar" style={{ animation: 'soundBar3 0.7s ease-in-out infinite 0.2s', width: '2px' }} />
+                              </span>
                               Playing
                             </span>
                           )}
@@ -1106,10 +1180,10 @@ const WellnessCenter = () => {
                               setPlayingSoundId(sound.id);
                             }
                           }}
-                          className={`flex-1 py-2.5 px-4 font-bold rounded-2xl text-xs transition-all flex items-center justify-center space-x-1.5 cursor-pointer ${
+                          className={`flex-1 py-2.5 px-4 font-bold rounded-2xl text-xs transition-all duration-200 flex items-center justify-center space-x-1.5 cursor-pointer active:scale-95 ${
                             isCurrent
                               ? 'bg-slate-200 text-slate-800 hover:bg-slate-300'
-                              : 'bg-brand-secondary hover:bg-brand-secondary/95 text-white shadow-md shadow-brand-secondary/10'
+                              : 'bg-brand-secondary hover:bg-brand-secondary/90 text-white shadow-md shadow-brand-secondary/10 hover:shadow-lg hover:shadow-brand-secondary/15'
                           }`}
                         >
                           {isCurrent ? (
