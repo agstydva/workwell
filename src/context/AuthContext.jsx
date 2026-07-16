@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { userService } from '../api/userService';
 import { authStorage } from '../services/authStorage';
+import { supabase } from '../lib/supabaseClient';
 
 export const AuthContext = createContext(null);
 
@@ -8,6 +9,17 @@ export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [userSettings, setUserSettings] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  // Helper: map a Supabase user object to our localStorage profile format
+  const mapSupabaseUser = (supabaseUser) => ({
+    id: `google_${supabaseUser.id}`,
+    name: supabaseUser.user_metadata?.full_name || supabaseUser.email?.split('@')[0] || 'Google User',
+    email: supabaseUser.email,
+    profilePicture: supabaseUser.user_metadata?.avatar_url || '',
+    status: '',
+    provider: 'google',
+    createdAt: supabaseUser.created_at
+  });
 
   useEffect(() => {
     const initializeAuth = async () => {
@@ -30,6 +42,28 @@ export const AuthProvider = ({ children }) => {
       }
     };
     initializeAuth();
+
+    // Listen for Supabase OAuth redirect callback (Google Sign-In)
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+      if ((event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') && session?.user) {
+        const supabaseUser = session.user;
+        const profile = mapSupabaseUser(supabaseUser);
+
+        // Ensure settings exist for this Google user
+        const settings = await userService.getSettings(profile.id);
+
+        // Persist into localStorage so all existing features work
+        authStorage.setToken(`Bearer supabase-jwt-${supabaseUser.id}`);
+        authStorage.setUser(profile);
+
+        setCurrentUser(profile);
+        setUserSettings(settings);
+        setLoading(false);
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const login = async (email, password) => {
@@ -72,10 +106,22 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const logout = () => {
+  const logout = async () => {
+    // Sign out from Supabase session if it was a Google login
+    await supabase.auth.signOut();
     authStorage.clearSession();
     setCurrentUser(null);
     setUserSettings(null);
+  };
+
+  const loginWithGoogle = async () => {
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: window.location.origin + '/dashboard'
+      }
+    });
+    if (error) throw error;
   };
 
   const updateProfileAndSettings = async (name, email, settingsData, profilePicture, status) => {
@@ -105,6 +151,7 @@ export const AuthProvider = ({ children }) => {
         login,
         register,
         logout,
+        loginWithGoogle,
         updateProfileAndSettings
       }}
     >
