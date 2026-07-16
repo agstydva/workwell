@@ -33,6 +33,9 @@ import nadiyahImg from '../assets/testimonials/nadiyah.jpg';
 import taufiqImg from '../assets/testimonials/taufiq.jpg';
 import mulkyaImg from '../assets/testimonials/mulkya.jpg';
 
+import visionImg from '../assets/vision.png';
+import sittingImg from '../assets/sitting.png';
+import productivityImg from '../assets/productivity.png';
 import {
   Activity, Clock, Droplet, Dumbbell, ShieldAlert,
   ArrowRight, Shield, Zap, Sparkles, TrendingUp,
@@ -319,7 +322,7 @@ const LandingPage = () => {
       setEmail('');
       setPassword('');
       setConfirmPassword('');
-      
+
       setTimeout(() => {
         setRegisterSuccess(false);
         setSearchParams({ auth: 'login' });
@@ -601,37 +604,40 @@ const LandingPage = () => {
             </div>
           </div>
         </div>
-       </section>
+      </section>
 
-       {/* Statistik / Social Proof Dampak Kesehatan */}
+      {/* Statistik / Social Proof Dampak Kesehatan
        <section id="statistik" className="py-24 bg-white border-t border-brand-secondary/10">
          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
            <div className="text-center mb-12 space-y-4 scroll-reveal reveal-up">
-             <h2 className="text-xs font-bold text-brand-secondary uppercase tracking-widest">Fitur Utama</h2>
+             <h2 className="text-xs font-bold text-brand-secondary uppercase tracking-widest">Social Proof Dampak Kesehatan</h2>
              <h3 className="text-3xl sm:text-4xl font-extrabold text-brand-dark">Dirancang untuk Menjaga Kesehatan Anda</h3>
              <p className="text-brand-secondary text-sm font-medium">Berbagai modul pintar yang bersinergi membantu menjaga kebugaran mata, otot, hidrasi, dan pikiran Anda secara berkala.</p>
            </div>
-           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-             {/* Card 1 */}
-             <div className="glass-card-light rounded-3xl p-6 border border-brand-secondary/10 hover:shadow-2xl hover:border-brand-primary/30 transition-all">
+           <div className="grid grid-cols-1 md:grid-cols-3 gap-6"> */}
+      {/* Card 1 */}
+      {/* <div className="glass-card-light rounded-3xl p-6 border border-brand-secondary/10 hover:shadow-2xl hover:border-brand-primary/30 transition-all">
+               <img src={visionImg} alt="Computer Vision Syndrome" className="w-full h-32 object-cover mb-4 rounded" />
                <h4 className="text-lg font-bold text-brand-dark mb-2">85% Pekerja digital mengalami Computer Vision Syndrome</h4>
                <p className="text-brand-secondary text-sm">Mata lelah/kering akibat penggunaan layar lama.</p>
-             </div>
-             {/* Card 2 */}
-             <div className="glass-card-light rounded-3xl p-6 border border-brand-secondary/10 hover:shadow-2xl hover:border-brand-primary/30 transition-all">
+             </div> */}
+      {/* Card 2 */}
+      {/* <div className="glass-card-light rounded-3xl p-6 border border-brand-secondary/10 hover:shadow-2xl hover:border-brand-primary/30 transition-all">
+               <img src={sittingImg} alt="Duduk Terus-Menerus" className="w-full h-32 object-cover mb-4 rounded" />
                <h4 className="text-lg font-bold text-brand-dark mb-2">2 Jam</h4>
                <p className="text-brand-secondary text-sm">Batas maksimal duduk terus‑menerus sebelum risiko kesehatan meningkat.</p>
-             </div>
-             {/* Card 3 */}
-             <div className="glass-card-light rounded-3xl p-6 border border-brand-secondary/10 hover:shadow-2xl hover:border-brand-primary/30 transition-all">
+             </div> */}
+      {/* Card 3 */}
+      {/* <div className="glass-card-light rounded-3xl p-6 border border-brand-secondary/10 hover:shadow-2xl hover:border-brand-primary/30 transition-all">
+               <img src={productivityImg} alt="Produktivitas" className="w-full h-32 object-cover mb-4 rounded" />
                <h4 className="text-lg font-bold text-brand-dark mb-2">20% Peningkatan Produktivitas</h4>
                <p className="text-brand-secondary text-sm">Dengan microbreaks rutin.</p>
              </div>
            </div>
          </div>
-       </section>
+       </section> */}
 
-       {/* Cara kerja aplikasi */}
+      {/* Cara kerja aplikasi */}
       <section id="carakerja" className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="lg:grid lg:grid-cols-12 lg:gap-16 items-center">
 
@@ -770,7 +776,7 @@ const LandingPage = () => {
                 ) : (
                   <>
                     {/* Visual Placeholder: YouTube Thumbnail with gradient overlay */}
-                    <div 
+                    <div
                       className="absolute inset-0 bg-cover bg-center z-0"
                       style={{ backgroundImage: "url('https://img.youtube.com/vi/0LqWXlBfBxE/maxresdefault.jpg')" }}
                     />
@@ -1064,10 +1070,10 @@ const LandingPage = () => {
                 className="w-full py-3.5 px-4 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-white font-bold rounded-2xl text-sm border border-slate-200 dark:border-slate-850 shadow-sm transition-all cursor-pointer flex items-center justify-center space-x-2 active:scale-98"
               >
                 <svg className="h-5 w-5 mr-1" viewBox="0 0 24 24">
-                  <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-                  <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                  <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"/>
-                  <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"/>
+                  <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
+                  <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
+                  <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05" />
+                  <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335" />
                 </svg>
                 <span>Masuk dengan Google</span>
               </button>
