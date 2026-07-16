@@ -601,7 +601,37 @@ const LandingPage = () => {
             </div>
           </div>
         </div>
-      </section>      {/* Cara kerja aplikasi */}
+       </section>
+
+       {/* Statistik / Social Proof Dampak Kesehatan */}
+       <section id="statistik" className="py-24 bg-white border-t border-brand-secondary/10">
+         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+           <div className="text-center mb-12 space-y-4 scroll-reveal reveal-up">
+             <h2 className="text-xs font-bold text-brand-secondary uppercase tracking-widest">Fitur Utama</h2>
+             <h3 className="text-3xl sm:text-4xl font-extrabold text-brand-dark">Dirancang untuk Menjaga Kesehatan Anda</h3>
+             <p className="text-brand-secondary text-sm font-medium">Berbagai modul pintar yang bersinergi membantu menjaga kebugaran mata, otot, hidrasi, dan pikiran Anda secara berkala.</p>
+           </div>
+           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+             {/* Card 1 */}
+             <div className="glass-card-light rounded-3xl p-6 border border-brand-secondary/10 hover:shadow-2xl hover:border-brand-primary/30 transition-all">
+               <h4 className="text-lg font-bold text-brand-dark mb-2">85% Pekerja digital mengalami Computer Vision Syndrome</h4>
+               <p className="text-brand-secondary text-sm">Mata lelah/kering akibat penggunaan layar lama.</p>
+             </div>
+             {/* Card 2 */}
+             <div className="glass-card-light rounded-3xl p-6 border border-brand-secondary/10 hover:shadow-2xl hover:border-brand-primary/30 transition-all">
+               <h4 className="text-lg font-bold text-brand-dark mb-2">2 Jam</h4>
+               <p className="text-brand-secondary text-sm">Batas maksimal duduk terus‑menerus sebelum risiko kesehatan meningkat.</p>
+             </div>
+             {/* Card 3 */}
+             <div className="glass-card-light rounded-3xl p-6 border border-brand-secondary/10 hover:shadow-2xl hover:border-brand-primary/30 transition-all">
+               <h4 className="text-lg font-bold text-brand-dark mb-2">20% Peningkatan Produktivitas</h4>
+               <p className="text-brand-secondary text-sm">Dengan microbreaks rutin.</p>
+             </div>
+           </div>
+         </div>
+       </section>
+
+       {/* Cara kerja aplikasi */}
       <section id="carakerja" className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="lg:grid lg:grid-cols-12 lg:gap-16 items-center">
 
