@@ -95,7 +95,7 @@ const LandingPage = () => {
     },
     {
       name: "Dewi Lestari",
-      role: "IT Developer Biro Klasifikasi Indonesia (Persero)",
+      role: "IT Developer BKI (Persero)",
       initials: "DL",
       image: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=150&auto=format&fit=crop&q=80",
       bgClass: "from-indigo-500 to-cyan-500",
@@ -122,7 +122,7 @@ const LandingPage = () => {
     },
     {
       name: "Agastya Dava",
-      role: "IT Data Management Intern BKI Persero",
+      role: "Data Management Intern BKI (Persero)",
       initials: "AD",
       image: agastyaDavaImg,
       bgClass: "from-blue-500 to-indigo-500",
@@ -149,7 +149,7 @@ const LandingPage = () => {
     },
     {
       name: "Tiara",
-      role: "System Analyst Biro Klasifikasi Indonesia (Persero)",
+      role: "System Analyst BKI (Persero)",
       initials: "T",
       image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
       bgClass: "from-teal-500 to-cyan-500",
@@ -203,7 +203,7 @@ const LandingPage = () => {
     },
     {
       name: "Jore Kirana",
-      role: "ICT at Pertamina",
+      role: "ICT Intern at Pertamina",
       initials: "JK",
       image: joreImg,
       bgClass: "from-indigo-500 to-cyan-500",
@@ -258,11 +258,7 @@ const LandingPage = () => {
   }, [testimonials.length]);
 
   // Hero carousel setup
-  const heroImages = [
-    { src: heroWorkspaceBg, position: 'center top' },
-    { src: heroCarousel2, position: 'center' },
-    { src: heroCarousel3, position: 'center' }
-  ];
+  const heroImages = [heroWorkspaceBg, heroCarousel2, heroCarousel3];
   const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
 
   useEffect(() => {
@@ -468,14 +464,14 @@ const LandingPage = () => {
             className="flex h-full w-full transition-transform duration-700 ease-in-out"
             style={{ transform: `translateX(-${currentHeroIndex * 100}%)` }}
           >
-            {heroImages.map((imgObj, index) => (
+            {heroImages.map((img, index) => (
               <div
                 key={index}
                 className="w-full h-full flex-shrink-0"
                 style={{
-                  backgroundImage: `url(${imgObj.src})`,
+                  backgroundImage: `url(${img})`,
                   backgroundSize: 'cover',
-                  backgroundPosition: imgObj.position,
+                  backgroundPosition: 'center top',
                   backgroundRepeat: 'no-repeat',
                 }}
               />
