@@ -36,6 +36,7 @@ import taufiqImg from '../assets/testimonials/taufiq.jpg';
 import mulkyaImg from '../assets/testimonials/mulkya.jpg';
 import tiaraImg from '../assets/testimonials/tiara.jpg';
 import dewiLestariImg from '../assets/testimonials/dewi_lestari.png';
+import aydanRabbaniImg from '../assets/testimonials/aydan_rabbani.jpg';
 
 import visionImg from '../assets/vision.png';
 import sittingImg from '../assets/sitting.png';
@@ -247,6 +248,15 @@ const LandingPage = () => {
       bgClass: "from-purple-500 to-pink-500",
       rating: 5,
       comment: "Tracker waktu rehatnya intuitif dan andal. Sangat merekomendasikan aplikasi ini untuk seluruh pekerja teknik di lapangan."
+    },
+    {
+      name: "Aydan Rabbani",
+      role: "Mahasiswa Fisika UNJ 2023",
+      initials: "AR",
+      image: aydanRabbaniImg,
+      bgClass: "from-amber-500 to-rose-500",
+      rating: 5,
+      comment: "Sebagai mahasiswa fisika yang sering menganalisis data eksperimen di depan laptop, WorkWell sangat membantu saya untuk menjadwalkan istirahat dan meregangkan otot agar tidak cepat lelah."
     }
   ];
 
